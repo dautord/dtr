@@ -1,0 +1,24 @@
+make employee dashboard
+with access to 
+ - name, number of requests per type of request, clickable to apply for it (copy dtr_panel/dtr_dashboard/dashboard.php)
+ - requests with status (approved, denied, pending) (buong entry yung color para kita)
+
+make new page on admin dashboard - leave of absence form basically
+- for request approval
+	- name, date, type of request, remarks, accept/deny
+
+- reset requests button
+	- refreshes to max value
+
+- and request customization
+	- SL, VL, PL, ML, EL
+	- pwedeng mag edit ng value.
+	- add gender to employee, for PL or ML
+		- maybe genderless leave? Parental Leave?
+
+
+
+
+side quest:
+
+kita yung absent sa export to excel
