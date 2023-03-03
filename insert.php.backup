@@ -1,0 +1,81 @@
+<?php 
+error_reporting(0);
+//session_start();
+$localhost = "localhost";
+$username = "root";
+$password = "";
+$dbname = "dtr_system";
+
+$conn = new mysqli($localhost, $username, $password, $dbname);
+
+if($conn->connect_error){
+	die("Connection failed" .$conn->connect_error);
+}
+if(isset($_POST['text'])){
+
+	    $voice = new com("SAPI.SpVoice");
+
+		$emp = $_POST['text'];
+
+		$message = "Hi".$emp. "Your attendance has been successfully added!. Thank you";
+
+		$sql = "INSERT INTO tbl_attendance(employee_id, time_in) VALUES('$emp',NOW())";
+		if($conn->query($sql) === TRUE){
+            $voice->speak($message);
+		}else{
+			$_SESSTION['error'] = $conn->$error;
+		}
+
+	}
+	 header('Refresh: 1;url=index.php');
+	//header("location: index.php");
+	$conn->close();
+
+?>
+
+=========================================================================
+    <?php 
+
+      include 'connection/db_connect.php';
+      if(isset($_POST['employee_qrcode'])){
+
+       date_default_timezone_set("asia/manila");
+          $emp = $_POST['employee_qrcode'];
+          $date = date('Y-m-d');
+          //$time = date('h:i A');
+            $time =  date('h:i:A', strtotime("+0 HOURS"));
+
+
+
+          $sql1 = "SELECT * FROM tbl_employee WHERE qr_code = '$emp'";
+          $query1 = $conn->query($sql1);
+          if($query1->num_rows <= 0){
+            echo "<div class='alert alert-warning' role='alert' style='font-size:18px'><p><b><i class='fas fa-exclamation-triangle'></i>  Your QR Code does not register</b></p></div>";
+          }else{
+
+          $sql = "SELECT * FROM tbl_attendance WHERE employee_id = '$emp' AND logdate = '$date' AND status = '0'";
+          $query = $conn->query($sql);
+          if($query->num_rows > 0){
+            $sql = "UPDATE tbl_attendance SET time_out = '$time', status = '1' WHERE employee_id = '$emp' AND logdate = '$date'";
+            $query = $conn->query($sql);
+              echo "<div class='alert alert-danger' role='alert' style='font-size:22px'><h4><i class='fa fa-clock'></i> Time Out</h4><b>Your Time Out: </b> ".$time."</div>";
+
+          }else{
+
+
+              $sql = "INSERT INTO tbl_attendance(employee_id,time_in,logdate, status) VALUES('$emp', '$time','$date','0')";
+              if($conn->query($sql) === TRUE){
+                echo "<div class='alert alert-success' role='alert' style='font-size:22px'><h4><i class='fa fa-clock'></i>  Time In</h4><b>Your Time In: </b> ".$time."</div>";
+
+              }else{
+                 echo "Error";  
+              }
+
+           }
+
+        }
+
+    }
+       $conn->close();
+
+ ?>
