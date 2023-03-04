@@ -1,11 +1,13 @@
-make employee dashboard
-with access to 
- - name, number of requests per type of request, clickable to apply for it (copy dtr_panel/dtr_dashboard/dashboard.php)
+new page employee dashboard
+ - name, number of requests per type of request, clickable to apply for it (copy dtr_panel/dtr_dashboard/dashboard.php), password
  - requests with status (approved, denied, pending) (buong entry yung color para kita)
+
+		-password page almost done, need fix on redirection and success and error display messages 04/03/2023
 
 make new page on admin dashboard - leave of absence form basically
 - for request approval
 	- name, date, type of request, remarks, accept/deny
+- change qr code to passwords
 
 - reset requests button
 	- refreshes to max value
