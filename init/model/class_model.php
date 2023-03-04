@@ -195,6 +195,16 @@
 				);
 			}
 		}
+		public function update_employee_password($employee_id, $new_password) {
+			// $new_password_hashed = password_hash($new_password, PASSWORD_DEFAULT); hash optional
+			$sql = "UPDATE tbl_employee SET password = '$new_password' WHERE employee_id = '$employee_id'";
+			$result = $this->conn->query($sql);
+			if ($result === TRUE) {
+					return true; // return true if the update was successful
+			} else {
+					return false; // return false if the update failed
+			}
+	}
 
 		public function employee_account($employee_id){
 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `employee_id` = ?") or die($this->conn->error);
