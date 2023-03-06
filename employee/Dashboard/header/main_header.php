@@ -49,7 +49,7 @@
                 $employee_id = $_SESSION['employee_id'];
                 $conn = new class_model();
                 $user = $conn->employee_account($employee_id);
-                echo '<center> <i class="far fa-user"></i> <b>Welcome!</b>,'.ucwords($user['first_name']).', '.ucwords($user['last_name']).'      <i class="fas fa-caret-down"></i> </center>';
+                echo '<center> <i class="far fa-user"></i> <b>Welcome</b>, '.ucwords($user['first_name']).', '.ucwords($user['last_name']).'      <i class="fas fa-caret-down"></i> </center>';
             ?>
  
           <span class="badge badge-warning navbar-badge"></span>

@@ -37,18 +37,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // update the employee's password in the database
     if ($conn->update_employee_password($_SESSION['employee_id'], $new_password)) {
       // Password updated successfully
-      echo "Password updated!";
+      $success = "Password updated successfully.";
       // redirect the employee to the account page
-      header('Location: dashboard.php');
-      exit();
+      // header('Location: dashboard.php');
+      // exit();
     } else {
       // if the update fails, display an error message
-      $errors[] = 'There was an error changing your password. Please try again.';
+      $error = 'There was an error changing your password. Please try again.';
     }
   // }
 }
 
 ?>
+<html>
+<head>
+
+<style>
+  .alert {
+  font-size: 14px; /* set the font size */
+  padding: 8px; /* add some padding */
+  margin-bottom: 8px; /* add some margin */
+}
+
+.alert-success {
+  background-color: #d4edda; /* set the background color */
+  color: #155724; /* set the text color */
+  border: 1px solid #c3e6cb; /* set the border color */
+}
+
+.alert-danger {
+  background-color: #f8d7da; /* set the background color */
+  color: #721c24; /* set the text color */
+  border: 1px solid #f5c6cb; /* set the border color */
+}
+</style>
+
+</head>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -71,9 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-    
             <div class="card">
-
               <div class="card-body">
                 <form method="post">
                   <label for="new_password">New Password:</label>
@@ -81,13 +103,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <br>
                   <input type="submit" value="Change Password">
                 </form>
+                <?php if(isset($success)): ?>
+                  <div class="alert alert-success" id="success"><?php echo $success; ?></div>
+                <?php endif; ?>
+                <?php if(isset($error)): ?>
+                  <div class="alert alert-danger" id="error"><?php echo $error; ?></div>
+                <?php endif; ?>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>
+</div>
 <!-- <!DOCTYPE html>
 <html>
 <head>
@@ -95,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
   <h1>Change Password</h1>
-  <?php
+// <php 
   // display any errors
   // if (!empty($errors)) {
   //   echo '<ul>';
@@ -104,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   //   }
   //   echo '</ul>';
   // }
-  ?>
+// >
   <form method="post">
     <label for="new_password">New Password:</label>
     <input type="password" name="new_password" id="new_password">
@@ -133,3 +161,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   });
 </script>
+<script>
+    setTimeout(function() {
+        $("#success").fadeOut();
+        $("#error").fadeOut();
+    }, 5000); // 5000 milliseconds = 5 seconds
+</script>
+

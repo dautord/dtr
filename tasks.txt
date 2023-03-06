@@ -1,10 +1,15 @@
 new page employee dashboard
- - name, number of requests per type of request, clickable to apply for it (copy dtr_panel/dtr_dashboard/dashboard.php), password
- - requests with status (approved, denied, pending) (buong entry yung color para kita)
+ - name, number of requests per type of request, clickable to apply for it - leave of absence form basically, password
+ - requests with status - leave history	(approved, denied, pending) (buong entry yung color para kita)
+ - add new type of leave: others (working during curfew, off campus, outside official business, early departure, late reporting)
 
-		-password page almost done, need fix on redirection and success and error display messages 04/03/2023
+		-password page almost done, need success and error display messages 04/03/2023
+		-password page done. 06/03/2023
+		-new dashboard shows number and type of leaves
+			-paternal if male, and maternal if female 06/03/2023
+		-fixed sidebar issue where the page you are on is not highlighted blue 06/03/2023
 
-make new page on admin dashboard - leave of absence form basically
+make new page on admin dashboard 
 - for request approval
 	- name, date, type of request, remarks, accept/deny
 - change qr code to passwords
@@ -15,10 +20,7 @@ make new page on admin dashboard - leave of absence form basically
 - and request customization
 	- SL, VL, PL, ML, EL
 	- pwedeng mag edit ng value.
-	- add gender to employee, for PL or ML
-		- maybe genderless leave? Parental Leave?
-
-
+	- paternal leave if male, maternal leave if female.
 
 
 side quest:

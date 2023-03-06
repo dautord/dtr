@@ -204,6 +204,15 @@
 			} else {
 					return false; // return false if the update failed
 			}
+		}
+
+		public function getEmployeeLeaves($employee_id) {
+			$query = "SELECT gender, sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave 
+								FROM tbl_employee 
+								WHERE employee_id = $employee_id";
+			$result = $this->conn->query($query);
+			$row = $result->fetch_assoc();
+			return $row;
 	}
 
 		public function employee_account($employee_id){
