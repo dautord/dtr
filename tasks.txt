@@ -38,8 +38,9 @@ TASK HISTORY:
 -fixed sidebar issue where the page you are on is not highlighted blue 
 07/03/23
 -added solo_parent_leave to the system, dashboard. 
+-added solo parent leave to the dropdown menu in leave_request form 
 -new form: leave_request.php
 -new function: submitLeaveRequest() in class_model.php
--added solo parent leave to the dropdown menu in leave_request form 
+-put asia manila timezone tom 
 
 
