@@ -1,13 +1,15 @@
 new page employee dashboard
  - name, number of requests per type of request, clickable to apply for it - leave of absence form basically, password
  - requests with status - leave history	(approved, denied, pending) (buong entry yung color para kita)
- - add new type of leave: others (working during curfew, off campus, outside official business, early departure, late reporting)
+ - add new type of leave: Parental Leave (Solo Parent Act) others (working during curfew, off campus, outside official business, early departure, late reporting)
+ - if teaching/aca-nt, no vacation leave
+ - parental leave (solo parent act) is also only for females
+ - remove copyright footer
 
-		-password page almost done, need success and error display messages 04/03/2023
-		-password page done. 06/03/2023
-		-new dashboard shows number and type of leaves
-			-paternal if male, and maternal if female 06/03/2023
-		-fixed sidebar issue where the page you are on is not highlighted blue 06/03/2023
+backend data table for leave requests
+	- data of person who filed the request
+		- leave ID, employee ID, employee ID no., name, datetime start, datetime end, type of leave, reason, status of request
+			- admin pov: datetime filed -> leave ID current timestamp in phpmyadmin
 
 make new page on admin dashboard 
 - for request approval
@@ -20,9 +22,24 @@ make new page on admin dashboard
 - and request customization
 	- SL, VL, PL, ML, EL
 	- pwedeng mag edit ng value.
-	- paternal leave if male, maternal leave if female.
 
 
 side quest:
 
 kita yung absent sa export to excel
+
+TASK HISTORY:
+04/03/23
+-password page almost done, need success and error display messages
+06/03/23
+-password page done. 
+-new dashboard shows number and type of leaves
+-paternal if male, and maternal if female 
+-fixed sidebar issue where the page you are on is not highlighted blue 
+07/03/23
+-added solo_parent_leave to the system, dashboard. 
+-new form: leave_request.php
+-new function: submitLeaveRequest() in class_model.php
+-added solo parent leave to the dropdown menu in leave_request form 
+
+

@@ -90,8 +90,20 @@
           </div>
         </div>
       </div>
+      <!-- Solo Parent Leave Info Box -->
+        <div class="col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-baby-carriage"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Parental Leave (Solo Parent Act)</span>
+              <span class="info-box-number"><?= $emp['solo_parent_leave'] ?></span>
+            </div>
+          </div>
+        </div>
 
     </div>
+    <a href="leave_request.php" class="btn btn-md btn-primary text-center" style="height: 40px; display: flex; align-items: center; justify-content: center;">Request for Leave</a>
+
   </div>
 </section>
 

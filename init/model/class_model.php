@@ -207,13 +207,26 @@
 		}
 
 		public function getEmployeeLeaves($employee_id) {
-			$query = "SELECT gender, sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave 
+			$query = "SELECT gender, sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave, solo_parent_leave 
 								FROM tbl_employee 
 								WHERE employee_id = $employee_id";
 			$result = $this->conn->query($query);
 			$row = $result->fetch_assoc();
 			return $row;
-	}
+		}
+		public function submitLeaveRequest($employee_id, $datetime_start, $datetime_end, $leave_type, $reason, $datetime_requested, $status)
+		{
+				$stmt = $this->conn->prepare("INSERT INTO `tbl_leave_request` (`employee_id`, `datetime_start`, `datetime_end`, `leave_type`, `reason`, `datetime_requested`, `status` ) VALUES (?, ?, ?, ?, ?, ?, ?)");
+				$stmt->bind_param("issssss", $employee_id, $datetime_start, $datetime_end, $leave_type, $reason, $datetime_requested, $status);
+
+				if ($stmt->execute()) {
+						$stmt->close();
+						$this->conn->close();
+						return true;
+				} else {
+						return false;
+				}
+		}
 
 		public function employee_account($employee_id){
 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `employee_id` = ?") or die($this->conn->error);
