@@ -1,5 +1,26 @@
 <?php include 'header/main_header.php';?>
 <?php include 'sidebar/main_sidebar.php';?>
+<?php 
+  $employee_id = $_SESSION['employee_id'];
+  $conn = new class_model();
+  $emp = $conn->getEmployeeLeaves($employee_id);
+  $leaveRequests = $conn->getLeaveRequests($employee_id);
+  // Fetch the gender data
+  $gender = $emp['gender'];
+
+  //var_dump($leaveRequests);
+
+  // var_dump($gender);
+  // check if the user is logged in
+  if (!isset($_SESSION['employee_id'])) {
+    // if not, redirect them to the login page
+    header('location: login.php');
+    exit();
+  }
+
+
+
+?>
 
 <div class="content-wrapper">
     <div class="content-header">
@@ -26,16 +47,7 @@
       <div class="col-md-4">
         <div class="info-box mb-3">
           <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-syringe"></i></span>
-          <?php 
-            $employee_id = $_SESSION['employee_id'];
-            $conn = new class_model();
-            $emp = $conn->getEmployeeLeaves($employee_id);
-            
-            // Fetch the gender data
-            $gender = $emp['gender'];
-
-            // var_dump($gender);
-          ?>
+          
           <div class="info-box-content">
             <span class="info-box-text">Sick Leave</span>
             <span class="info-box-number"><?= $emp['sick_leave'] ?></span>
@@ -102,10 +114,51 @@
         </div>
 
     </div>
-    <a href="leave_request.php" class="btn btn-md btn-primary text-center" style="height: 40px; display: flex; align-items: center; justify-content: center;">Request for Leave</a>
-
+    <br>    
+    <h3 class="m-0 text-dark">Leave History</h3>
+    <br>
   </div>
-</section>
+
+<section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                      <th>Leave Request No.</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Leave Type</th>
+                      <th>Reason</th>
+                      <th>Requested On</th>
+                      <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($leaveRequests as $leaveRequest) { ?>
+                      <tr>
+                          <td><?php echo $leaveRequest['leave_id']; ?></td>
+                          <td><?php echo $leaveRequest['datetime_start']; ?></td>
+                          <td><?php echo $leaveRequest['datetime_end']; ?></td>
+                          <td><?php echo $leaveRequest['leave_type']; ?></td>
+                          <td><?php echo $leaveRequest['reason']; ?></td>
+                          <td><?php echo $leaveRequest['datetime_requested']; ?></td>
+                          <td><?php echo $leaveRequest['status']; ?></td>
+                      </tr>
+                  <?php } ?>
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="leave_request.php" class="btn btn-md btn-primary text-center" style="height: 40px; display: flex; align-items: center; justify-content: center; max-width: 200px;">Request for Leave</a>
+      </div>
+    </section>
+  </div>
 
 
 

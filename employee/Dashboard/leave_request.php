@@ -9,6 +9,8 @@ session_start();
 // include class_model.php
 require_once('../../init/model/class_model.php');
 $conn = new class_model();
+date_default_timezone_set('Asia/Manila');
+
 
 // check if the user is logged in
 if (!isset($_SESSION['employee_id'])) {
@@ -25,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // get the user's input
   $datetime_start = $_POST['start_date'];
   $datetime_end = $_POST['end_date'];
-  $leave_type = $_POST['leave_type'];
+  $leave_type = $_POST['leave_type']; 
   $reason = $_POST['reason'];
   $datetime_requested = date('Y-m-d H:i:s');
   $status = 'Pending';
@@ -70,6 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   color: #721c24; /* set the text color */
   border: 1px solid #f5c6cb; /* set the border color */
 }
+.reason-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reason-container label {
+    margin-bottom: 0.5rem;
+  }
 </style>
 
 </head>
@@ -102,10 +112,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- gets the employee id in tbl_employee -->
                     <input type="hidden" name="employee_id" value="<?php echo $_SESSION['employee_id']; ?>">
                     <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date" required><br>
+                    <input type="datetime-local" id="start_date" name="start_date" required><br>
 
                     <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" name="end_date" required><br>
+                    <input type="datetime-local" id="end_date" name="end_date" required><br>
 
                     <label for="leave_type">Type of Leave:</label>
                     <select id="leave_type" name="leave_type" required>
@@ -122,10 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       <option value="personal">Parental Leave (Solo Parent Act)</option>
                       <option value="vacation">Other</option>
                     </select><br>
-
+                    <div class="reason-container">
                     <label for="reason">Reason:</label>
                     <textarea id="reason" name="reason" required></textarea><br>
-
+                    </div>
+                    <br>
                     <input type="submit" value="Submit">
                 </form>
                 <?php if(isset($success)): ?>
