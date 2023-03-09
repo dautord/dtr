@@ -5,6 +5,7 @@
   $conn = new class_model();
   $emp = $conn->getEmployeeLeaves($employee_id);
   $leaveRequests = $conn->getLeaveRequests($employee_id);
+  
   // Fetch the gender data
   $gender = $emp['gender'];
 
@@ -16,6 +17,18 @@
     // if not, redirect them to the login page
     header('location: login.php');
     exit();
+  }
+
+  if (isset($_POST['cancel'])){
+    $leave_id = $_POST["leave_id"];
+    $cancelLeave = $conn->cancelLeaveRequest($leave_id);
+    if($cancelLeave) {
+      echo "<script>alert('Leave request canceled successfully.')</script>";
+      header('location: dashboard.php');
+      exit();
+    } else {
+      echo "<script>alert('Error canceling leave request.')</script>";
+    }
   }
 
 
@@ -147,6 +160,14 @@
                           <td><?php echo $leaveRequest['reason']; ?></td>
                           <td><?php echo $leaveRequest['datetime_requested']; ?></td>
                           <td><?php echo $leaveRequest['status']; ?></td>
+                          <td>
+                          <?php if($leaveRequest["status"] == "Pending") { ?>
+                          <form method="post">
+                            <input type="hidden" name="leave_id" value="<?php echo $leaveRequest["leave_id"]; ?>">
+                            <button type="submit" name="cancel">Cancel</button>
+                          </form>
+                          <?php } ?>
+                          </td>
                       </tr>
                   <?php } ?>
                 </tbody>

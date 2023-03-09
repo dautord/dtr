@@ -240,6 +240,19 @@
 				}
 		}
 
+		public function cancelLeaveRequest($leave_id){
+
+			$sql = "DELETE FROM tbl_leave_request WHERE leave_id = ?";
+			$stmt = $this->conn->prepare($sql);
+		 	$stmt->bind_param("i", $leave_id);
+
+			if($stmt->execute()){
+				$stmt->close();
+				$this->conn->close();
+				return true;
+			}
+		}
+
 		public function employee_account($employee_id){
 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `employee_id` = ?") or die($this->conn->error);
 		    $stmt->bind_param("i", $employee_id);

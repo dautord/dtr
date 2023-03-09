@@ -47,5 +47,9 @@ TASK HISTORY:
 - time field in form for leave_request.php (supposed to track date and time but only date shows up in form, with time 00:00:00)
 - leave history for employee side delete button tom (dashboard.php)
 then hard part is on friday/sat (admin approval) (if sick, sick_leave - 1, etc.)
+09/03/23
+- new function: cancelLeaveRequest() in class_model.php
+- leave history cancel button finished, refreshing, but needs a confirmation message. 
+the canceled request should be gone after the cancel confirmation message
 
 
