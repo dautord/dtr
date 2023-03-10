@@ -23,12 +23,15 @@ make new page on admin dashboard
 	- SL, VL, PL, ML, EL
 	- pwedeng mag edit ng value.
 
+- button to lock out leave request form
+
 
 side quest:
 
 kita yung absent sa export to excel
 
-TASK HISTORY:
+TASK HISTORY / README:
+
 04/03/23
 -password page almost done, need success and error display messages
 06/03/23
@@ -51,5 +54,9 @@ then hard part is on friday/sat (admin approval) (if sick, sick_leave - 1, etc.)
 - new function: cancelLeaveRequest() in class_model.php
 - leave history cancel button finished, refreshing, but needs a confirmation message. 
 the canceled request should be gone after the cancel confirmation message
-
-
+10/03/23
+- rows of leave history table in dashboard.php are 
+highlighted light yellow if pending, light red if rejected, and light green if approved.
+- cancel confirmation added to cancelling of leave request in table in dashboard.php.
+- added word wrap to line break long sentence in reason column of leave request table in dashboard.php.
+- changed order of available leaves in dashboard.php.

@@ -9,7 +9,7 @@
   // Fetch the gender data
   $gender = $emp['gender'];
 
-  //var_dump($leaveRequests);
+  // var_dump($leaveRequests);
 
   // var_dump($gender);
   // check if the user is logged in
@@ -21,20 +21,53 @@
 
   if (isset($_POST['cancel'])){
     $leave_id = $_POST["leave_id"];
-    $cancelLeave = $conn->cancelLeaveRequest($leave_id);
-    if($cancelLeave) {
-      echo "<script>alert('Leave request canceled successfully.')</script>";
-      header('location: dashboard.php');
-      exit();
-    } else {
-      echo "<script>alert('Error canceling leave request.')</script>";
+    $confirm = $_POST["confirm"];
+  
+    if ($confirm == "yes") {
+      $cancelLeave = $conn->cancelLeaveRequest($leave_id);
+  
+      if($cancelLeave) {
+        echo "<script>alert('Leave request canceled successfully.')</script>";
+        header('location: dashboard.php');
+        exit();
+      } else {
+        echo "<script>alert('Error canceling leave request.')</script>";
+      }
     }
   }
+  
 
 
 
 ?>
 
+<html>
+<head>
+  <style>
+    /* Style rows with "Pending" status */
+    tr.status-pending {
+      background-color: #fffccc !important; /* light yellow */
+    }
+
+    /* Style rows with "Rejected" status */
+    tr.status-rejected {
+      background-color: #FFCCCC !important; /* light red */
+    }
+
+    /* Style rows with "Approved" status */
+    tr.status-approved {
+      background-color: #D9FBD9 !important; /* light green */
+    }
+
+    td.reason{ /* truncates after 142 characters */
+      max-width: 350px;
+      word-wrap: break-word; 
+      /* overflow: hidden; Optional: hide overflow content */
+      /* text-overflow: ellipsis; Optional: show ellipsis for truncated content */
+      /* white-space: nowrap; Optional: prevent line breaks */
+    }
+  </style>
+</head>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -52,7 +85,7 @@
         </div>
     </div>
 
-    <section class="content">
+<section class="content">
   <div class="container-fluid">
     <div class="row">
 
@@ -68,22 +101,11 @@
         </div>
       </div>
 
-      <!-- Vacation Leave Info Box -->
-      <div class="col-md-4">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-island-tropical"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Vacation Leave</span>
-            <span class="info-box-number"><?= $emp['vacation_leave'] ?></span>
-          </div>
-        </div>
-      </div>
-
       <!-- Paternal Leave Info Box -->
       <?php if ($gender === 'Male'): ?>
         <div class="col-md-4">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-baby-carriage"></i></span>
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-baby-carriage"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">Paternal Leave</span>
               <span class="info-box-number"><?= $emp['paternal_leave'] ?></span>
@@ -105,6 +127,28 @@
         </div>
       <?php endif; ?>
 
+      <!-- Solo Parent Leave Info Box -->
+      <div class="col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-baby-carriage"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Parental Leave (Solo Parent Act)</span>
+              <span class="info-box-number"><?= $emp['solo_parent_leave'] ?></span>
+            </div>
+          </div>
+        </div>
+
+      <!-- Vacation Leave Info Box -->
+      <div class="col-md-4">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-island-tropical"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Vacation Leave</span>
+            <span class="info-box-number"><?= $emp['vacation_leave'] ?></span>
+          </div>
+        </div>
+      </div>
+
       <!-- Emergency Leave Info Box -->
       <div class="col-md-4">
         <div class="info-box mb-3">
@@ -115,16 +159,7 @@
           </div>
         </div>
       </div>
-      <!-- Solo Parent Leave Info Box -->
-        <div class="col-md-4">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-baby-carriage"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">Parental Leave (Solo Parent Act)</span>
-              <span class="info-box-number"><?= $emp['solo_parent_leave'] ?></span>
-            </div>
-          </div>
-        </div>
+      
 
     </div>
     <br>    
@@ -150,27 +185,43 @@
                       <th>Status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <?php foreach ($leaveRequests as $leaveRequest) { ?>
-                      <tr>
-                          <td><?php echo $leaveRequest['leave_id']; ?></td>
-                          <td><?php echo $leaveRequest['datetime_start']; ?></td>
-                          <td><?php echo $leaveRequest['datetime_end']; ?></td>
-                          <td><?php echo $leaveRequest['leave_type']; ?></td>
-                          <td><?php echo $leaveRequest['reason']; ?></td>
-                          <td><?php echo $leaveRequest['datetime_requested']; ?></td>
-                          <td><?php echo $leaveRequest['status']; ?></td>
-                          <td>
+                  <tbody>
+                    <?php foreach ($leaveRequests as $leaveRequest) { ?>
+                      <?php
+                        $statusClass = "";
+                        switch ($leaveRequest['status']) {
+                          case "Pending":
+                            $statusClass = "status-pending";
+                            break;
+                          case "Rejected":
+                            $statusClass = "status-rejected";
+                            break;
+                          case "Approved":
+                            $statusClass = "status-approved";
+                            break;
+                        }
+                      ?>
+                      <tr class="<?php echo $statusClass; ?>">
+                        <td><?php echo $leaveRequest['leave_id']; ?></td>
+                        <td><?php echo $leaveRequest['datetime_start']; ?></td>
+                        <td><?php echo $leaveRequest['datetime_end']; ?></td>
+                        <td><?php echo $leaveRequest['leave_type']; ?></td>
+                        <td class="reason"><?php echo $leaveRequest['reason']; ?></td>
+                        <td><?php echo $leaveRequest['datetime_requested']; ?></td>
+                        <td><?php echo $leaveRequest['status']; ?></td>
+                        <td>
                           <?php if($leaveRequest["status"] == "Pending") { ?>
-                          <form method="post">
-                            <input type="hidden" name="leave_id" value="<?php echo $leaveRequest["leave_id"]; ?>">
-                            <button type="submit" name="cancel">Cancel</button>
-                          </form>
+                            <form method="post" onsubmit="return confirmCancel();">
+                            <input type="hidden" name="leave_id" value="<?= $leaveRequest['leave_id'] ?>" />
+                            <input type="hidden" name="confirm" id="confirm" />
+
+                            <button type="submit" name="cancel" class="btn btn-danger">Cancel</button>
+                            </form>
                           <?php } ?>
-                          </td>
+                        </td>
                       </tr>
-                  <?php } ?>
-                </tbody>
+                    <?php } ?>
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -183,12 +234,21 @@
 
 
 
-
 <aside class="control-sidebar control-sidebar-dark">
 </aside>
 
 <?php include 'footer/footer.php';?>
 </div>
+<script>
+function confirmCancel() {
+  if (confirm("Are you sure you want to cancel this leave request?")) {
+    document.getElementById("confirm").value = "yes";
+    return true;
+  } else {
+    return false;
+  }
+}
+</script>
 
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -202,5 +262,7 @@
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/pages/dashboard2.js"></script>
+
+
 </body>
 </html>
