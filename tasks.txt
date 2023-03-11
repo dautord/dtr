@@ -1,30 +1,19 @@
-new page employee dashboard
- - name, number of requests per type of request, clickable to apply for it - leave of absence form basically, password
- - requests with status - leave history	(approved, denied, pending) (buong entry yung color para kita)
- - add new type of leave: Parental Leave (Solo Parent Act) others (working during curfew, off campus, outside official business, early departure, late reporting)
- - if teaching/aca-nt, no vacation leave
- - parental leave (solo parent act) is also only for females
+EMPLOYEE DASHBOARD
+ - if teaching/aca-nt, no vacation leave (based on dept.)
  - remove copyright footer
-
-backend data table for leave requests
-	- data of person who filed the request
-		- leave ID, employee ID, employee ID no., name, datetime start, datetime end, type of leave, reason, status of request
-			- admin pov: datetime filed -> leave ID current timestamp in phpmyadmin
-
-make new page on admin dashboard 
+ 
+ADMIN DASHBOARD
 - for request approval
 	- name, date, type of request, remarks, accept/deny
 - change qr code to passwords
 
 - reset requests button
-	- refreshes to max value
+	- refreshes to max value depends on department
 
 - and request customization
-	- SL, VL, PL, ML, EL
-	- pwedeng mag edit ng value.
+	- able to set max value
 
 - button to lock out leave request form
-
 
 side quest:
 
