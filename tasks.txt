@@ -1,6 +1,5 @@
 EMPLOYEE DASHBOARD
  - if teaching/aca-nt, no vacation leave (based on dept.)
- - remove copyright footer
  
 ADMIN DASHBOARD
 - for request approval
