@@ -48,7 +48,7 @@
     .button1:hover {
       background-color: #d6a92b;
       color: white;
-
+    }
     </style>
 </head>
 

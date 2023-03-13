@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>DTR Management System</title>
+  <title>HR Management System</title>
 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -17,7 +17,7 @@
   include('../../init/model/class_model.php');
        session_start();
     if(!(trim($_SESSION['employee_id']))){
-        header('location:../index.php');
+      header('location:../index.php');
     }
 
 ?>
