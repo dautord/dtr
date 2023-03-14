@@ -52,7 +52,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - added word wrap to line break long sentence in reason column of leave request table in dashboard.php.
 - changed order of available leaves in dashboard.php.
 13/03/23 
-- start renaming all of "DTR" to "HRMS or CDBS HRMS" or "HR Management System"
+- start renaming all of "DTR" to "CDBS HRMS" or "CDBS HR Management System"
 - footer.php changed
 - finished fixing random front-end matters, like sidebar, logout for employee dashboard, missing curly bracket in employee index.php
 14/03/23
