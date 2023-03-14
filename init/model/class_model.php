@@ -207,13 +207,16 @@
 		}
 
 		public function getEmployeeLeaves($employee_id) {
-			$query = "SELECT gender, sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave, solo_parent_leave 
+			$query = "SELECT department, gender, sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave, solo_parent_leave 
 								FROM tbl_employee 
 								WHERE employee_id = $employee_id";
 			$result = $this->conn->query($query);
 			$row = $result->fetch_assoc();
+			$gender = $row['gender'];
+			$department = $row['department'];
 			return $row;
-		}
+	}
+	
 		public function getLeaveRequests($employee_id) {
 			$query = "SELECT leave_id, datetime_start, datetime_end, leave_type, reason, datetime_requested, status
 								FROM tbl_leave_request JOIN tbl_employee ON tbl_leave_request.employee_id = tbl_employee.employee_id

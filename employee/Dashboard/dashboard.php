@@ -8,10 +8,12 @@
   
   // Fetch the gender data
   $gender = $emp['gender'];
+  $department = $emp['department'];
 
   // var_dump($leaveRequests);
 
   // var_dump($gender);
+  // var_dump($department);
   // check if the user is logged in
   if (!isset($_SESSION['employee_id'])) {
     // if not, redirect them to the login page
@@ -139,6 +141,7 @@
         </div>
 
       <!-- Vacation Leave Info Box -->
+      <?php if ($department === 'Non-Teaching Department'): ?>
       <div class="col-md-4">
         <div class="info-box mb-3">
           <span class="info-box-icon bg-success elevation-1"><i class="fas fa-island-tropical"></i></span>
@@ -148,7 +151,7 @@
           </div>
         </div>
       </div>
-
+      <?php endif; ?>
       <!-- Emergency Leave Info Box -->
       <div class="col-md-4">
         <div class="info-box mb-3">

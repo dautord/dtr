@@ -21,6 +21,11 @@ if (!isset($_SESSION['employee_id'])) {
 
 // get the employee ID
 $employee_id = $_SESSION['employee_id'];
+ // get the employee's gender, department
+ $emp = $conn->getEmployeeLeaves($employee_id);
+ $gender = $emp['gender'];
+ $department = $emp['department'];
+
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -31,10 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $reason = $_POST['reason'];
   $datetime_requested = date('Y-m-d H:i:s');
   $status = 'Pending';
-
-  // get the employee's gender
-  $emp = $conn->getEmployeeLeaves($employee_id);
-  $gender = $emp['gender'];
+  
   
   // submit the leave request
   $sub = $conn->submitLeaveRequest($employee_id, $datetime_start, $datetime_end, $leave_type, $reason, $datetime_requested, $status);
@@ -47,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = 'There was an error submitting your leave request. Please try again.';
   }
 }
-
 
 ?>
 
@@ -121,16 +122,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select id="leave_type" name="leave_type" required>
                       <option value="">--Please select--</option>
                       <option value="sick">Sick Leave</option>
+                      <?php if ($department === 'Non-Teaching Department'):  ?>
                       <option value="vacation">Vacation Leave</option>
+                      <?php endif; ?>
                       <?php if ($gender === 'Male'):  ?>
-                        <option value="personal">Paternal Leave</option>
+                        <option value="paternal">Paternal Leave</option>
                       <?php endif; ?>
                       <?php if ($gender === 'Female'):  ?>
-                        <option value="personal">Maternal Leave</option>
+                        <option value="maternal">Maternal Leave</option>
                       <?php endif; ?>
                       <option value="vacation">Emergency Leave</option>
-                      <option value="personal">Parental Leave (Solo Parent Act)</option>
-                      <option value="vacation">Other</option>
+                      <option value="solo parent">Parental Leave (Solo Parent Act)</option>
+                      <option value="other">Other</option>
                     </select><br>
                     <div class="reason-container">
                     <label for="reason">Reason:</label>
