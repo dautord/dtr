@@ -58,3 +58,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 14/03/23
 - fixed conditional statements in dropdown menu of leave_request.php
 - added $department for vacation leave display in non-teaching employees (getEmployeeLeaves()) for dashboard.php and leave_request.php
+15/03/23 
+- adminGetLeaveRequests() on class_model.php
+- Leave Requests on admin page 
+- fixed data widget tree view for admin sidebar

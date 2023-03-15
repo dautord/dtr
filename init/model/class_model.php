@@ -269,6 +269,27 @@
 				);
 			}	
 		}
+		public function adminGetLeaveRequests($leave_id){
+			$stmt = "SELECT tbl_leave_request.*,
+			tbl_employee.first_name,
+			tbl_employee.last_name,
+			tbl_employee.sick_leave,
+			tbl_employee.vacation_leave,
+			tbl_employee.paternal_leave,
+			tbl_employee.maternal_leave,
+			tbl_employee.emergency_leave,
+			tbl_employee.solo_parent_leave
+			FROM tbl_leave_request
+			INNER JOIN tbl_employee
+			ON tbl_leave_request.employee_id = tbl_employee.employee_id";
+			$result = $this->conn->query($stmt);
+			$rows = array();
+			while ($row = $result->fetch_assoc()) {
+					$rows[] = $row;
+			}
+			return $rows;
+		}
+
 	
 	    public function fetchindividual_employee($employee_id){ 
 	            $sql = "SELECT * FROM  tbl_employee WHERE `employee_id` = ?";

@@ -1,5 +1,45 @@
   <?php include 'header/main_header.php';?>
   <?php include 'sidebar/main_sidebar.php';?>
+  <?php 
+    $conn = new class_model();  
+    $adminFetchLeaveReqs = $conn->adminGetLeaveRequests($leave_id);
+
+    if (!isset($_SESSION['admin_id'])) {
+      // if not, redirect them to the login page
+      header('location: login.php');
+      exit();
+    }
+  
+  
+  ?>
+<html>
+<head>
+  <style>
+    /* Style rows with "Pending" status */
+    tr.status-pending {
+      background-color: #fffccc !important; /* light yellow */
+    }
+
+    /* Style rows with "Rejected" status */
+    tr.status-rejected {
+      background-color: #FFCCCC !important; /* light red */
+    }
+
+    /* Style rows with "Approved" status */
+    tr.status-approved {
+      background-color: #D9FBD9 !important; /* light green */
+    }
+
+    td.reason{ /* truncates after 142 characters */
+      max-width: 350px;
+      word-wrap: break-word; 
+      /* overflow: hidden; Optional: hide overflow content */
+      /* text-overflow: ellipsis; Optional: show ellipsis for truncated content */
+      /* white-space: nowrap; Optional: prevent line breaks */
+    }
+  </style>
+</head>
+<body>
   <div class="content-wrapper">
 
     <div class="content-header">
@@ -100,7 +140,76 @@
             </div>
           </div>
         </div>
+        <br>    
+        <h3 class="m-0 text-dark">Leave Requests</h3>
+        <br>          
+      </div>
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                      <th>Leave Request No.</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Leave Type</th>
+                      <th>Reason</th>
+                      <th>Requested On</th>
+                      <th>Status</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    <?php foreach ($adminFetchLeaveReqs as $leaveRequest) { ?>
+                      <?php
+                        $statusClass = "";
+                        switch ($leaveRequest['status']) {
+                          case "Pending":
+                            $statusClass = "status-pending";
+                            break;
+                          case "Rejected":
+                            $statusClass = "status-rejected";
+                            break;
+                          case "Approved":
+                            $statusClass = "status-approved";
+                            break;
+                        }
+                      ?>
+                      <tr class="<?php echo $statusClass; ?>">
+                        <td><?php echo $leaveRequest['leave_id']; ?></td>
+                        <td><?php echo $leaveRequest['first_name']; ?></td>
+                        <td><?php echo $leaveRequest['last_name']; ?></td>
+                        <td><?php echo $leaveRequest['datetime_start']; ?></td>
+                        <td><?php echo $leaveRequest['datetime_end']; ?></td>
+                        <td><?php echo $leaveRequest['leave_type']; ?></td>
+                        <td class="reason"><?php echo $leaveRequest['reason']; ?></td>
+                        <td><?php echo $leaveRequest['datetime_requested']; ?></td>
+                        <td><?php echo $leaveRequest['status']; ?></td>
+                        <!-- <td>
+                          <?php if($leaveRequest["status"] == "Pending") { ?>
+                            <form method="post" onsubmit="return confirmCancel();">
+                            <input type="hidden" name="leave_id" value="<?= $leaveRequest['leave_id'] ?>" />
+                            <input type="hidden" name="confirm" id="confirm" />
 
+                            <button type="submit" name="cancel" class="btn btn-danger">Cancel</button>
+                            </form>
+                          <?php } ?>
+                        </td> -->
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </section>
   </div>
@@ -123,5 +232,6 @@
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/pages/dashboard2.js"></script>
+
 </body>
 </html>
