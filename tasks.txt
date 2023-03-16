@@ -3,7 +3,7 @@ EMPLOYEE DASHBOARD
 ADMIN DASHBOARD
 
 - for request approval
-	- accept/deny, then -1 to no. of leave according to type
+	- after accept/deny, -1 to no. of leave according to type
 - change qr code to passwords
 
 - reset requests button
@@ -15,54 +15,59 @@ ADMIN DASHBOARD
 - button to lock out leave request form
 
 side quest:
-
-kita yung absent sa export to excel
-
-
-
+- kita yung absent sa export to excel
 
 
 TASK HISTORY / README:
 
 04/03/23
 -password page almost done, need success and error display messages
+
 06/03/23
 -password page done. 
 -new dashboard shows number and type of leaves
 -paternal if male, and maternal if female 
 -fixed sidebar issue where the page you are on is not highlighted blue 
+
 07/03/23
 -added solo_parent_leave to the system, dashboard. 
 -added solo parent leave to the dropdown menu in leave_request form 
 -new form: leave_request.php
 -new function: submitLeaveRequest() in class_model.php
 -put asia manila timezone tom 
+
 08/03/23
 - asia manila timezone
 - time field in form for leave_request.php (supposed to track date and time but only date shows up in form, with time 00:00:00)
 - leave history for employee side delete button tom (dashboard.php)
 then hard part is on friday/sat (admin approval) (if sick, sick_leave - 1, etc.)
+
 09/03/23
 - new function: cancelLeaveRequest() in class_model.php
 - leave history cancel button finished, refreshing, but needs a confirmation message. 
 the canceled request should be gone after the cancel confirmation message
+
 10/03/23
 - rows of leave history table in dashboard.php are 
 highlighted light yellow if pending, light red if rejected, and light green if approved.
 - cancel confirmation added to cancelling of leave request in table in dashboard.php.
 - added word wrap to line break long sentence in reason column of leave request table in dashboard.php.
 - changed order of available leaves in dashboard.php.
+
 13/03/23 
 - start renaming all of "DTR" to "CDBS HRMS" or "CDBS HR Management System"
 - footer.php changed
 - finished fixing random front-end matters, like sidebar, logout for employee dashboard, missing curly bracket in employee index.php
+
 14/03/23
 - fixed conditional statements in dropdown menu of leave_request.php
 - added $department for vacation leave display in non-teaching employees (getEmployeeLeaves()) for dashboard.php and leave_request.php
+
 15/03/23 
 - adminGetLeaveRequests() on class_model.php
 - Leave Requests on admin page 
 - fixed data widget tree view for admin sidebar
+
 16/03/23
 - added leave limits per type of leave to tbl_department
 - moved include of sidebar AFTER header so headers already sent error doesnt show up

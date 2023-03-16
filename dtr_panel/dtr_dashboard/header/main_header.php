@@ -49,7 +49,7 @@
                 $user_id = $_SESSION['admin_id'];
                 $conn = new class_model();
                 $user = $conn->admin_account($user_id);
-                echo '<center> <i class="far fa-user"></i> <b>Welcome!</b>,'.ucwords($user['full_name']).'       <i class="fas fa-caret-down"></i> </center>';
+                echo '<center> <i class="far fa-user"></i> <b>Welcome</b>, ' .ucwords($user['full_name']).'       <i class="fas fa-caret-down"></i> </center>';
             ?>
  
           <span class="badge badge-warning navbar-badge"></span>
