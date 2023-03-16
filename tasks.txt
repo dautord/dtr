@@ -1,16 +1,17 @@
 EMPLOYEE DASHBOARD
  
 ADMIN DASHBOARD
+
 - for request approval
-	- name, date, type of request, remarks, accept/deny
+	- accept/deny, then -1 to no. of leave according to type
 - change qr code to passwords
 
 - reset requests button
 	- refreshes to max value depends on department
 
 - and request customization
-	- able to set max value
-
+	- able to manually set value
+	- able to refresh to max value
 - button to lock out leave request form
 
 side quest:
@@ -62,3 +63,8 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - adminGetLeaveRequests() on class_model.php
 - Leave Requests on admin page 
 - fixed data widget tree view for admin sidebar
+16/03/23
+- added leave limits per type of leave to tbl_department
+- moved include of sidebar AFTER header so headers already sent error doesnt show up
+- adminSetLeaveStatus()
+- accept and reject buttons working, just need to -1 to type of leave - but before that, set values for limits first

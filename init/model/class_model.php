@@ -290,9 +290,22 @@
 			return $rows;
 		}
 
+		public function adminSetLeaveStatus($leave_id, $new_status){
+			$sql = "UPDATE tbl_leave_request SET status = '$new_status' WHERE leave_id = '$leave_id'";
+			$stmt = $this->conn->prepare($sql);
+			if($stmt->execute()){
+					$stmt->close();
+					$this->conn->close();
+					return true;
+			} else {
+					return false;
+			}
+	}
+	
+
 	
 	    public function fetchindividual_employee($employee_id){ 
-	            $sql = "SELECT * FROM  tbl_employee WHERE `employee_id` = ?";
+	        $sql = "SELECT * FROM  tbl_employee WHERE `employee_id` = ?";
 					$stmt = $this->conn->prepare($sql);
 					$stmt->bind_param("i", $employee_id);
 					$stmt->execute();

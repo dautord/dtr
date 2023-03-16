@@ -1,19 +1,6 @@
-
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-<!--       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
- -->
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -24,7 +11,6 @@
                 Dashboard
               </p>
             </a>
-
           </li>
            <li class="nav-item">
             <a href="manage_department.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_department.php') ? 'active' : ''; ?>">
@@ -42,15 +28,14 @@
               </p>
             </a>
           </li>
-
-         <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="manage_schedule.php" class="nav-link php echo (basename($_SERVER['PHP_SELF']) == 'manage_schedule.php') ? 'active' : ''; ?>">
               <i class="nav-icon fa fa-user-clock"></i>
               <p>
                 Manage Schedules
               </p>
             </a>
-          </li> -->
+          </li> 
            <li class="nav-item">
             <a href="manage_attendance.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_attendance.php') ? 'active' : ''; ?>">
               <i class="nav-icon fa fa-clock"></i>
@@ -67,10 +52,7 @@
               </p>
             </a>
           </li>
-
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
-  </aside>
+</aside>

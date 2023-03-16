@@ -1,17 +1,70 @@
-  <?php include 'header/main_header.php';?>
-  <?php include 'sidebar/main_sidebar.php';?>
-  <?php 
+<?php include 'header/main_header.php';?>
+<?php 
     $conn = new class_model();  
     $adminFetchLeaveReqs = $conn->adminGetLeaveRequests($leave_id);
-
     if (!isset($_SESSION['admin_id'])) {
       // if not, redirect them to the login page
       header('location: login.php');
       exit();
     }
+    
+    // if (isset($_POST['approve']) || isset($_POST['reject'])) {
+    //   // Get the leave ID and new status from the form data
+    //   $leave_id = $_POST["leave_id"];
+    //   $new_status = ($_POST['approve']) ? "Approved" : "Rejected";
+      
+    //   // Update the leave status in your database using your adminSetLeaveStatus function
+    //   $result = $conn->adminSetLeaveStatus($leave_id, $new_status);
+      
+    //   // Check if the update was successful and redirect accordingly
+    //   if ($result) {
+    //       header("location: ".$_SERVER['PHP_SELF']);
+    //       exit;
+    //   } else {
+    //       // Handle the error if the update failed
+    //       echo "Error: Failed to update the leave status.";
+    //   }
+    // }
+
+    if (isset($_POST['approve'])) {
+      // Get the leave ID and new status from the form data
+      $leave_id = $_POST['leave_id'];
+      $new_status = 'Approved';
   
+      // Update the leave status in your database using your adminSetLeaveStatus function
+      $result = $conn->adminSetLeaveStatus($leave_id, $new_status);
   
-  ?>
+      // Check if the update was successful and redirect accordingly
+      if ($result) {
+          header("location: ".$_SERVER['PHP_SELF']);
+          exit;
+      } else {
+          // Handle the error if the update failed
+          echo "Error: Failed to update the leave status.";
+      }
+    }
+  
+    if (isset($_POST['reject'])) {
+      // Get the leave ID and new status from the form data
+      $leave_id = $_POST['leave_id'];
+      $new_status = 'Rejected';
+  
+      // Update the leave status in your database using your adminSetLeaveStatus function
+      $result = $conn->adminSetLeaveStatus($leave_id, $new_status);
+  
+      // Check if the update was successful and redirect accordingly
+      if ($result) {
+          header("location: ".$_SERVER['PHP_SELF']);
+          exit;
+      } else {
+          // Handle the error if the update failed
+          echo "Error: Failed to update the leave status.";
+      }
+    }
+  
+?>
+
+<?php include 'sidebar/main_sidebar.php';?>
 <html>
 <head>
   <style>
@@ -36,6 +89,9 @@
       /* overflow: hidden; Optional: hide overflow content */
       /* text-overflow: ellipsis; Optional: show ellipsis for truncated content */
       /* white-space: nowrap; Optional: prevent line breaks */
+    }
+    .my-btn{
+      width: 100px;
     }
   </style>
 </head>
@@ -191,16 +247,17 @@
                         <td class="reason"><?php echo $leaveRequest['reason']; ?></td>
                         <td><?php echo $leaveRequest['datetime_requested']; ?></td>
                         <td><?php echo $leaveRequest['status']; ?></td>
-                        <!-- <td>
-                          <?php if($leaveRequest["status"] == "Pending") { ?>
-                            <form method="post" onsubmit="return confirmCancel();">
+                        <td>
+                        <?php if($leaveRequest["status"] == "Pending") { ?>
+                          <form method="post" onsubmit="return confirmAction();">
                             <input type="hidden" name="leave_id" value="<?= $leaveRequest['leave_id'] ?>" />
                             <input type="hidden" name="confirm" id="confirm" />
 
-                            <button type="submit" name="cancel" class="btn btn-danger">Cancel</button>
-                            </form>
-                          <?php } ?>
-                        </td> -->
+                            <button type="submit" name="approve" class="btn btn-success btn-block my-btn">Approve</button>
+                            <button type="submit" name="reject" class="btn btn-danger btn-block my-btn">Reject</button>
+                          </form>
+                        <?php } ?>
+                        </td>
                       </tr>
                     <?php } ?>
                   </tbody>
@@ -219,7 +276,11 @@
 
   <?php include 'footer/footer.php';?>
 </div>
-
+<script>
+function confirmAction() {
+    return confirm("Are you sure you want to accept or reject this leave request?");
+}
+</script>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
