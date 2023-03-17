@@ -73,3 +73,9 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - moved include of sidebar AFTER header so headers already sent error doesnt show up
 - adminSetLeaveStatus()
 - accept and reject buttons working, just need to -1 to type of leave - but before that, set values for limits first
+
+17/03/23 
+- added get and set functions for leave limits per department and front end in manage_department.php
+	- getDepartmentLeaveLimits()
+	- updateDepartmentLeaveLimits()
+- changed footer for both admin and employee

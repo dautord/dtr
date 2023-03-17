@@ -1,5 +1,64 @@
   <?php include 'header/main_header.php';?>
   <?php include 'sidebar/main_sidebar.php';?>
+  <?php 
+
+    $conn = new class_model();  
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      // get input values
+      $deptId = $_POST["dept_id"];
+      $sickLimit = $_POST["sick_leave_limit"];
+      $vacationLimit = $_POST["vacation_leave_limit"];
+      $paternalLimit = $_POST["paternal_leave_limit"];
+      $maternalLimit = $_POST["maternal_leave_limit"];
+      $emergencyLimit = $_POST["emergency_leave_limit"];
+      $soloParentLimit = $_POST["solo_parent_leave_limit"];
+
+      // update database with new leave limits
+      $success = $conn->updateDepartmentLeaveLimits($deptId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit);
+      
+      if ($success) {
+          $successMessage = "Leave limits updated successfully!";
+      } else {
+          $errorMessage = "Error updating leave limits: " . $model->$conn->error;
+      }
+    }
+
+  
+  
+  ?>
+
+<style>
+  .limit-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .limit-table th, .limit-table td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  .limit-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .limit-table th {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+
+  .limit-table td {
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+
+  
+</style>
+
+
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -20,8 +79,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-    
+          <div class="col-12"> 
             <div class="card">
               <div class="card-header">
                  <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-department">
@@ -53,6 +111,55 @@
                     </td>
                   </tr>
                <?php }?>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12"> 
+            <div class="card">
+              <div class="card-header">
+                 <a href = "" class="btn btn-primary float-sm-right">Edit Leave Limits</a>
+              </div>
+              <div class="card-body">
+              <table class="limit-table">
+                  <thead>
+                      <tr>
+                          <th>Department Name</th>
+                          <th>Sick Leave Limit</th>
+                          <th>Vacation Leave Limit</th>
+                          <th>Paternal Leave Limit</th>
+                          <th>Maternal Leave Limit</th>
+                          <th>Emergency Leave Limit</th>
+                          <th>Solo Parent Leave Limit</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($conn->getDepartmentLeaveLimits() as $row): ?>
+                    <tr>
+                        <td><?= $row['department_name'] ?></td>
+                        <td><?= $row['sick_leave_limit'] ?></td>
+                        <td><?= $row['vacation_leave_limit'] ?></td>
+                        <td><?= $row['paternal_leave_limit'] ?></td>
+                        <td><?= $row['maternal_leave_limit'] ?></td>
+                        <td><?= $row['emergency_leave_limit'] ?></td>
+                        <td><?= $row['solo_parent_leave_limit'] ?></td>
+                        <td>
+                            <!-- <form method="post" action="reset_leave_balance.php">
+                                <input type="hidden" name="dept_id" value="<?= $row['department_id'] ?>">
+                                <button type="submit" name="reset" class="btn btn-primary">Reset Leave Balance</button>
+                            </form> -->
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                  </tbody>
                 </table>
               </div>
             </div>

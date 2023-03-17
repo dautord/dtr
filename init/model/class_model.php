@@ -301,6 +301,37 @@
 					return false;
 			}
 	}
+
+	public function getDepartmentLeaveLimits() {
+    // retrieve leave limits for all departments
+    $stmt = $this->conn->prepare("SELECT department_id, department_name, sick_leave_limit, vacation_leave_limit, paternal_leave_limit, maternal_leave_limit, emergency_leave_limit, solo_parent_leave_limit FROM tbl_department");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = array();
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    return $rows;
+	}
+
+
+		public function updateDepartmentLeaveLimits($deptId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit) {
+			// update leave limits for specified department
+			$stmt = $this->conn->prepare("UPDATE tbl_department SET sick_leave_limit=?, vacation_leave_limit=?, paternal_leave_limit=?, maternal_leave_limit=?, emergency_leave_limit=?, solo_parent_leave_limit=? WHERE department_id=?");
+			$stmt->bind_param("iiiiiii", $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit, $deptId);
+			return $stmt->execute();
+		}
+
+		// public function resetDepartmentLeaveBalance($deptId) {
+		// 	// get leave limits for department
+		// 	$leaveLimits = $this->getDepartmentLeaveLimits($deptId);
+
+		// 	// reset leave balances for all employees in department
+		// 	$stmt = $this->conn->prepare("UPDATE tbl_employee SET sick_leave_balance=?, vacation_leave_balance=?, paternal_leave_balance=?, maternal_leave_balance=?, emergency_leave_balance=?, solo_parent_leave_balance=? WHERE department_id=?");
+		// 	$stmt->bind_param("iiiiiii", $leaveLimits['sick_leave_limit'], $leaveLimits['vacation_leave_limit'], $leaveLimits['paternal_leave_limit'], $leaveLimits['maternal_leave_limit'], $leaveLimits['emergency_leave_limit'], $leaveLimits['solo_parent_leave_limit'], $deptId);
+		// 	return $stmt->execute();
+		// }
+	
 	
 
 	
