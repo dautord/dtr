@@ -39,7 +39,7 @@
                     <th>Last Name</th>
                     <th>Designation</th>
                     <th>Department</th>
-                    <th>QR Code</th>
+                    <th>Password</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -56,7 +56,7 @@
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['designation']; ?></td>
                     <td><?= $row['department']; ?></td>
-                    <td><?= $row['qr_code']; ?></td>
+                    <td><?= $row['password']; ?></td>
                     <td class="align-right">
                         <i class="fa fa-edit edit_E" style="color: blue" data-toggle="modal" data-target="#edit-employee" data-id="<?= htmlentities($row['employee_id']); ?>"></i> | <i class="fa fa-trash-alt delete_E" style="color: red" data-toggle="modal" data-target="#delete-employee" data-del="<?= htmlentities($row['employee_id']); ?>"></i>
                     </td>

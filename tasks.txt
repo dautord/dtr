@@ -2,16 +2,14 @@ EMPLOYEE DASHBOARD
  
 ADMIN DASHBOARD
 
-- for request approval
+- for leave request approval
 	- after accept/deny, -1 to no. of leave according to type
-- change qr code to passwords
 
-- reset requests button
+- reset leave requests button
 	- refreshes to max value depends on department
 
-- and request customization
+- and leave request customization
 	- able to manually set value
-	- able to refresh to max value
 - button to lock out leave request form
 
 side quest:
@@ -82,4 +80,5 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 
 21/03/23
 - migrated to win 7 desktop
-- edit_leave_limits.php test
+- edit_leave_limits.php 
+- changed qr code column to employee password in admin manage_employee.php

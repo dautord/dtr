@@ -138,7 +138,6 @@
                           <th>Maternal Leave Limit</th>
                           <th>Emergency Leave Limit</th>
                           <th>Solo Parent Leave Limit</th>
-                          <th>Actions</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -151,12 +150,6 @@
                         <td><?= $row['maternal_leave_limit'] ?></td>
                         <td><?= $row['emergency_leave_limit'] ?></td>
                         <td><?= $row['solo_parent_leave_limit'] ?></td>
-                        <td>
-                            <!-- <form method="post" action="reset_leave_balance.php">
-                                <input type="hidden" name="dept_id" value="<?= $row['department_id'] ?>">
-                                <button type="submit" name="reset" class="btn btn-primary">Reset Leave Balance</button>
-                            </form> -->
-                        </td>
                     </tr>
                     <?php endforeach; ?>
                   </tbody>
