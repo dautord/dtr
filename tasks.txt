@@ -81,4 +81,5 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 21/03/23
 - migrated to win 7 desktop
 - edit_leave_limits.php 
+- headers already sent FIX: bring include sidebar to AFTER header redirection
 - changed qr code column to employee password in admin manage_employee.php
