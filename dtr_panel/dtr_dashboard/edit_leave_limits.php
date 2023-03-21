@@ -1,4 +1,5 @@
 <?php include 'header/main_header.php';?>
+<!-- headers already sent fix: bring include sidebar to AFTER redirecting -->
 <?php 
 
 $conn = new class_model();
