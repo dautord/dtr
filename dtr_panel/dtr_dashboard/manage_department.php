@@ -125,7 +125,7 @@
           <div class="col-12"> 
             <div class="card">
               <div class="card-header">
-                 <a href = "" class="btn btn-primary float-sm-right">Edit Leave Limits</a>
+                 <a href = "edit_leave_limits.php" class="btn btn-primary float-sm-right">Edit Leave Limits</a>
               </div>
               <div class="card-body">
               <table class="limit-table">

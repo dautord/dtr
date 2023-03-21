@@ -79,3 +79,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 	- getDepartmentLeaveLimits()
 	- updateDepartmentLeaveLimits()
 - changed footer for both admin and employee
+
+21/03/23
+- migrated to win 7 desktop
+- edit_leave_limits.php test

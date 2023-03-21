@@ -302,17 +302,17 @@
 			}
 	}
 
-	public function getDepartmentLeaveLimits() {
-    // retrieve leave limits for all departments
-    $stmt = $this->conn->prepare("SELECT department_id, department_name, sick_leave_limit, vacation_leave_limit, paternal_leave_limit, maternal_leave_limit, emergency_leave_limit, solo_parent_leave_limit FROM tbl_department");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $rows = array();
-    while ($row = $result->fetch_assoc()) {
-        $rows[] = $row;
-    }
-    return $rows;
-	}
+		public function getDepartmentLeaveLimits() {
+		// retrieve leave limits for all departments
+			$stmt = $this->conn->prepare("SELECT department_id, department_name, sick_leave_limit, vacation_leave_limit, paternal_leave_limit, maternal_leave_limit, emergency_leave_limit, solo_parent_leave_limit FROM tbl_department");
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$rows = array();
+			while ($row = $result->fetch_assoc()) {
+				$rows[] = $row;
+			}
+			return $rows;
+		}
 
 
 		public function updateDepartmentLeaveLimits($deptId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit) {
