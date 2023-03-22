@@ -123,6 +123,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12"> 
+            <div class="col-sm-6">
+              <h3>Department Leave Limits</h3>
+              <br>
+            </div>
             <div class="card">
               <div class="card-header">
                  <a href = "edit_leave_limits.php" class="btn btn-primary float-sm-right">Edit Leave Limits</a>

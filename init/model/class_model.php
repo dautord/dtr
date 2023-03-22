@@ -75,11 +75,11 @@
 
 		  }
 
-        public function edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $employee_id){
+        public function edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id){
 
-			$sql = "UPDATE `tbl_employee` SET  `employee_idno` = ?, `first_name` = ?, `middle_name` = ?,  `last_name` = ? ,  `bdate` = ?,  `complete_address` = ?,  `cnumber` = ?,  `gender` = ?,  `civilstatus` = ?,  `datehire` = ?,  `designation` = ?,  `department` = ? WHERE employee_id = ?";
-			 $stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("isssssssssssi", $employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $employee_id);
+			$sql = "UPDATE `tbl_employee` SET  `employee_idno` = ?, `first_name` = ?, `middle_name` = ?,  `last_name` = ? ,  `bdate` = ?,  `complete_address` = ?,  `cnumber` = ?,  `gender` = ?,  `civilstatus` = ?,  `datehire` = ?,  `designation` = ?,  `department` = ?, `sick_leave` = ?, `vacation_leave` = ?, `paternal_leave` = ?, `maternal_leave` = ?, `emergency_leave` = ?, `solo_parent_leave` = ? WHERE employee_id = ?";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bind_param("isssssssssssiiiiiii", $employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
@@ -321,6 +321,34 @@
 			$stmt->bind_param("iiiiiii", $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit, $deptId);
 			return $stmt->execute();
 		}
+
+		public function updateEmployeeLeaveBalance($empId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit) {
+			// update leave balance for specified employee
+			$stmt = $this->conn->prepare("UPDATE tbl_employee SET sick_leave=?, vacation_leave=?, paternal_leave=?, maternal_leave=?, emergency_leave=?, solo_parent_leave=? WHERE employee_id=?");
+			$stmt->bind_param("iiiiiii", $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit, $empId);
+			return $stmt->execute();
+		}
+
+		public function setDepartmentLeaveBalances() {
+			// retrieve leave limits for all departments
+			$deptLimits = $this->getDepartmentLeaveLimits();
+		
+			// loop through departments
+			foreach ($deptLimits as $dept) {
+				// get employees in department
+				$stmt = $this->conn->prepare("SELECT employee_id FROM tbl_employee WHERE department_name = ?");
+				$stmt->bind_param("s", $dept['department_name']);
+				$stmt->execute();
+				$result = $stmt->get_result();
+		
+				// loop through employees and update leave balance
+				while ($row = $result->fetch_assoc()) {
+					$empId = $row['employee_id'];
+					$this->updateEmployeeLeaveBalance($empId, $dept['sick_leave_limit'], $dept['vacation_leave_limit'], $dept['paternal_leave_limit'], $dept['maternal_leave_limit'], $dept['emergency_leave_limit'], $dept['solo_parent_leave_limit']);
+				}
+			}
+		}
+		
 
 		// public function resetDepartmentLeaveBalance($deptId) {
 		// 	// get leave limits for department

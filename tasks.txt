@@ -83,3 +83,14 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - edit_leave_limits.php 
 - headers already sent FIX: bring include sidebar to AFTER header redirection
 - changed qr code column to employee password in admin manage_employee.php
+22/03/23
+- setDepartmentLeaveBalances() and updateEmployeeLeaveBalance() TODO: refresh all employee balances according to dept. limit 
+- to update ajax forms, following are needed:
+	-manage_employee.php
+	-employee_row.php
+	-editemployee_modal.php
+	-edit_employee.php
+	-edit_employee() in class_model.php
+-lost to a comma today, but eventually fixed it so that you are able to set employee leaves individually. 
+-just remembered: Employee ID numbers starting with 0 lose their 0 upon data edit. and then is unable to sign in with their original number. 
+	- to prevent this, rename QR code img filename to one without 0

@@ -114,6 +114,12 @@
                       $('#edit_datehire').val(response.datehire);
                       $('#edit_designation').val(response.designation);
                       $('#edit_department').val(response.department);
+                      $('#edit_sickleave').val(response.sick_leave);    
+                      $('#edit_vacationleave').val(response.vacation_leave); 
+                      $('#edit_paternalleave').val(response.paternal_leave); 
+                      $('#edit_maternalleave').val(response.maternal_leave);
+                      $('#edit_emergencyleave').val(response.emergency_leave);
+                      $('#edit_soloparentleave').val(response.solo_parent_leave);
 
                    }
                 });

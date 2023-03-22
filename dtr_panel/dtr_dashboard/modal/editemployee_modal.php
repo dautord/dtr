@@ -88,6 +88,35 @@
                  <?php } ?>
                 </select>
                 </div>
+                <div class = "form-group">
+                  <label>Sick Leave:</label>
+                  <input type = "Number" id="edit_sickleave" alt="sick_leave"  class = "form-control" />
+                </div>
+
+                <div class = "form-group">
+                  <label>Vacation Leave:</label>
+                  <input type = "Number" id="edit_vacationleave" alt="vacation_leave"  class = "form-control" />
+                </div>
+
+                <div class = "form-group">
+                  <label>Paternal Leave:</label>
+                  <input type = "Number" id="edit_paternalleave" alt="paternal_leave"  class = "form-control" />
+                </div>
+
+                <div class = "form-group">
+                  <label>Maternal Leave:</label>
+                  <input type = "Number" id="edit_maternalleave" alt="maternal_leave"  class = "form-control" />
+                </div>
+
+                <div class = "form-group">
+                  <label>Emergency Leave:</label>
+                  <input type = "Number" id="edit_emergencyleave" alt="emergency_leave"  class = "form-control" />
+                </div>
+
+                <div class = "form-group">
+                  <label>Solo Parent Leave:</label>
+                  <input type = "Number" id="edit_soloparentleave" alt="solo_parent_leave"  class = "form-control" />
+                </div>
         </div>
       <div class="modal-footer justify-content-between">
         <input type="hidden" id="edit_employeeid">
@@ -118,6 +147,12 @@
                   const designation = document.querySelector('input[id=edit_designation]').value;
                   const department = $('#edit_department option:selected').val();
                   const employee_id = document.querySelector('input[id=edit_employeeid]').value;
+                  const sick_leave = document.querySelector('input[id=edit_sickleave]').value;
+                  const vacation_leave = document.querySelector('input[id=edit_vacationleave]').value;
+                  const paternal_leave = document.querySelector('input[id=edit_paternalleave]').value;
+                  const maternal_leave = document.querySelector('input[id=edit_maternalleave]').value;
+                  const emergency_leave = document.querySelector('input[id=edit_emergencyleave]').value;
+                  const solo_parent_leave = document.querySelector('input[id=edit_soloparentleave]').value;
 
 
                   var data = new FormData(this.form);
@@ -136,7 +171,12 @@
                   data.append('designation', designation);
                   data.append('department', department);
                   data.append('employee_id', employee_id);
-
+                  data.append('sick_leave', sick_leave);
+                  data.append('vacation_leave', vacation_leave);
+                  data.append('paternal_leave', paternal_leave);
+                  data.append('maternal_leave', maternal_leave);
+                  data.append('emergency_leave', emergency_leave);
+                  data.append('solo_parent_leave', solo_parent_leave);  
                        $.ajax({
                         url: '../../init/controllers/edit_employee.php',
                           type: "POST",
