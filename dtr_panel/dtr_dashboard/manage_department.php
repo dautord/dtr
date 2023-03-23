@@ -1,32 +1,31 @@
   <?php include 'header/main_header.php';?>
-  <?php include 'sidebar/main_sidebar.php';?>
   <?php 
 
     $conn = new class_model();  
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      // get input values
-      $deptId = $_POST["dept_id"];
-      $sickLimit = $_POST["sick_leave_limit"];
-      $vacationLimit = $_POST["vacation_leave_limit"];
-      $paternalLimit = $_POST["paternal_leave_limit"];
-      $maternalLimit = $_POST["maternal_leave_limit"];
-      $emergencyLimit = $_POST["emergency_leave_limit"];
-      $soloParentLimit = $_POST["solo_parent_leave_limit"];
+    // Handle form submission
+    if (isset($_POST['update_leave_balances'])) {
+      $confirm = $_POST["confirm"];
 
-      // update database with new leave limits
-      $success = $conn->updateDepartmentLeaveLimits($deptId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit);
-      
-      if ($success) {
-          $successMessage = "Leave limits updated successfully!";
-      } else {
-          $errorMessage = "Error updating leave limits: " . $model->$conn->error;
+      if ($confirm == "yes") {
+        $resetBalance = $conn->setDepartmentLeaveBalances();
+
+        if($resetBalance) {
+          echo "<script>alert('Employee leave balances have been reset to department limits.')</script>";
+          echo "<script>setTimeout(function(){window.location.href='manage_department.php';}, 3000);</script>"; // Wait for 3 seconds before redirecting
+          exit();
+        } else {
+          echo "<script>alert('Error resetting leave balances.')</script>";
+          header("location: manage_department.php");
+          exit();
+        }
       }
     }
+
 
   
   
   ?>
-
+  <?php include 'sidebar/main_sidebar.php';?>
 <style>
   .limit-table {
     border-collapse: collapse;
@@ -129,7 +128,11 @@
             </div>
             <div class="card">
               <div class="card-header">
-                 <a href = "edit_leave_limits.php" class="btn btn-primary float-sm-right">Edit Leave Limits</a>
+                <form method="post">
+                  <button type="submit" class="btn btn-primary float-sm-left"name="update_leave_balances" onclick="return confirmReset();">Reset Employee Leave Balances</button>
+                  <input type="hidden" name="confirm" id="confirm" />
+                </form>
+                <a href = "edit_leave_limits.php" class="btn btn-primary float-sm-right">Edit Leave Limits</a>
               </div>
               <div class="card-body">
               <table class="limit-table">
@@ -253,6 +256,16 @@
     });
 
   });
+</script>
+<script>
+  function confirmReset() {
+  if (confirm("Are you sure you want to reset employee leave balances to their department limits? This cannot be undone.")) {
+    document.getElementById("confirm").value = "yes";
+    return true;
+  } else {
+    return false;
+  }
+}
 </script>
 </body>
 </html>

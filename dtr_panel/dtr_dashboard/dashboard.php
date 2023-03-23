@@ -206,6 +206,9 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
+              <div class="card-header">
+                <button id="toggleLeaveButton" class="btn btn-primary float-sm-left">Enable/Disable Employee Leave Request Form</button>
+              </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -286,13 +289,41 @@ function confirmAction() {
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="dist/js/adminlte.js"></script>
 <script src="dist/js/demo.js"></script>
-
 <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="plugins/raphael/raphael.min.js"></script>
 <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/pages/dashboard2.js"></script>
+<script>
+  $(document).ready(function() {
+  // Add click event listener to the toggleLeaveButton
+    $("#toggleLeaveButton").click(function() {
+      // Send AJAX request to toggle the leave button status
+      $.ajax({
+        url: "toggle_leave_button_status.php",
+        type: "POST",
+        data: { "status": <?php echo $buttonStatus ?> },
+        dataType: "json",
+        success: function(data) {
+          // If the status is updated successfully, update the button text and color
+          if (data.success) {
+            if (data.status) {
+              $("#toggleLeaveButton").text("Disable Leave Request Button");
+              $("#toggleLeaveButton").removeClass("btn-secondary").addClass("btn-primary");
+            } else {
+              $("#toggleLeaveButton").text("Enable Leave Request Button");
+              $("#toggleLeaveButton").removeClass("btn-primary").addClass("btn-secondary");
+            }
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log(error);
+        }
+      });
+    });
+  });
+</script>
 
 </body>
 </html>

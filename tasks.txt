@@ -1,16 +1,18 @@
 EMPLOYEE DASHBOARD
+
+- if leave balance is zero
+	- insufficient leave balance for that type
  
 ADMIN DASHBOARD
 
 - for leave request approval
-	- after accept/deny, -1 to no. of leave according to type
+	- after accept/deny, -x to leave balance according to type
+		- x being no. of days calculated from datetime start and datetime end
 
-- reset leave requests button
-	- refreshes to max value depends on department
-
-- and leave request customization
-	- able to manually set value
 - button to lock out leave request form
+
+- set workdays per department
+- set time in and time out per department 
 
 side quest:
 - kita yung absent sa export to excel
@@ -83,6 +85,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - edit_leave_limits.php 
 - headers already sent FIX: bring include sidebar to AFTER header redirection
 - changed qr code column to employee password in admin manage_employee.php
+
 22/03/23
 - setDepartmentLeaveBalances() and updateEmployeeLeaveBalance() TODO: refresh all employee balances according to dept. limit 
 - to update ajax forms, following are needed:
@@ -94,3 +97,12 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 -lost to a comma today, but eventually fixed it so that you are able to set employee leaves individually. 
 -just remembered: Employee ID numbers starting with 0 lose their 0 upon data edit. and then is unable to sign in with their original number. 
 	- to prevent this, rename QR code img filename to one without 0
+
+23/03/23
+- Reset Employee Leave Balances button in manage_department.php
+- setDepartmentLeaveBalances() and updateEmployeeLeaveBalance() in class_model.php
+- trying to disable the leave request form button but not working
+	- getLeaveButtonStatus() and toggleLeaveButtonStatus() in class_model.php
+	- study jquery and ajax at home
+- TODO: disable leave request form button, calculate leave balance properly (3 days = -3) and how to assign leave type 
+

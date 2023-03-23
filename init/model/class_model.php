@@ -336,7 +336,7 @@
 			// loop through departments
 			foreach ($deptLimits as $dept) {
 				// get employees in department
-				$stmt = $this->conn->prepare("SELECT employee_id FROM tbl_employee WHERE department_name = ?");
+				$stmt = $this->conn->prepare("SELECT employee_id FROM tbl_employee WHERE department = ?");
 				$stmt->bind_param("s", $dept['department_name']);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -348,8 +348,28 @@
 				}
 			}
 		}
-		
 
+		public function getLeaveButtonStatus() {
+			$sql = "SELECT status FROM leave_button_status LIMIT 1";
+			$result = $this->conn->query($sql);
+			$row = $result->fetch_assoc();
+			return $row['status'];
+		}
+		
+		public function toggleLeaveButtonStatus() {
+
+			// Get the current status of the leave button
+			$buttonStatus = $this->getLeaveButtonStatus();
+		
+			// Toggle the status
+			$newButtonStatus = $buttonStatus ? 0 : 1;
+		
+			// Update the leave_button_status table with the new status
+			$stmt = $this->conn->prepare("UPDATE leave_button_status SET status = ? WHERE id = 1");
+			$stmt->bind_param("i", $newButtonStatus);
+			$stmt->execute();
+			$stmt->close();
+		}
 		// public function resetDepartmentLeaveBalance($deptId) {
 		// 	// get leave limits for department
 		// 	$leaveLimits = $this->getDepartmentLeaveLimits($deptId);

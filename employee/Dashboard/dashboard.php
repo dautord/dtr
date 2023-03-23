@@ -1,6 +1,7 @@
 <?php include 'header/main_header.php';?>
 <?php include 'sidebar/main_sidebar.php';?>
 <?php 
+  
   $employee_id = $_SESSION['employee_id'];
   $conn = new class_model();
   $emp = $conn->getEmployeeLeaves($employee_id);
@@ -10,10 +11,6 @@
   $gender = $emp['gender'];
   $department = $emp['department'];
 
-  // var_dump($leaveRequests);
-
-  // var_dump($gender);
-  // var_dump($department);
   // check if the user is logged in
   if (!isset($_SESSION['employee_id'])) {
     // if not, redirect them to the login page
@@ -67,6 +64,13 @@
       /* overflow: hidden; Optional: hide overflow content */
       /* text-overflow: ellipsis; Optional: show ellipsis for truncated content */
       /* white-space: nowrap; Optional: prevent line breaks */
+    }
+    .hidden {
+      display: none;
+    }
+    .disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -168,7 +172,7 @@
     <br>    
     <h3 class="m-0 text-dark">Leave History</h3>
     <br>
-    <a href="leave_request.php" class="btn btn-md btn-primary text-center" style="height: 40px; display: flex; align-items: center; justify-content: center; max-width: 200px;">Request for Leave</a>
+    <a href="leave_request.php" id="leaveRequestButton" class="btn btn-md btn-primary text-center" style="height: 40px; display: flex; align-items: center; justify-content: center; max-width: 200px;">Request for Leave</a>
     <br>
   </div>
 
@@ -244,6 +248,17 @@
 
 <?php include 'footer/footer.php';?>
 </div>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="dist/js/adminlte.js"></script>
+<script src="dist/js/demo.js"></script>
+<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="plugins/raphael/raphael.min.js"></script>
+<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="dist/js/pages/dashboard2.js"></script>
 <script>
 function confirmCancel() {
   if (confirm("Are you sure you want to cancel this leave request?")) {
@@ -254,20 +269,14 @@ function confirmCancel() {
   }
 }
 </script>
-
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<script src="dist/js/adminlte.js"></script>
-<script src="dist/js/demo.js"></script>
-
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<script src="plugins/chart.js/Chart.min.js"></script>
-<script src="dist/js/pages/dashboard2.js"></script>
-
+<script>
+  $(document).ready(function() {
+  // Disable the leave request button if the leave button status is disabled
+  if (<?php echo $buttonStatus ?> === 0) {
+    $("#leaveRequestButton").prop("disabled", true);
+  }
+});
+</script>
 
 </body>
 </html>
