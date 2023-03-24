@@ -107,7 +107,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 
 24/03/23
 - finally able to set leave_button_status in database to 0. TODO: employee dashboard.php side
-- added a redirect to dashboard.php if $buttonStatus == 0
+- added a redirect for leave_request.php to dashboard.php if $buttonStatus == 0
 	- this is so that users who know how to modify url cannot access leave_request.php once it has been locked by the admin
 - changed front end button of leave_request.php to look more like a button
 - added ORDER BY datetime_requested for the leaves, so that the leave requests are arranged by most recent
