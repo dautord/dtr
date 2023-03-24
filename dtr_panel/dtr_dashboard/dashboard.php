@@ -1,30 +1,14 @@
 <?php include 'header/main_header.php';?>
 <?php 
     $conn = new class_model();  
-    $adminFetchLeaveReqs = $conn->adminGetLeaveRequests($leave_id);
+    $adminFetchLeaveReqs = $conn->adminGetLeaveRequests();
+    $buttonStatus = $conn->getLeaveButtonStatus();
+
     if (!isset($_SESSION['admin_id'])) {
       // if not, redirect them to the login page
       header('location: login.php');
       exit();
     }
-    
-    // if (isset($_POST['approve']) || isset($_POST['reject'])) {
-    //   // Get the leave ID and new status from the form data
-    //   $leave_id = $_POST["leave_id"];
-    //   $new_status = ($_POST['approve']) ? "Approved" : "Rejected";
-      
-    //   // Update the leave status in your database using your adminSetLeaveStatus function
-    //   $result = $conn->adminSetLeaveStatus($leave_id, $new_status);
-      
-    //   // Check if the update was successful and redirect accordingly
-    //   if ($result) {
-    //       header("location: ".$_SERVER['PHP_SELF']);
-    //       exit;
-    //   } else {
-    //       // Handle the error if the update failed
-    //       echo "Error: Failed to update the leave status.";
-    //   }
-    // }
 
     if (isset($_POST['approve'])) {
       // Get the leave ID and new status from the form data
@@ -61,7 +45,12 @@
           echo "Error: Failed to update the leave status.";
       }
     }
-  
+
+    if (isset($_POST['toggleButton'])) {
+      $conn->toggleLeaveButtonStatus();
+      header('Location: dashboard.php');
+    }
+    
 ?>
 
 <?php include 'sidebar/main_sidebar.php';?>
@@ -207,7 +196,11 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <button id="toggleLeaveButton" class="btn btn-primary float-sm-left">Enable/Disable Employee Leave Request Form</button>
+              <form method="post">
+                  <button type="submit" name="toggleButton" class="btn <?php echo ($buttonStatus) ? 'btn-danger' : 'btn-primary' ?>">
+                      <?php echo ($buttonStatus) ? 'Disable' : 'Enable' ?> Employee Leave Request Form
+                  </button>
+              </form>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -284,6 +277,12 @@ function confirmAction() {
     return confirm("Are you sure you want to accept or reject this leave request?");
 }
 </script>
+<script>
+function handleClick() {
+  // Submit the form
+  document.getElementById('toggleButton').submit();
+}
+</script>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
@@ -295,35 +294,7 @@ function confirmAction() {
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/pages/dashboard2.js"></script>
-<script>
-  $(document).ready(function() {
-  // Add click event listener to the toggleLeaveButton
-    $("#toggleLeaveButton").click(function() {
-      // Send AJAX request to toggle the leave button status
-      $.ajax({
-        url: "toggle_leave_button_status.php",
-        type: "POST",
-        data: { "status": <?php echo $buttonStatus ?> },
-        dataType: "json",
-        success: function(data) {
-          // If the status is updated successfully, update the button text and color
-          if (data.success) {
-            if (data.status) {
-              $("#toggleLeaveButton").text("Disable Leave Request Button");
-              $("#toggleLeaveButton").removeClass("btn-secondary").addClass("btn-primary");
-            } else {
-              $("#toggleLeaveButton").text("Enable Leave Request Button");
-              $("#toggleLeaveButton").removeClass("btn-primary").addClass("btn-secondary");
-            }
-          }
-        },
-        error: function(xhr, status, error) {
-          console.log(error);
-        }
-      });
-    });
-  });
-</script>
+
 
 </body>
 </html>

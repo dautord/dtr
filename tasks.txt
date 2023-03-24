@@ -9,9 +9,8 @@ ADMIN DASHBOARD
 	- after accept/deny, -x to leave balance according to type
 		- x being no. of days calculated from datetime start and datetime end
 
-- button to lock out leave request form
-
 - set workdays per department
+
 - set time in and time out per department 
 
 side quest:
@@ -105,4 +104,12 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 	- getLeaveButtonStatus() and toggleLeaveButtonStatus() in class_model.php
 	- study jquery and ajax at home
 - TODO: disable leave request form button, calculate leave balance properly (3 days = -3) and how to assign leave type 
+
+24/03/23
+- finally able to set leave_button_status in database to 0. TODO: employee dashboard.php side
+- added a redirect to dashboard.php if $buttonStatus == 0
+	- this is so that users who know how to modify url cannot access leave_request.php once it has been locked by the admin
+- changed front end button of leave_request.php to look more like a button
+- added ORDER BY datetime_requested for the leaves, so that the leave requests are arranged by most recent
+- TODO: calculate leave balance with datetime start and datetime end, how to assign leave type
 

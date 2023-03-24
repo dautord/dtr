@@ -269,7 +269,7 @@
 				);
 			}	
 		}
-		public function adminGetLeaveRequests($leave_id){
+		public function adminGetLeaveRequests(){
 			$stmt = "SELECT tbl_leave_request.*,
 			tbl_employee.first_name,
 			tbl_employee.last_name,
@@ -281,7 +281,8 @@
 			tbl_employee.solo_parent_leave
 			FROM tbl_leave_request
 			INNER JOIN tbl_employee
-			ON tbl_leave_request.employee_id = tbl_employee.employee_id";
+			ON tbl_leave_request.employee_id = tbl_employee.employee_id
+			ORDER BY tbl_leave_request.datetime_requested DESC";
 			$result = $this->conn->query($stmt);
 			$rows = array();
 			while ($row = $result->fetch_assoc()) {
@@ -350,25 +351,24 @@
 		}
 
 		public function getLeaveButtonStatus() {
-			$sql = "SELECT status FROM leave_button_status LIMIT 1";
+			$sql = "SELECT status FROM leave_button_status WHERE id = 1";
 			$result = $this->conn->query($sql);
 			$row = $result->fetch_assoc();
 			return $row['status'];
 		}
 		
 		public function toggleLeaveButtonStatus() {
-
-			// Get the current status of the leave button
-			$buttonStatus = $this->getLeaveButtonStatus();
-		
-			// Toggle the status
-			$newButtonStatus = $buttonStatus ? 0 : 1;
-		
-			// Update the leave_button_status table with the new status
-			$stmt = $this->conn->prepare("UPDATE leave_button_status SET status = ? WHERE id = 1");
-			$stmt->bind_param("i", $newButtonStatus);
-			$stmt->execute();
-			$stmt->close();
+			$query = "SELECT status FROM leave_button_status WHERE id = 1";
+			$result = $this->conn->query($query);
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				$new_status = $row['status'] == 1 ? 0 : 1;
+				$query = "UPDATE leave_button_status SET status = $new_status WHERE id = 1";
+				$result = $this->conn->query($query);
+				if (!$result) {
+					die("Error updating status: " . $this->conn->error);
+				}
+			}
 		}
 		// public function resetDepartmentLeaveBalance($deptId) {
 		// 	// get leave limits for department

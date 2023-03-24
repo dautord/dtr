@@ -10,12 +10,19 @@ session_start();
 require_once('../../init/model/class_model.php');
 $conn = new class_model();
 date_default_timezone_set('Asia/Manila');
+$buttonStatus = $conn->getLeaveButtonStatus();
 
 
 // check if the user is logged in
 if (!isset($_SESSION['employee_id'])) {
   // if not, redirect them to the login page
   header('location: login.php');
+  exit();
+}
+
+if ($buttonStatus == 0){
+  http_response_code(404);
+  header('location: dashboard.php');
   exit();
 }
 
@@ -139,8 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="reason">Reason:</label>
                     <textarea id="reason" name="reason" required></textarea><br>
                     </div>
-                    <br>
-                    <input type="submit" value="Submit">
+                    
+                    <input type="submit" class="btn btn-primary" value="Submit">
                 </form>
                 <?php if(isset($success)): ?>
                   <div class="alert alert-success" id="success"><?php echo $success; ?></div>
