@@ -102,7 +102,6 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - setDepartmentLeaveBalances() and updateEmployeeLeaveBalance() in class_model.php
 - trying to disable the leave request form button but not working
 	- getLeaveButtonStatus() and toggleLeaveButtonStatus() in class_model.php
-	- study jquery and ajax at home
 - TODO: disable leave request form button, calculate leave balance properly (3 days = -3) and how to assign leave type 
 
 24/03/23
@@ -113,3 +112,5 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - added ORDER BY datetime_requested for the leaves, so that the leave requests are arranged by most recent
 - TODO: calculate leave balance with datetime start and datetime end, how to assign leave type
 
+25/03/23
+- tidied up front-end of various pages, so that it looks neat. 
