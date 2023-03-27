@@ -28,14 +28,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="manage_schedule.php" class="nav-link php echo (basename($_SERVER['PHP_SELF']) == 'manage_schedule.php') ? 'active' : ''; ?>">
               <i class="nav-icon fa fa-user-clock"></i>
               <p>
                 Manage Schedules
               </p>
             </a>
-          </li> 
+          </li>  -->
            <li class="nav-item">
             <a href="manage_attendance.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_attendance.php') ? 'active' : ''; ?>">
               <i class="nav-icon fa fa-clock"></i>

@@ -9,9 +9,7 @@ ADMIN DASHBOARD
 	- after accept/deny, -x to leave balance according to type
 		- x being no. of days calculated from datetime start and datetime end
 
-- set workdays per department
-
-- set time in and time out per department 
+- set different work days and work hours for different departments 
 
 side quest:
 - kita yung absent sa export to excel
@@ -114,3 +112,9 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 
 25/03/23
 - tidied up front-end of various pages, so that it looks neat. 
+
+27/03/23
+- commented out Manage Schedules from admin panel as it is incomplete for now. 
+- fetchAll_empAttendance() and fetchindividual_empAttendance() used to get attendance data table from database
+	- fetchindividual_empAttendance() has joined qr_code from tbl_employee and tbl_attendance 
+	- TODO: need to implement different attendance (work days and work hours) for different departments. 
