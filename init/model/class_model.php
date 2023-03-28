@@ -2,7 +2,7 @@
 <?php
 
 	require 'config/connection.php';
-
+	require_once '../../log_helper.php';
 	class class_model{
 
 		public $host = db_host;
@@ -147,7 +147,8 @@
 
 		  }
 
-		  public function add_department($department_name, $description){
+		public function add_department($department_name, $description){
+			
 	       $stmt = $this->conn->prepare("INSERT INTO `tbl_department` (`department_name`, `description`) VALUES(?, ?)") or die($this->conn->error);
 			$stmt->bind_param("ss", $department_name, $description);
 			if($stmt->execute()){
@@ -157,11 +158,11 @@
 			}
 		}
 
-		   public function edit_department($department_name, $description, $employee_id){
+		public function edit_department($department_name, $description, $employee_id, $late_time){
 
-			$sql = "UPDATE `tbl_department` SET  `department_name` = ?, `description` = ? WHERE department_id = ?";
-			 $stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("ssi", $department_name, $description, $employee_id);
+			$sql = "UPDATE `tbl_department` SET  `department_name` = ?, `description` = ?, `late_time` = TIME(?) WHERE department_id = ?";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bind_param("ssss", $department_name, $description, $late_time, $employee_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();

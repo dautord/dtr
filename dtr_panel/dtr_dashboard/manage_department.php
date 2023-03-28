@@ -92,6 +92,7 @@
                   <tr>
                     <th>Department Name</th>
                     <th>Description</th>
+                    <th>Late Time</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -105,6 +106,7 @@
 
                     <td><?= $row['department_name']; ?></td>
                     <td><?= $row['description']; ?></td>
+                    <td><?= $row['late_time']; ?></td>
                     <td class="align-right">
                         <i class="fa fa-edit edit_D" style="color: blue" data-toggle="modal" data-target="#edit-department" data-id="<?= htmlentities($row['department_id']); ?>"></i> | <i class="fa fa-trash-alt delete_D" style="color: red" data-toggle="modal" data-target="#delete-department" data-del="<?= htmlentities($row['department_id']); ?>"></i>
                     </td>
@@ -177,36 +179,31 @@
  <?php include 'modal/editdepartment_modal.php';?>
  <?php include 'modal/deletedepartment_modal.php';?>
  <script>
-       $(document).ready(function() {   
-           load_data();    
-           var count = 1; 
-           function load_data() {
-               $(document).on('click', '.edit_D', function() {
-                    var department_id = $(this).data("id");
-                    console.log(department_id);
-                      get_Id(department_id); //argument    
-             
-               });
-            }
+      $(document).ready(function() {
+          $('.edit_D').on('click', function() {
+              var department_id = $(this).data("id");
+              console.log(department_id);
 
-             function get_Id(department_id) {
-                  $.ajax({
-                      type: 'POST',
-                      url: 'fetch_row/department_row.php',
-                      data: {
-                          department_id: department_id
-                      },
-                      dataType: 'json',
-                      success: function(response) {
+              get_Id(department_id); //argument
+          });
+
+          function get_Id(department_id) {
+              $.ajax({
+                  type: 'POST',
+                  url: 'fetch_row/department_row.php',
+                  data: {
+                      department_id: department_id
+                  },
+                  dataType: 'json',
+                  success: function(response) {
                       $('#edit_employeeid').val(response.department_id);
                       $('#edit_departmentname').val(response.department_name);
                       $('#edit_description').val(response.description);
-
-                   }
-                });
-             }
-       
-       });
+                      $('#edit_latetime').val(response.late_time);
+                    }
+              });
+            }
+        });
         
  </script>
   <script>

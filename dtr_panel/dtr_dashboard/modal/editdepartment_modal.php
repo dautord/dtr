@@ -18,7 +18,11 @@
                 </div>
                 <div class = "form-group">
                   <label>Description:</label>
-                  <textarea  type = "text" rows="2" id="edit_description" alt="description" class = "form-control" /></textarea>
+                  <textarea  type = "text" rows="2" id="edit_description" alt="description" class = "form-control" ></textarea>
+                </div>
+                <div class = "form-group">
+                  <label for="late_time">Late Time:</label>
+                  <input type = "time" id="edit_latetime" alt="late_time" value="00:00" class = "form-control" />
                 </div>
 
         </div>
@@ -40,7 +44,11 @@
                   const department_name = document.querySelector('input[id=edit_departmentname]').value;
                   const description = document.querySelector('textarea[id=edit_description]').value;
                   const employee_id = document.querySelector('input[id=edit_employeeid]').value;
-  
+                  const late_time = document.querySelector('input[id=edit_latetime]').value;
+                  // const formatted_late_time = late_time + ':00'; // Add seconds to the time value
+                  console.log('Late Time: ' + late_time); // Log the late time value
+
+                  
 
 
                   var data = new FormData(this.form);
@@ -48,27 +56,30 @@
                   data.append('department_name', department_name);
                   data.append('description', description);
                   data.append('employee_id', employee_id);
+                  data.append('late_time', late_time);
 
 
 
-                       $.ajax({
-                        url: '../../init/controllers/edit_department.php',
-                          type: "POST",
-                          data: data,
-                          processData: false,
-                          contentType: false,
-                          async: false,
-                          cache: false,
-                        success: function(response) {
+                       // editdepartment_modal.php
+
+                  $.ajax({
+                      url: '../../init/controllers/edit_department.php',
+                      type: "POST",
+                      data: {
+                          department_name: department_name,
+                          description: description,
+                          employee_id: employee_id,
+                          late_time: late_time // Send the late_time value as a separate parameter
+                      },
+                      success: function(response) {
                           $("#emp_edit").html(response);
-                           window.scrollTo(0, 0);
-                          },
-                          error: function(response) {
-                            console.log("Failed");
-                          }
-                      });
+                          window.scrollTo(0, 0);
+                      },
+                      error: function(response) {
+                          console.log("Failed");
+                      }
+                  });
                 //   }
-
               });
           });
       </script>

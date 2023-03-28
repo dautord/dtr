@@ -118,3 +118,14 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - fetchAll_empAttendance() and fetchindividual_empAttendance() used to get attendance data table from database
 	- fetchindividual_empAttendance() has joined qr_code from tbl_employee and tbl_attendance 
 	- TODO: need to implement different attendance (work days and work hours) for different departments. 
+
+28/03/23
+- TIL: new vscode extensions extensively help in writing code
+- added a new column in tbl_department called late_time type: time, not null
+	- this is so that we can set the late time per department.
+- updated the edit_department() function in class_model.php to include late_time parameter
+
+- added admin functionality of setting the late_time per department, but input of "7:30:00" saves as "12:00:07" somehow in the database. 
+	- 2:44 PM : fixed. now able to set according to input in modal, but "late_time" is just a value for now, no comparisons are being made in attendance.
+
+- created a log_helper.php that creates a new file called my_log.txt everytime its function write_log is called. (e.g. write_log("Recieved Late Time: " . $formatted_late_time); - output in my_log.txt: 2023-03-28 08:31:38 - Recieved Late Time: 07:30:00)
