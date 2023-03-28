@@ -8,8 +8,10 @@ ADMIN DASHBOARD
 - for leave request approval
 	- after accept/deny, -x to leave balance according to type
 		- x being no. of days calculated from datetime start and datetime end
+		- so, calculate if how many days in input, then deduct that to balance.
 
 - set different work days and work hours for different departments 
+	- work hours -> late_time per department
 
 side quest:
 - kita yung absent sa export to excel
