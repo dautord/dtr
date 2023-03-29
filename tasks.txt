@@ -135,4 +135,5 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 
 29/03/23
 - 2nd day of updating windows 10 pcs in windows lab, done with 04, 05, and 06 no issues. PCS that could not update: IT-01
+- late_time of tbl_department should be referenced by attendance to check if late. TO DO: also make time out? 
 
