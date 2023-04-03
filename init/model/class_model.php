@@ -146,6 +146,22 @@
 		         return $data;
 
 		  }
+		public function fetchLateTime(){ 
+			$sql = "SELECT c.department_name, c.late_time FROM tbl_attendance a 
+					INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code 
+					INNER JOIN tbl_department c ON b.department = c.department_name
+					ORDER BY a.attendance_id DESC";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$data = array();
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row;
+			}
+			return $data;
+		}
+		
+		
 
 		public function add_department($department_name, $description){
 			

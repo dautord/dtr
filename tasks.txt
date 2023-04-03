@@ -10,8 +10,7 @@ ADMIN DASHBOARD
 		- x being no. of days calculated from datetime start and datetime end
 		- so, calculate if how many days in input, then deduct that to balance.
 
-- set different work days and work hours for different departments 
-	- work hours -> late_time per department
+- set different work days for different departments (schedules)
 
 side quest:
 - kita yung absent sa export to excel
@@ -141,3 +140,14 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - 3rd day of updating windows 10 pcs: 07, 08 and 09
 - IT-09 only sees 21H2. might need more time. 07 and 08 are up to date.
 	- IT-09 didnt finish updating.
+
+03/04/23
+- 4th day of updating win 10: continuing 09 while starting 10 and 11
+- fixed minor issues like line breaks and spacing
+- new function that joins tbl_attendance and tbl_employee on qrcode, tbl_employee and tbl_department on department name called fetchAll_empAttendance()
+
+- finished different time ins for different departments
+	- note: all attendances for an employee will be considered "late" if employee does not belong to a department.
+	- note: since time in and time out does not consider the log date, it does not consider if the employee timed in in the afternoon. 
+		- this results in employees being "on time" when they time in at around 4pm. oddly enough, 12:00 pm is late. Will need to test out the attendance with qrscan
+

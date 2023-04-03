@@ -48,6 +48,7 @@
                       $employee_id = $_SESSION['employee_id'];
                       $conn = new class_model();
                       $emp = $conn->fetchindividual_empAttendance($employee_id);
+                      $attempdept = $conn->fetchLateTime();
                   ?>
                 <?php foreach ($emp as $row) { ?>
                   <tr>
@@ -59,18 +60,28 @@
                     <td><?= $row['time_out']; ?></td>
                     <td><?= htmlentities(date("M d, Y",strtotime($row['logdate']))); ?></td>
 
-
-                     <td><?php
-                            $Timein = $row['time_in'];
-
-                            if($Timein <= '08:00:AM'){
-                              echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
-                            }else{
-                              echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
-                            }
-
-                     ?></td>
-
+                    <td>
+                      <?php
+                        $Timein = $row['time_in'];
+                        $department = $row['department'];
+                        $late_time = null;
+                                      
+                        // Get the late_time for the department
+                        foreach ($attempdept as $dept) {
+                          if ($dept['department_name'] === $department) {
+                            $late_time = $dept['late_time'];
+                            break;
+                          }
+                        }
+                                      
+                        // Check if employee is late
+                        if ($Timein <= $late_time){
+                          echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
+                        }else{
+                          echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
+                        }
+                      ?>
+                    </td>
                   </tr>
                <?php }?>
                 </table>
