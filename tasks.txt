@@ -149,5 +149,13 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - finished different time ins for different departments
 	- note: all attendances for an employee will be considered "late" if employee does not belong to a department.
 	- note: since time in and time out does not consider the log date, it does not consider if the employee timed in in the afternoon. 
-		- this results in employees being "on time" when they time in at around 4pm. oddly enough, 12:00 pm is late. Will need to test out the attendance with qrscan
+		- this results in employees being "on time" when they time in at around 4pm. oddly enough, 12:00 pm is late. 
 
+04/04/23
+- 5th day of updating win 10 pcs: 12, 13 and 14
+- added a third condition to manage_attendance.php and attendance.php, where if the person has status == 0, the attendance is "invalid".
+- came across a bug where people are late when they timed in at 12:59 PM, but some people are not late when they time in at 1:05 PM.
+	- to test this, encoded everyone to a department with all departments late time being 7:30 am 
+	- 1:00 PM to 7:30:00 AM is on time, while 7:30:01 AM to 12:59 PM is late.
+	- finally fixed it. Late, Invalid, and On Time should be working as intended.
+- renamed qrcode images that have the first number as 0 to one without that 0. e.g. 0513 -> 513

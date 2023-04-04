@@ -45,6 +45,7 @@
                   </thead>
                   <tbody>
                  <?php 
+                      date_default_timezone_set('Asia/Manila');
                       $employee_id = $_SESSION['employee_id'];
                       $conn = new class_model();
                       $emp = $conn->fetchindividual_empAttendance($employee_id);
@@ -63,9 +64,16 @@
                     <td>
                       <?php
                         $Timein = $row['time_in'];
+                        $Timein = str_replace(":AM", " AM", $Timein);
+                        $Timein = str_replace(":PM", " PM", $Timein);
                         $department = $row['department'];
-                        $late_time = null;
-                                      
+                        $late_time = '00:00:00';
+                        $status = $row['status'];
+                        $logDate = date_parse($Timein);
+                        $logDate = new DateTime(sprintf('%04d-%02d-%02d %02d:%02d:%02d', $logDate['year'], $logDate['month'], $logDate['day'], $logDate['hour'], $logDate['minute'], $logDate['second']), new DateTimeZone('Asia/Manila'));
+                        $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
+
+                                        
                         // Get the late_time for the department
                         foreach ($attempdept as $dept) {
                           if ($dept['department_name'] === $department) {
@@ -73,17 +81,24 @@
                             break;
                           }
                         }
-                                      
-                        // Check if employee is late
-                        if ($Timein <= $late_time){
-                          echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
-                        }else{
-                          echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
-                        }
+                                        
+                        // Check if employee is late or invalid 
+                          if ($status != 1) {
+                            echo "<button  class='btn btn-secondary btn-xs'><i class='fa fa-user-clock'></i> Invalid</button>";
+                          } else {
+                            $logTime = new DateTime($late_time, new DateTimeZone('Asia/Manila'));
+                            $logDate = new DateTime($Timein, new DateTimeZone('Asia/Manila'));
+                            $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
+                            if ($logDate <= $logTime) {
+                              echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
+                            } else {
+                              echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
+                            }
+                          }
                       ?>
                     </td>
                   </tr>
-               <?php }?>
+                <?php }?>
                 </table>
               </div>
             </div>

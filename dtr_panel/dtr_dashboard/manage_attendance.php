@@ -33,8 +33,6 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <!-- <th>QR Code</th> -->
-                            <!-- <th>EmployeeID No.</th> -->
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Time In</th>
@@ -44,45 +42,61 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <?php 
-                          $conn = new class_model();
-                          $emp = $conn->fetchAll_empAttendance();
-                          $attempdept = $conn->fetchLateTime();
-                      ?>
-                      <?php foreach ($emp as $row) { ?>
-                          <tr>
-                              <td><?= $row['first_name']; ?></td>
-                              <td><?= $row['last_name']; ?></td>
-                              <td><?= $row['time_in']; ?></td>
-                              <td><?= $row['time_out']; ?></td>
-                              <td><?= htmlentities(date("M d, Y",strtotime($row['logdate']))); ?></td>
-                              <td>
-                                  <?php
-                                      $Timein = $row['time_in'];
-                                      $department = $row['department'];
-                                      $late_time = null;
-                                      
-                                      // Get the late_time for the department
-                                      foreach ($attempdept as $dept) {
-                                          if ($dept['department_name'] === $department) {
-                                              $late_time = $dept['late_time'];
-                                              break;
+                        <?php 
+                            date_default_timezone_set('Asia/Manila');
+                            $conn = new class_model();
+                            $emp = $conn->fetchAll_empAttendance();
+                            $attempdept = $conn->fetchLateTime();
+                        ?>
+                        <?php foreach ($emp as $row) { ?>
+                            <tr>
+                                <td><?= $row['first_name']; ?></td>
+                                <td><?= $row['last_name']; ?></td>
+                                <td><?= $row['time_in']; ?></td>
+                                <td><?= $row['time_out']; ?></td>
+                                <td><?= htmlentities(date("M d, Y",strtotime($row['logdate']))); ?></td>
+                                <td>
+                                    <?php
+                                        $Timein = $row['time_in'];
+                                        $Timein = str_replace(":AM", " AM", $Timein);
+                                        $Timein = str_replace(":PM", " PM", $Timein);
+                                        $department = $row['department'];
+                                        $late_time = '00:00:00';
+                                        $status = $row['status'];
+                                        $logDate = date_parse($Timein);
+                                        $logDate = new DateTime(sprintf('%04d-%02d-%02d %02d:%02d:%02d', $logDate['year'], $logDate['month'], $logDate['day'], $logDate['hour'], $logDate['minute'], $logDate['second']), new DateTimeZone('Asia/Manila'));
+                                        $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
+
+                                        
+                                        // Get the late_time for the department
+                                        foreach ($attempdept as $dept) {
+                                            if ($dept['department_name'] === $department) {
+                                                $late_time = $dept['late_time'];
+                                                break;
+                                            }
+                                        }
+                                        
+                                        // Check if employee is late or invalid 
+                                        if ($status != 1) {
+                                          echo "<button  class='btn btn-secondary btn-xs'><i class='fa fa-user-clock'></i> Invalid</button>";
+                                        } else {
+                                          $logTime = new DateTime($late_time, new DateTimeZone('Asia/Manila'));
+                                          $logDate = new DateTime($Timein, new DateTimeZone('Asia/Manila'));
+                                          $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
+                                          if ($logDate <= $logTime) {
+                                            echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
+                                          } else {
+                                            echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
                                           }
-                                      }
-                                      
-                                      // Check if employee is late
-                                      if ($Timein <= $late_time){
-                                          echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
-                                      }else{
-                                          echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
-                                      }
-                                  ?>
-                              </td>
-                          </tr>
-                      <?php } ?>
+                                        }
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
               </div>
+
             </div>
           </div>
         </div>
