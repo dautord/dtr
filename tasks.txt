@@ -163,4 +163,13 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 05/04/23
 - 6th day of updating win 10 pcs: 15, 16, and 17
 - fixed missing curly bracket in dtr_panel/index.php
-- camera preview not showing in root/index.php
+- note: camera preview not showing in root/index.php
+
+11/04/23
+- 7th day of updating win 10 pcs: 18, 19, 20
+- fixed uncaught reference error of startTime() in root index.php
+- updated instascan.min.js to solve mismatch in assignment warning, but still no video preview. will do extra debugging at home
+	- mentions of polyfill in instascan.min.js
+- added dtr_system.sql (11/04/23) for git
+- for this week, play the summer program ads on the tv if maraming tao sa main lobby, then ask tr. camille for the updated video next week.
+- will buy notebook later for a physical copy of $this tasks.txt 
