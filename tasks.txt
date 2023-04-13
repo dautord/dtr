@@ -178,3 +178,11 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - 8th day of updating win 10 pcs: 21, 22, 23 and 24
 - transfer of tasks and note taking on a physical copy notebook
 - attended AM grad of G6 
+
+13/04/23
+- finishing win 10 updates of 21, 22, 23 and 24. -> finished, starting on 25, 26 and 27
+- pull out of PCS in classrooms and transfer to new office 
+	- note to self: bring extra shirt always
+- return to using win 11 laptop for faster work productivity. will need to import most recent sql and git pull
+	- do tom
+
