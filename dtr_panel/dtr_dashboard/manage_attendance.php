@@ -1,5 +1,10 @@
   <?php include 'header/main_header.php';?>
   <?php include 'sidebar/main_sidebar.php';?>
+  <?php 
+    $conn = new class_model();
+    $dept = $conn->fetchAll_departmentName();
+  
+  ?>
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -21,8 +26,57 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-    
-            <div class="card">
+              <div class="card">
+                <!-- Add Attendance Days Form -->
+                <div class="card-header">
+                  <h3 class="card-title">Set Work Day/s</h3>
+                </div>
+                <div class="card-body">
+                  <form method="post" action="process_attendance.php">
+                    <div class="form-group">
+                      <label for="department">Department</label>
+                      <select class="form-control" id="department" name="department">
+                        <?php foreach ($dept as $department_name): ?>
+                          <option value="<?php echo $department_name; ?>"><?php echo $department_name; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="attendanceDays">Work Day/s:</label>
+                        <input type="text" class="form-control" id="workDays" name="workDays" placeholder="Enter work days (e.g. Monday to Saturday, Tuesday to Thursday, Saturdays)">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </form>
+
+                  <hr>
+
+                  <h5>Department Work Week</h5>
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>Department Name</th>
+                              <th>Work Week</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php
+                          // Call the function to fetch all departments and display in the table
+                          $dept = $conn->fetchAll_department();
+                          foreach ($dept as $row) {
+                              echo '<tr>';
+                              echo '<td>' . $row['department_name'] . '</td>';
+                              echo '<td>' . $row['work_week'] . '</td>';
+                              echo '</tr>';
+                          }
+                          ?>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+          
+              <!-- End Add Attendance Days Form -->
+                          
+              <div class="card">
 <!--               <div class="card-header">
                  <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
                  <i class="fa fa-plus"></i> Add Attendance

@@ -145,7 +145,7 @@
 		            }
 		         return $data;
 
-		  }
+		}
 		public function fetchLateTime(){ 
 			$sql = "SELECT c.department_name, c.late_time FROM tbl_attendance a 
 					INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code 
@@ -160,6 +160,27 @@
 			}
 			return $data;
 		}
+		public function fetchAll_departmentName(){ 
+			$sql = "SELECT department_name FROM tbl_department ORDER BY department_id DESC";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$data = array();
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row['department_name']; // Fetch only the "department_name" column
+			}
+			return $data;
+		}
+
+		public function updateDepartmentWorkWeek($department, $workDays) {
+			$sql = "UPDATE tbl_department SET work_week = ? WHERE department_name = ?";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bind_param("ss", $workDays, $department);
+			$stmt->execute();
+			$stmt->close();
+		}
+		
+
 		
 		
 

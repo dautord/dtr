@@ -2,6 +2,8 @@ EMPLOYEE DASHBOARD
 
 - if leave balance is zero
 	- insufficient leave balance for that type
+
+- show late_time and work_week for employee
  
 ADMIN DASHBOARD
 
@@ -9,8 +11,6 @@ ADMIN DASHBOARD
 	- after accept/deny, -x to leave balance according to type
 		- x being no. of days calculated from datetime start and datetime end
 		- so, calculate if how many days in input, then deduct that to balance.
-
-- set different work days for different departments (schedules)
 
 side quest:
 - kita yung absent sa export to excel
@@ -186,3 +186,12 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - return to using win 11 laptop for faster work productivity. will need to import most recent sql and git pull
 	- do tom
 
+17/04/23
+- set up additional PCs for Windows Comp Lab. updated IT-28, 42, 33, 35. 
+- need to get the two attendance pcs in the stock room of the gym
+- front-end of set attendance days done in manage_attendance.php
+	- update: done with backend, new column in tbl_department called work_week, varchar (255) 
+	- new functions fetchAll_departmentName() and updateDepartmentWorkWeek()
+	- new file called process_attendance.php which handles form submission of setting work days in manage_attendance.php.
+	- TODO: employee side, show tbl_department late_time and work_week
+- included dtr_system 17/04/23 version in git commit -> for migrating back to win 11 laptop

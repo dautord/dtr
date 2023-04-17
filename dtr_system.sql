@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 05:14 AM
+-- Generation Time: Apr 17, 2023 at 06:57 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -2939,17 +2939,18 @@ CREATE TABLE `tbl_department` (
   `maternal_leave_limit` int(11) NOT NULL,
   `emergency_leave_limit` int(11) NOT NULL,
   `solo_parent_leave_limit` int(11) NOT NULL,
-  `late_time` time NOT NULL
+  `late_time` time NOT NULL,
+  `work_week` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_department`
 --
 
-INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`, `sick_leave_limit`, `vacation_leave_limit`, `paternal_leave_limit`, `maternal_leave_limit`, `emergency_leave_limit`, `solo_parent_leave_limit`, `late_time`) VALUES
-(2, 'Teaching Department', 'Teaching', 1, 2, 3, 4, 5, 6, '07:30:00'),
-(3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', 7, 8, 9, 10, 11, 12, '07:30:00'),
-(4, 'Non-Teaching Department', 'Non-Teaching', 13, 14, 15, 16, 17, 18, '07:30:00');
+INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`, `sick_leave_limit`, `vacation_leave_limit`, `paternal_leave_limit`, `maternal_leave_limit`, `emergency_leave_limit`, `solo_parent_leave_limit`, `late_time`, `work_week`) VALUES
+(2, 'Teaching Department', 'Teaching', 1, 2, 3, 4, 5, 6, '08:00:00', 'Monday to Friday'),
+(3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', 7, 8, 9, 10, 11, 12, '08:00:00', 'Monday to Saturday'),
+(4, 'Non-Teaching Department', 'Non-Teaching', 13, 14, 15, 16, 17, 18, '08:00:00', 'Monday to Saturday');
 
 -- --------------------------------------------------------
 
@@ -2991,7 +2992,7 @@ INSERT INTO `tbl_employee` (`employee_id`, `employee_idno`, `qr_code`, `last_nam
 (5, '812', '0812', 'Singson', 'Zindy', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
 (6, '711', '0711', 'Rivera', 'Benaper', '', '', '', '', '', '', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
 (7, '513', '0513', 'Solmoro', 'Holy Alan', '12345', '', '', '', '', 'Male', '', '', '', 'Non-Teaching Department', 13, 14, 15, 16, 17, 18),
-(8, '0425', '0425', 'Roa', 'Carol', '', '', '', '', '', '', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
+(8, '425', '0425', 'Roa', 'Carol', '', '', '', '', '', '', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
 (9, '421', '0421', 'Mendoza', 'Maria Cecil', '', '', '', '', '', '', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
 (10, '416', '0416', 'Galsim', 'Rowena', '', '', '', '', '', '', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
 (11, '405', '0405', 'Buno', 'Ursula', '', '', '', '', '', '', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
