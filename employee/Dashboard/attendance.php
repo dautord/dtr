@@ -1,11 +1,29 @@
   <?php include 'header/main_header.php';?>
   <?php include 'sidebar/main_sidebar.php';?>
+  <style>
+        /* Add CSS styling for the specific table using a class or ID */
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .dashboard-table th, .dashboard-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .dashboard-table th {
+            background-color: #f2f2f2;
+        }
+  </style>
+
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Attendance</h1>
+            <h1>Attendance</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -21,14 +39,40 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-    
             <div class="card">
-<!--               <div class="card-header">
-                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
-                 <i class="fa fa-plus"></i> Add Attendance
-                </button>
-              </div> -->
-
+              <div class="card-header">
+                <h5><b>My Schedule</b></h5>
+              </div>
+              <div class="card-body">
+                <table class="dashboard-table">
+                  <thead>
+                    <tr>
+                      <th>Department</th>
+                      <th>Call Time</th>
+                      <th>Work Week</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                        $employee_id = $_SESSION['employee_id'];
+                        $conn = new class_model();
+                        $departmentData = $conn->fetchIndividualEmpDeptData($employee_id);
+                    ?>
+                    <?php foreach ($departmentData as $row): ?>
+                    <tr>
+                      <td><?php echo $row['department_name']; ?></td>
+                      <td><?php echo $row['late_time']; ?></td>
+                      <td><?php echo $row['work_week']; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h5><b>My Attendance</b></h5>
+              </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -44,14 +88,14 @@
                   </tr>
                   </thead>
                   <tbody>
-                 <?php 
-                      date_default_timezone_set('Asia/Manila');
-                      $employee_id = $_SESSION['employee_id'];
-                      $conn = new class_model();
-                      $emp = $conn->fetchindividual_empAttendance($employee_id);
-                      $attempdept = $conn->fetchLateTime();
+                  <?php 
+                        date_default_timezone_set('Asia/Manila');
+                        $employee_id = $_SESSION['employee_id'];
+                        $conn = new class_model();
+                        $emp = $conn->fetchindividual_empAttendance($employee_id);
+                        $attempdept = $conn->fetchLateTime();
                   ?>
-                <?php foreach ($emp as $row) { ?>
+                  <?php foreach ($emp as $row) { ?>
                   <tr>
                     <td><?= $row['qr_code']; ?></td>
                     <td><?= $row['employee_idno']; ?></td>

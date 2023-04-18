@@ -2,8 +2,6 @@ EMPLOYEE DASHBOARD
 
 - if leave balance is zero
 	- insufficient leave balance for that type
-
-- show late_time and work_week for employee
  
 ADMIN DASHBOARD
 
@@ -195,3 +193,11 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 	- new file called process_attendance.php which handles form submission of setting work days in manage_attendance.php.
 	- TODO: employee side, show tbl_department late_time and work_week
 - included dtr_system 17/04/23 version in git commit -> for migrating back to win 11 laptop
+
+18/04/23
+- in charge of comp lab, teachers are using it as a conference room -> make sure aircon is off during lunch break
+- welcome video for scribbles and schemes early childhood center 
+- front-end of employee side of setting schedules and workdays done in attendance.php
+	- update: done with backend, new function fetchIndividualEmpDeptData() in class_model.php
+	- employee now able to view their schedule, including their department, call time and work days.
+- mxf to mp4 file conversions for tr. camille using movavi video converter 23

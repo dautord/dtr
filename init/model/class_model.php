@@ -179,6 +179,23 @@
 			$stmt->execute();
 			$stmt->close();
 		}
+		public function fetchIndividualEmpDeptData($employeeId) {
+			$sql = "SELECT b.department_name, b.late_time, b.work_week 
+					FROM tbl_employee a 
+					INNER JOIN tbl_department b ON a.department = b.department_name
+					WHERE a.employee_id = ?";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bind_param("i", $employeeId); // Bind the employeeId parameter
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$data = array();
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row;
+			}
+			$stmt->close();
+			return $data;
+		}
+
 		
 
 		
