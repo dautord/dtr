@@ -9,6 +9,7 @@ ADMIN DASHBOARD
 	- after accept/deny, -x to leave balance according to type
 		- x being no. of days calculated from datetime start and datetime end
 		- so, calculate if how many days in input, then deduct that to balance.
+		- if try to request for a leave more than their remaining balance, the request cannot push through.
 
 side quest:
 - kita yung absent sa export to excel
@@ -201,3 +202,14 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 	- update: done with backend, new function fetchIndividualEmpDeptData() in class_model.php
 	- employee now able to view their schedule, including their department, call time and work days.
 - mxf to mp4 file conversions for tr. camille using movavi video converter 23
+
+19/04/23
+- started working on back-end of leave balance calculation based on the difference of datetime_end and datetime_start. 
+	- function also makes use of leave_type in tbl_leave_request to determine what balance in tbl_employee to deduct from.
+	- calculateEmpLeaveBalanceOnLeaveApproval() in class_model.php 
+		- call this function on admin leave approval
+		- update: ask sir Enrico if Aion uses days or hours for leave balance
+			- how would this be calculated if half day, or whole.
+- refactored code for class_model.php
+- TODO: front-end, and finish leave calculation
+- TODO: solutions for the Instascan.js video preview not showing

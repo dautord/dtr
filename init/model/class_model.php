@@ -46,7 +46,6 @@
 				$fetch = $result->fetch_array();
 				return array(
 					'full_name'=> $fetch['full_name']
-
 				);
 			}	
 		}
@@ -68,12 +67,11 @@
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
+		        while ($row = $result->fetch_assoc()) {
+		            $data[] = $row;
+		        }
+		        return $data;
+		}
 
         public function edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id){
 
@@ -99,53 +97,54 @@
 			unlink($imagepath);
 
 				$sql = "DELETE FROM tbl_employee WHERE employee_id = ?";
-				 $stmt = $this->conn->prepare($sql);
+				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $employee_id);
 				if($stmt->execute()){
 					$stmt->close();
 					$this->conn->close();
 					return true;
 				}
-			}
+		}
 
-         public function fetchAll_attendance(){ 
+        public function fetchAll_attendance(){ 
             $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code  WHERE DATE(a.logdate) = CURDATE() ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
+		        while ($row = $result->fetch_assoc()) {
+		            $data[] = $row;
+		        }
+		        return $data;
 
-		  }
+		}
 
-		 public function fetchAll_empAttendance(){ 
+		public function fetchAll_empAttendance(){ 
             $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
+		        while ($row = $result->fetch_assoc()) {
+		            $data[] = $row;
+		        }
+		        return $data;
 
-		  }
+		}
 
-		 public function fetchAll_department(){ 
+		public function fetchAll_department(){ 
             $sql = "SELECT * FROM tbl_department ORDER BY department_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
 		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
+		            $data[] = $row;
+		        }
 		         return $data;
 
 		}
+		
 		public function fetchLateTime(){ 
 			$sql = "SELECT c.department_name, c.late_time FROM tbl_attendance a 
 					INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code 
@@ -160,6 +159,7 @@
 			}
 			return $data;
 		}
+
 		public function fetchAll_departmentName(){ 
 			$sql = "SELECT department_name FROM tbl_department ORDER BY department_id DESC";
 			$stmt = $this->conn->prepare($sql);
@@ -179,6 +179,7 @@
 			$stmt->execute();
 			$stmt->close();
 		}
+
 		public function fetchIndividualEmpDeptData($employeeId) {
 			$sql = "SELECT b.department_name, b.late_time, b.work_week 
 					FROM tbl_employee a 
@@ -196,14 +197,9 @@
 			return $data;
 		}
 
-		
-
-		
-		
-
 		public function add_department($department_name, $description){
 			
-	       $stmt = $this->conn->prepare("INSERT INTO `tbl_department` (`department_name`, `description`) VALUES(?, ?)") or die($this->conn->error);
+	    	$stmt = $this->conn->prepare("INSERT INTO `tbl_department` (`department_name`, `description`) VALUES(?, ?)") or die($this->conn->error);
 			$stmt->bind_param("ss", $department_name, $description);
 			if($stmt->execute()){
 				$stmt->close();
@@ -225,17 +221,16 @@
 		}
 
 
-         public function delete_department($department_id){
-
+        public function delete_department($department_id){
 				$sql = "DELETE FROM tbl_department WHERE department_id = ?";
-				 $stmt = $this->conn->prepare($sql);
+				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $department_id);
 				if($stmt->execute()){
 					$stmt->close();
 					$this->conn->close();
 					return true;
 				}
-			}
+		}
 
 	    public function login_employee($employee_idno, $password){
 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `employee_idno` = ? AND `password` = ?") or die($this->conn->error);
@@ -250,6 +245,7 @@
 				);
 			}
 		}
+
 		public function update_employee_password($employee_id, $new_password) {
 			// $new_password_hashed = password_hash($new_password, PASSWORD_DEFAULT); hash optional
 			$sql = "UPDATE tbl_employee SET password = '$new_password' WHERE employee_id = '$employee_id'";
@@ -270,7 +266,7 @@
 			$gender = $row['gender'];
 			$department = $row['department'];
 			return $row;
-	}
+		}
 	
 		public function getLeaveRequests($employee_id) {
 			$query = "SELECT leave_id, datetime_start, datetime_end, leave_type, reason, datetime_requested, status
@@ -320,7 +316,6 @@
 				return array(
 					'first_name'=> $fetch['first_name'],
 					'last_name'=> $fetch['last_name']
-
 				);
 			}	
 		}
@@ -356,7 +351,7 @@
 			} else {
 					return false;
 			}
-	}
+		}
 
 		public function getDepartmentLeaveLimits() {
 		// retrieve leave limits for all departments
@@ -404,6 +399,58 @@
 				}
 			}
 		}
+		//function for updating employee leave balance on approved request by admin
+		public function calculateEmpLeaveBalanceOnLeaveApproval($empId, $leaveType, $datetimeStart, $datetimeEnd) {
+			// get the employee's current leave balance
+			$stmt = $this->conn->prepare("SELECT sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave, solo_parent_leave FROM tbl_employee WHERE employee_id = ?");
+			$stmt->bind_param("i", $empId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$row = $result->fetch_assoc();
+			// define selected rows for determining leave type based on leave_type, joining tbl_leave_request with tbl_employee
+			$sickLeave = $row['sick_leave'];
+			$vacationLeave = $row['vacation_leave'];
+			$paternalLeave = $row['paternal_leave'];
+			$maternalLeave = $row['maternal_leave'];
+			$emergencyLeave = $row['emergency_leave'];
+			$soloParentLeave = $row['solo_parent_leave'];
+			
+			// calculate the leave balance deduction based on the leave type
+			$datetime1 = new DateTime($datetimeStart);
+			$datetime2 = new DateTime($datetimeEnd);
+			$interval = $datetime1->diff($datetime2);
+			$numDays = $interval->format('%a') + 1; // add 1 to include the start date
+			
+			switch ($leaveType) {
+				case 'sick':
+					$sickLeave -= $numDays;
+					break;
+				case 'vacation':
+					$vacationLeave -= $numDays;
+					break;
+				case 'paternal':
+					$paternalLeave -= $numDays;
+					break;
+				case 'maternal':
+					$maternalLeave -= $numDays;
+					break;
+				case 'emergency':
+					$emergencyLeave -= $numDays;
+					break;
+				case 'solo parent':
+					$soloParentLeave -= $numDays;
+					break;
+				default:
+					// handle invalid leave type
+					break;
+			}
+			
+			// update the employee's leave balance
+			$stmt = $this->conn->prepare("UPDATE tbl_employee SET sick_leave = ?, vacation_leave = ?, paternal_leave = ?, maternal_leave = ?, emergency_leave = ?, solo_parent_leave = ? WHERE employee_id = ?");
+			$stmt->bind_param("iiiiiii", $sickLeave, $vacationLeave, $paternalLeave, $maternalLeave, $emergencyLeave, $soloParentLeave, $empId);
+			return $stmt->execute();
+		}
+		
 
 		public function getLeaveButtonStatus() {
 			$sql = "SELECT status FROM leave_button_status WHERE id = 1";
@@ -425,19 +472,7 @@
 				}
 			}
 		}
-		// public function resetDepartmentLeaveBalance($deptId) {
-		// 	// get leave limits for department
-		// 	$leaveLimits = $this->getDepartmentLeaveLimits($deptId);
 
-		// 	// reset leave balances for all employees in department
-		// 	$stmt = $this->conn->prepare("UPDATE tbl_employee SET sick_leave_balance=?, vacation_leave_balance=?, paternal_leave_balance=?, maternal_leave_balance=?, emergency_leave_balance=?, solo_parent_leave_balance=? WHERE department_id=?");
-		// 	$stmt->bind_param("iiiiiii", $leaveLimits['sick_leave_limit'], $leaveLimits['vacation_leave_limit'], $leaveLimits['paternal_leave_limit'], $leaveLimits['maternal_leave_limit'], $leaveLimits['emergency_leave_limit'], $leaveLimits['solo_parent_leave_limit'], $deptId);
-		// 	return $stmt->execute();
-		// }
-	
-	
-
-	
 	    public function fetchindividual_employee($employee_id){ 
 	        $sql = "SELECT * FROM  tbl_employee WHERE `employee_id` = ?";
 					$stmt = $this->conn->prepare($sql);
@@ -445,107 +480,99 @@
 					$stmt->execute();
 					$result = $stmt->get_result();
 			        $data = array();
-			         while ($row = $result->fetch_assoc()) {
-			                   $data[] = $row;
-			            }
-			         return $data;
+			        while ($row = $result->fetch_assoc()) {
+			        	$data[] = $row;
+			        }
+			        return $data;
+		}
 
-			  }
-
-         public function fetchindividual_empAttendance($employee_id){ 
+        public function fetchindividual_empAttendance($employee_id){ 
             $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code WHERE b.employee_id = ? ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $employee_id);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
+		        while ($row = $result->fetch_assoc()){
+		            $data[] = $row;
+		        }
+		        return $data;
+		}
 
-		  }
-
-		   public function count_numberofdepartment(){ 
+		public function count_numberofdepartment(){ 
             $sql = "SELECT COUNT(department_id) as department_id FROM tbl_department ORDER BY department_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
+		        while ($row = $result->fetch_assoc()) {
 		                   $data[] = $row;
-		            }
-		         return $data;
+		        }
+		        return $data;
+		}
 
-		  }
 
-
-		  public function count_numberofemployees(){ 
+		public function count_numberofemployees(){ 
             $sql = "SELECT COUNT(employee_id) as employee_id FROM tbl_employee ORDER BY employee_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
+		        while ($row = $result->fetch_assoc()) {
+		        	$data[] = $row;
+		        }
+		        return $data;
+		}
 
-		  }
-
-		  public function count_numberofattendance(){ 
+		public function count_numberofattendance(){ 
             $sql = "SELECT COUNT(attendance_id) as attendance_id FROM tbl_attendance ORDER BY attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
+		        while ($row = $result->fetch_assoc()) {
+		            $data[] = $row;
+		        }
+		        return $data;
+		}
 
-		  }
-
-		    public function count_numberoftimeInOutToday(){ 
+		public function count_numberoftimeInOutToday(){ 
             $sql = "SELECT COUNT(attendance_id) as attendance_ids  FROM tbl_attendance  WHERE DATE(logdate) = CURDATE() ORDER BY attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
+		        while ($row = $result->fetch_assoc()) {
+		            $data[] = $row;
+		        }
+		        return $data;
+		}
 
-		  }
-
-		   public function count_numberofattendanceIndividualEmp($employee_id){ 
+		public function count_numberofattendanceIndividualEmp($employee_id){ 
             $sql = "SELECT COUNT(a.attendance_id) as attendance_ids  FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code WHERE b.employee_id = ? ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $employee_id);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
+		        while ($row = $result->fetch_assoc()) {
 		                   $data[] = $row;
-		            }
-		         return $data;
+		        }
+		        return $data;
+		}
 
-		  }
-
-		  public function count_numberofemployeesIndividualEmp($employee_id){ 
+		public function count_numberofemployeesIndividualEmp($employee_id){ 
             $sql = "SELECT COUNT(employee_id) as employee_id FROM tbl_employee WHERE employee_id = ? ORDER BY employee_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $employee_id);
 				$stmt->execute();
 				$result = $stmt->get_result();
 		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
+		        while ($row = $result->fetch_assoc()) {
 		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
+		        }
+		        return $data;
+		}
 	
 	}	
 ?>
