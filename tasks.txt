@@ -2,14 +2,33 @@ EMPLOYEE DASHBOARD
 
 - if leave balance is zero
 	- insufficient leave balance for that type
- 
+
+- schedule call time change to varchar.
+
+- comment out my information in the meantime
+
 ADMIN DASHBOARD
 
 - for leave request approval
 	- after accept/deny, -x to leave balance according to type
-		- x being no. of days calculated from datetime start and datetime end
-		- so, calculate if how many days in input, then deduct that to balance.
 		- if try to request for a leave more than their remaining balance, the request cannot push through.
+	- remove time computation for datetime start and end. make no. of days, deduct that to balance
+			- if halfday, -0.5
+
+- rename emp.no column to qr.no. and remove from display
+- make new column in tbl_employee called emp. no -> varchar, shouldnt change because it is not called.
+	
+- include undertime, editable ng admin
+	- include minutes late and minutes undertime
+
+- make new leave without pay button, same as leave request but remove leave type 
+	
+PHASE 2 UPDATES:
+
+- Employee Information and updates
+	- Admin can enable/disable editing
+- New button for Export to excel - generated (checks earliest time in and latest time out per day)
+- Manage Buttons 
 
 side quest:
 - kita yung absent sa export to excel
@@ -213,3 +232,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - refactored code for class_model.php
 - TODO: front-end, and finish leave calculation
 - TODO: solutions for the Instascan.js video preview not showing
+
+20/4/23 
+- meeting with sir holy, updates and changes needed to be met by the time this system is presented to sir enrico.
+- migrate back to win 11 laptop - export sql and git pull
