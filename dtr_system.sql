@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 06:57 AM
+-- Generation Time: Apr 20, 2023 at 05:34 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -2950,7 +2950,7 @@ CREATE TABLE `tbl_department` (
 INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`, `sick_leave_limit`, `vacation_leave_limit`, `paternal_leave_limit`, `maternal_leave_limit`, `emergency_leave_limit`, `solo_parent_leave_limit`, `late_time`, `work_week`) VALUES
 (2, 'Teaching Department', 'Teaching', 1, 2, 3, 4, 5, 6, '08:00:00', 'Monday to Friday'),
 (3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', 7, 8, 9, 10, 11, 12, '08:00:00', 'Monday to Saturday'),
-(4, 'Non-Teaching Department', 'Non-Teaching', 13, 14, 15, 16, 17, 18, '08:00:00', 'Monday to Saturday');
+(4, 'Non-Teaching Department', 'Non-Teaching', 13, 14, 15, 16, 17, 18, '08:00:00', 'Monday to Friday');
 
 -- --------------------------------------------------------
 
