@@ -2,18 +2,19 @@ EMPLOYEE DASHBOARD
 
 - if leave balance is zero
 	- insufficient leave balance for that type
+		- DONE
 
 - schedule call time change to varchar.
 
 - comment out my information in the meantime
-
+	- DONE
 ADMIN DASHBOARD
 
-- for leave request approval
-	- after accept/deny, -x to leave balance according to type
-		- if try to request for a leave more than their remaining balance, the request cannot push through.
 	- remove time computation for datetime start and end. make no. of days, deduct that to balance
 			- if halfday, -0.5
+				- DONE 
+			- change all leaves to decimal, not int 
+				- DONE
 
 - rename emp.no column to qr.no. and remove from display
 - make new column in tbl_employee called emp. no -> varchar, shouldnt change because it is not called.
@@ -236,3 +237,10 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 20/4/23 
 - meeting with sir holy, updates and changes needed to be met by the time this system is presented to sir enrico.
 - migrate back to win 11 laptop - export sql and git pull
+
+- changed datetime_start and datetime_end to date format.
+- changed all ints involving leave balances in the database to decimal (11,1).
+- fixed calculateEmpLeaveBalanceOnLeaveApproval() based on num_of_days in tbl_leave_request
+	- fixed submitLeaveRequest() and adminGetLeaveRequests() to handle the new column num_of_days in tbl_leave_request.
+- now able to calculate employee leave balance on admin approval. 
+- fixed the logic for leave_request.php so that it will prevent the user from sending a leave request with num_of_days > remainingBalance for that type.

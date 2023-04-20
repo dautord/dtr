@@ -3,6 +3,7 @@
     $conn = new class_model();  
     $adminFetchLeaveReqs = $conn->adminGetLeaveRequests();
     $buttonStatus = $conn->getLeaveButtonStatus();
+    
 
     if (!isset($_SESSION['admin_id'])) {
       // if not, redirect them to the login page
@@ -13,10 +14,12 @@
     if (isset($_POST['approve'])) {
       // Get the leave ID and new status from the form data
       $leave_id = $_POST['leave_id'];
+      $employee_id = $_POST['employee_id'];
+      $leave_type = $_POST['leave_type'];
       $new_status = 'Approved';
   
       // Update the leave status in your database using your adminSetLeaveStatus function
-      $result = $conn->adminSetLeaveStatus($leave_id, $new_status);
+      $result = $conn->calculateEmpLeaveBalanceOnLeaveApproval($employee_id, $leave_type, $leave_id); $conn->adminSetLeaveStatus($leave_id, $new_status); 
   
       // Check if the update was successful and redirect accordingly
       if ($result) {
@@ -247,6 +250,8 @@
                         <?php if($leaveRequest["status"] == "Pending") { ?>
                           <form method="post" onsubmit="return confirmAction();">
                             <input type="hidden" name="leave_id" value="<?= $leaveRequest['leave_id'] ?>" />
+                            <input type="hidden" name="employee_id" value="<?= $leaveRequest['employee_id'] ?>" />
+                            <input type="hidden" name="leave_type" value="<?= $leaveRequest['leave_type'] ?>" />
                             <input type="hidden" name="confirm" id="confirm" />
 
                             <button type="submit" name="approve" class="btn btn-success btn-block my-btn">Approve</button>

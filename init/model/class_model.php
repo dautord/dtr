@@ -280,10 +280,10 @@
 			return $rows;
 		}
 
-		public function submitLeaveRequest($employee_id, $datetime_start, $datetime_end, $leave_type, $reason, $datetime_requested, $status)
+		public function submitLeaveRequest($employee_id, $datetime_start, $datetime_end, $num_of_days, $leave_type, $reason, $datetime_requested, $status)
 		{
-				$stmt = $this->conn->prepare("INSERT INTO `tbl_leave_request` (`employee_id`, `datetime_start`, `datetime_end`, `leave_type`, `reason`, `datetime_requested`, `status` ) VALUES (?, ?, ?, ?, ?, ?, ?)");
-				$stmt->bind_param("issssss", $employee_id, $datetime_start, $datetime_end, $leave_type, $reason, $datetime_requested, $status);
+				$stmt = $this->conn->prepare("INSERT INTO `tbl_leave_request` (`employee_id`, `datetime_start`, `datetime_end`, `num_of_days`, `leave_type`, `reason`, `datetime_requested`, `status` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+				$stmt->bind_param("issdssss", $employee_id, $datetime_start, $datetime_end, $num_of_days, $leave_type, $reason, $datetime_requested, $status);
 
 				if ($stmt->execute()) {
 						$stmt->close();
@@ -400,7 +400,8 @@
 			}
 		}
 		//function for updating employee leave balance on approved request by admin
-		public function calculateEmpLeaveBalanceOnLeaveApproval($empId, $leaveType, $datetimeStart, $datetimeEnd) {
+		public function calculateEmpLeaveBalanceOnLeaveApproval($empId, $leaveType, $leaveId) {
+    
 			// get the employee's current leave balance
 			$stmt = $this->conn->prepare("SELECT sick_leave, vacation_leave, paternal_leave, maternal_leave, emergency_leave, solo_parent_leave FROM tbl_employee WHERE employee_id = ?");
 			$stmt->bind_param("i", $empId);
@@ -414,42 +415,44 @@
 			$maternalLeave = $row['maternal_leave'];
 			$emergencyLeave = $row['emergency_leave'];
 			$soloParentLeave = $row['solo_parent_leave'];
-			
-			// calculate the leave balance deduction based on the leave type
-			$datetime1 = new DateTime($datetimeStart);
-			$datetime2 = new DateTime($datetimeEnd);
-			$interval = $datetime1->diff($datetime2);
-			$numDays = $interval->format('%a') + 1; // add 1 to include the start date
-			
+
+			// Subtract the number of leave days to the leave balance
+			$stmt = $this->conn->prepare("SELECT num_of_days FROM tbl_leave_request WHERE employee_id = ? AND leave_type = ? AND leave_id = ?");
+			$stmt->bind_param("isi", $empId, $leaveType, $leaveId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$row = $result->fetch_assoc();
+			$numDays = $row['num_of_days'];
+
 			switch ($leaveType) {
-				case 'sick':
-					$sickLeave -= $numDays;
-					break;
-				case 'vacation':
-					$vacationLeave -= $numDays;
-					break;
-				case 'paternal':
-					$paternalLeave -= $numDays;
-					break;
-				case 'maternal':
-					$maternalLeave -= $numDays;
-					break;
-				case 'emergency':
-					$emergencyLeave -= $numDays;
-					break;
-				case 'solo parent':
-					$soloParentLeave -= $numDays;
-					break;
-				default:
-					// handle invalid leave type
-					break;
+					case 'sick':
+							$sickLeave -= $numDays;
+							break;
+					case 'vacation':
+							$vacationLeave -= $numDays;
+							break;
+					case 'paternal':
+							$paternalLeave -= $numDays;
+							break;
+					case 'maternal':
+							$maternalLeave -= $numDays;
+							break;
+					case 'emergency':
+							$emergencyLeave -= $numDays;
+							break;
+					case 'solo parent':
+							$soloParentLeave -= $numDays;
+							break;
+					default:
+							// handle invalid leave type
+							break;
 			}
-			
+
 			// update the employee's leave balance
 			$stmt = $this->conn->prepare("UPDATE tbl_employee SET sick_leave = ?, vacation_leave = ?, paternal_leave = ?, maternal_leave = ?, emergency_leave = ?, solo_parent_leave = ? WHERE employee_id = ?");
-			$stmt->bind_param("iiiiiii", $sickLeave, $vacationLeave, $paternalLeave, $maternalLeave, $emergencyLeave, $soloParentLeave, $empId);
+			$stmt->bind_param("ddddddi", $sickLeave, $vacationLeave, $paternalLeave, $maternalLeave, $emergencyLeave, $soloParentLeave, $empId);
 			return $stmt->execute();
-		}
+}
 		
 
 		public function getLeaveButtonStatus() {

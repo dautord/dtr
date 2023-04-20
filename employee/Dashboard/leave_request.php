@@ -32,6 +32,13 @@ $employee_id = $_SESSION['employee_id'];
  $emp = $conn->getEmployeeLeaves($employee_id);
  $gender = $emp['gender'];
  $department = $emp['department'];
+ $sickLeave = $emp['sick_leave'];
+ $vacationLeave = $emp['vacation_leave'];
+ $paternalLeave = $emp['paternal_leave'];
+ $maternalLeave = $emp['maternal_leave'];
+ $emergencyLeave = $emp['emergency_leave'];
+ $soloParentLeave = $emp['solo_parent_leave'];
+ $remainingBalance = 0;
 
 
 // check if the form has been submitted
@@ -39,20 +46,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // get the user's input
   $datetime_start = $_POST['start_date'];
   $datetime_end = $_POST['end_date'];
+  $num_of_days = $_POST['num_of_days'];
   $leave_type = $_POST['leave_type']; 
   $reason = $_POST['reason'];
   $datetime_requested = date('Y-m-d H:i:s');
   $status = 'Pending';
   
-  
-  // submit the leave request
-  $sub = $conn->submitLeaveRequest($employee_id, $datetime_start, $datetime_end, $leave_type, $reason, $datetime_requested, $status);
-  
-  if ($sub) {
+  switch ($leave_type) {
+    case 'sick':
+        $remainingBalance = $sickLeave;
+        break;
+    case 'vacation':
+        $remainingBalance = $vacationLeave;
+        break;
+    case 'paternal':
+        $remainingBalance = $paternalLeave;
+        break;
+    case 'maternal':
+        $remainingBalance = $maternalLeave;
+        break;
+    case 'emergency':
+        $remainingBalance = $emergencyLeave;
+        break;
+    case 'solo parent':
+        $remainingBalance = $soloParentLeave;
+        break;
+    default:
+        // handle invalid leave type
+        break;
+  }
+ 
+  if ($num_of_days <= $remainingBalance) {
+    // submit the leave request
+    $conn->submitLeaveRequest($employee_id, $datetime_start, $datetime_end, $num_of_days, $leave_type, $reason, $datetime_requested, $status);
     // display a success message
     $success = "Leave request submitted successfully.";
-  } else {
+  } elseif ($num_of_days > $remainingBalance) {
     // if the submission fails, display an error message
+    $error = 'There was an error submitting your leave request. Your requested number of days exceed your current leave balance for that type. Please double check your balance and try again.';
+  } else {
     $error = 'There was an error submitting your leave request. Please try again.';
   }
 }
@@ -120,10 +152,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- gets the employee id in tbl_employee -->
                     <input type="hidden" name="employee_id" value="<?php echo $_SESSION['employee_id']; ?>">
                     <label for="start_date">Start Date:</label>
-                    <input type="datetime-local" id="start_date" name="start_date" required><br>
+                    <input type="date" id="start_date" name="start_date" required><br>
 
                     <label for="end_date">End Date:</label>
-                    <input type="datetime-local" id="end_date" name="end_date" required><br>
+                    <input type="date" id="end_date" name="end_date" required><br>
+
+                    <label for="num_of_days">No. of Days:</label>
+                    <input type="decimal" id="num_of_days" name="num_of_days" placeholder="(e.g. 0.5 if half day)" required><br>
 
                     <label for="leave_type">Type of Leave:</label>
                     <select id="leave_type" name="leave_type" required>
@@ -146,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="reason">Reason:</label>
                     <textarea id="reason" name="reason" required></textarea><br>
                     </div>
-                    
+                    <br>
                     <input type="submit" class="btn btn-primary" value="Submit">
                 </form>
                 <?php if(isset($success)): ?>
@@ -187,6 +222,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     setTimeout(function() {
         $("#success").fadeOut();
         $("#error").fadeOut();
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 10000); // 5000 milliseconds = 5 seconds
 </script>
 
