@@ -51,9 +51,9 @@
 		}
 
 
-		public function add_employee($employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents){
-	       $stmt = $this->conn->prepare("INSERT INTO `tbl_employee` (`employee_idno`, `password`, `first_name`, `middle_name`, `last_name`, `bdate`, `complete_address`, `cnumber`,  `gender`, `civilstatus`, `datehire`, `designation`, `department`, `qr_code`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
-			$stmt->bind_param("ssssssssssssss", $employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents);
+		public function add_employee($qr_codeno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents){
+	       $stmt = $this->conn->prepare("INSERT INTO `tbl_employee` (`qr_codeno`, `password`, `first_name`, `middle_name`, `last_name`, `bdate`, `complete_address`, `cnumber`,  `gender`, `civilstatus`, `datehire`, `designation`, `department`, `employee_idno`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
+			$stmt->bind_param("ssssssssssssss", $qr_codeno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
@@ -73,11 +73,11 @@
 		        return $data;
 		}
 
-        public function edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id){
+        public function edit_employee($qr_codeno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id){
 
-			$sql = "UPDATE `tbl_employee` SET  `employee_idno` = ?, `first_name` = ?, `middle_name` = ?,  `last_name` = ? ,  `bdate` = ?,  `complete_address` = ?,  `cnumber` = ?,  `gender` = ?,  `civilstatus` = ?,  `datehire` = ?,  `designation` = ?,  `department` = ?, `sick_leave` = ?, `vacation_leave` = ?, `paternal_leave` = ?, `maternal_leave` = ?, `emergency_leave` = ?, `solo_parent_leave` = ? WHERE employee_id = ?";
+			$sql = "UPDATE `tbl_employee` SET  `qr_codeno` = ?, `first_name` = ?, `middle_name` = ?,  `last_name` = ? ,  `bdate` = ?,  `complete_address` = ?,  `cnumber` = ?,  `gender` = ?,  `civilstatus` = ?,  `datehire` = ?,  `designation` = ?,  `department` = ?, `sick_leave` = ?, `vacation_leave` = ?, `paternal_leave` = ?, `maternal_leave` = ?, `emergency_leave` = ?, `solo_parent_leave` = ? WHERE employee_id = ?";
 			$stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("isssssssssssiiiiiii", $employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
+			$stmt->bind_param("isssssssssssiiiiiii", $qr_codeno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
@@ -87,13 +87,13 @@
 
 		public function delete_employee($employee_id){
            error_reporting(0);
-		   $sql="SELECT employee_idno FROM tbl_employee WHERE employee_id = ?";
+		   $sql="SELECT qr_codeno FROM tbl_employee WHERE employee_id = ?";
 			$stmt2=$this->conn->prepare($sql);
 			$stmt2->bind_param("i", $employee_id);
 			$stmt2->execute();
 			$result2=$stmt2->get_result();
 			$row=$result2->fetch_assoc();
-			$imagepath = $_SERVER['DOCUMENT_ROOT']."DTR_Management_system/qrcode_images/".$row['employee_idno'].'.png';//delete the image inside a folder path
+			$imagepath = $_SERVER['DOCUMENT_ROOT']."DTR_Management_system/qrcode_images/".$row['qr_codeno'].'.png';//delete the image inside a folder path
 			unlink($imagepath);
 
 				$sql = "DELETE FROM tbl_employee WHERE employee_id = ?";
@@ -107,7 +107,7 @@
 		}
 
         public function fetchAll_attendance(){ 
-            $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code  WHERE DATE(a.logdate) = CURDATE() ORDER BY a.attendance_id DESC";
+            $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.employee_idno  WHERE DATE(a.logdate) = CURDATE() ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -120,7 +120,7 @@
 		}
 
 		public function fetchAll_empAttendance(){ 
-            $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code ORDER BY a.attendance_id DESC";
+            $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.employee_idno ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -214,11 +214,11 @@
 			$stmt = $this->conn->prepare($sql);
 			$stmt->bind_param("ssss", $department_name, $description, $late_time, $employee_id);
 			if($stmt->execute()){
-				$stmt->close();
-				$this->conn->close();
-				return true;
+					$stmt->close();
+					$this->conn->close();
+					return true;
 			}
-		}
+	}
 
 
         public function delete_department($department_id){
@@ -232,9 +232,9 @@
 				}
 		}
 
-	    public function login_employee($employee_idno, $password){
-			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `employee_idno` = ? AND `password` = ?") or die($this->conn->error);
-			$stmt->bind_param("is", $employee_idno, $password);
+	    public function login_employee($qr_codeno, $password){
+			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `qr_codeno` = ? AND `password` = ?") or die($this->conn->error);
+			$stmt->bind_param("is", $qr_codeno, $password);
 			if($stmt->execute()){
 				$result = $stmt->get_result();
 				$valid = $result->num_rows;
@@ -490,7 +490,7 @@
 		}
 
         public function fetchindividual_empAttendance($employee_id){ 
-            $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code WHERE b.employee_id = ? ORDER BY a.attendance_id DESC";
+            $sql = "SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.employee_idno WHERE b.employee_id = ? ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $employee_id);
 				$stmt->execute();
@@ -552,7 +552,7 @@
 		}
 
 		public function count_numberofattendanceIndividualEmp($employee_id){ 
-            $sql = "SELECT COUNT(a.attendance_id) as attendance_ids  FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code WHERE b.employee_id = ? ORDER BY a.attendance_id DESC";
+            $sql = "SELECT COUNT(a.attendance_id) as attendance_ids  FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.employee_idno WHERE b.employee_id = ? ORDER BY a.attendance_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->bind_param("i", $employee_id);
 				$stmt->execute();
