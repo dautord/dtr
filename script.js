@@ -20,4 +20,30 @@ function checkTime(i) {
     }
     return i;
 }
+    // instascan
+    let scanner = new Instascan.Scanner({
+        video: document.getElementById('preview')
+    });
+    Instascan.Camera.getCameras().then(function(cameras) {
+        if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+            console.log("wtf", scanner)
+        } else {
+            alert('No cameras found');
+        }
+
+    }).catch(function(e) {
+        console.error(e);
+    });
+
+    scanner.addListener('scan', function(c) {
+        document.getElementById('employee_qrcode').value = c;
+        document.forms[0].submit();
+    });
+
+// disable keyboard
+    document.onkeydown = function (e) {
+    return false;
+    }
+
 
