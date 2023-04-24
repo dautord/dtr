@@ -4,7 +4,7 @@
 	if(ISSET($_POST)){
 		$conn = new class_model();
 
-		$employee_idno = trim($_POST['employee_idno']);
+		$qr_codeno = trim($_POST['qr_codeno']);
 		// $password = trim($_POST['password']);
 	    $first_name = trim(ucfirst($_POST['first_name']));
 		$middle_name = trim(ucfirst($_POST['middle_name']));
@@ -26,7 +26,7 @@
 		$emergency_leave = trim($_POST['emergency_leave']);
 		$solo_parent_leave = trim($_POST['solo_parent_leave']);
 
-		$edit = $conn->edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
+		$edit = $conn->edit_employee($qr_codeno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
 		if($edit == TRUE){
 		      echo '<div class="alert alert-success">Update Employee Successfully!</div><script> setTimeout(function() {  location.replace("manage_employee.php"); }, 1000); </script>';
 		    

@@ -1,0 +1,208 @@
+# Query: employee_idno
+# ContextLines: 1
+
+68 results - 18 files
+
+dtr_system.sql:
+  2962    `employee_id` int(11) NOT NULL,
+  2963:   `qr_codeno` text NOT NULL,
+  2964    `qr_code` text NOT NULL,
+
+  2988  
+  2989: INSERT INTO `tbl_employee` (`employee_id`, `qr_codeno`, `qr_code`, `last_name`, `first_name`, `password`, `middle_name`, `bdate`, `complete_address`, `cnumber`, `gender`, `civilstatus`, `datehire`, `designation`, `department`, `sick_leave`, `vacation_leave`, `paternal_leave`, `maternal_leave`, `emergency_leave`, `solo_parent_leave`) VALUES
+  2990  (3, '911', '0911', 'Pertes', 'Evelyn', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 1, 2, 3, 4, 5, 6),
+
+index.php:
+  101                          <tr align="center">
+  102:                             <td><?= htmlentities($row['qr_codeno']); ?></td>
+  103                              <td><?= htmlentities($row['employee_qrcode']); ?></td>
+
+config\attendance_process.php:
+  27              // GET NAME
+  28:             // $stmt = $conn->prepare("SELECT qr_codeno FROM tbl_employee");
+  29              // // $stmt->bind_param("ss", $date, $date);
+
+  37              //     $lastName = $row['last_name'];
+  38:             //     $emp_ID = $row['qr_codeno'];
+  39              //   }
+
+  41  
+  42:               //      <?= $row['qr_codeno'];
+  43              //        <?= $row['first_name']; 
+
+  68                  $lastName = $row2['last_name'];
+  69:                 $emp_ID = $row2['qr_codeno'];
+  70                }
+
+  93                  $lastName = $row2['last_name'];
+  94:                 $emp_ID = $row2['qr_codeno'];
+  95                }
+
+dtr_panel\dtr_dashboard\attendance_excel.php:
+  38  						<td>".$fetch['qr_code']."</td>
+  39: 						<td>".$fetch['qr_codeno']."</td>
+  40  					    <td>".$fetch['first_name']."</td>
+
+dtr_panel\dtr_dashboard\manage_employee.php:
+   52                    <tr>
+   53:                     <td><center><img src="../../qrcode_images/<?= $row['qr_codeno']; ?>.png" width="50px" height="50px"></center></td>
+   54:                     <td><?= $row['qr_codeno']; ?></td>
+   55                      <td><?= $row['first_name']; ?></td>
+
+  103                        $('#edit_employeeid').val(response.employee_id);
+  104:                       $('#edit_employeeidno').val(response.qr_codeno);
+  105                        $('#edit_password').val(response.password);
+
+dtr_panel\dtr_dashboard\manage_report.php:
+  59                      <!-- <td><?= $row['qr_code']; ?></td> -->
+  60:                     <!-- <td><?= $row['qr_codeno']; ?></td> -->
+  61                      <td><?= $row['first_name']; ?></td>
+
+dtr_panel\dtr_dashboard\modal\addemployee_modal.php:
+   20                    <label>Employee ID No.:</label>
+   21:                   <input type = "text"  id = "qr_codeno" alt="qr_codeno" value=""  class = "form-control">
+   22                  </div>
+
+  111  
+  112:                   const qr_codeno = document.querySelector('input[alt=qr_codeno]').value;
+  113                    const password = document.querySelector('input[alt=password]').value;
+
+  128  
+  129:                   data.append('qr_codeno', qr_codeno);
+  130                    data.append('password', password);
+
+dtr_panel\dtr_dashboard\modal\editemployee_modal.php:
+   15                    <label>Employee ID No.:</label>
+   16:                   <input type = "text"  id = "edit_employeeidno" alt="qr_codeno"  class = "form-control" readonly/>
+   17                  </div>
+
+  135  
+  136:                   const qr_codeno = document.querySelector('input[id=edit_employeeidno]').value;
+  137                    // const password = document.querySelector('input[id=password]').value;
+
+  159  
+  160:                   data.append('qr_codeno', qr_codeno);
+  161                    // data.append('password', password);
+
+employee\index.php:
+   64                      <div class="form-group">
+   65:                         <input class="form-control form-control-lg" id="qr_codeno" alt="qr_codeno" type="text" placeholder="Employee ID" autocomplete="off">
+   66                      </div>
+
+   99  
+  100:                     var qr_codeno = $(this).find('input[alt="qr_codeno"]').val();
+  101                      var p_password = $(this).find('input[alt="password"]').val();
+
+  103  
+  104:                     if (qr_codeno === '' && p_password ===''){
+  105                          $('#alert-msg').html('<div class="alert alert-danger"> Required Employee ID and Password!</div>');
+
+  110                              data: {
+  111:                                 qr_codeno: qr_codeno,
+  112                                  password: p_password
+
+employee\Dashboard\attendance.php:
+  98                      <td><?= $row['qr_code']; ?></td>
+  99:                     <td><?= $row['qr_codeno']; ?></td>
+  100                      <td><?= $row['first_name']; ?></td>
+
+employee\Dashboard\employee.php:
+  48                    <tr>
+  49:                     <td><center><a href="../../qrcode_images/<?= $row['qr_codeno']; ?>.png" download/> <img src="../../qrcode_images/<?= $row['qr_codeno']; ?>.png" width="50px" height="50px"></a></center></td>
+  50:                     <td><?= $row['qr_codeno']; ?></td>
+  51                      <td><?= $row['first_name']; ?></td>
+
+  97                        $('#edit_employeeid').val(response.employee_id);
+  98:                       $('#edit_employeeidno').val(response.qr_codeno);
+  99                        $('#edit_password').val(response.password);
+
+employee\Dashboard\modal\addemployee_modal.php:
+   20                    <label>Employee ID No.:</label>
+   21:                   <input type = "text"  id = "qr_codeno" alt="qr_codeno" value="<?php echo $newNum; ?>"  class = "form-control" readonly/>
+   22                  </div>
+
+  111  
+  112:                   const qr_codeno = document.querySelector('input[alt=qr_codeno]').value;
+  113                    const password = document.querySelector('input[alt=password]').value;
+
+  128  
+  129:                   data.append('qr_codeno', qr_codeno);
+  130                    data.append('password', password);
+
+employee\Dashboard\modal\editemployee_modal.php:
+   15                    <label>Employee ID No.:</label>
+   16:                   <input type = "text"  id = "edit_employeeidno" alt="qr_codeno"  class = "form-control" readonly/>
+   17                  </div>
+
+  106  
+  107:                   const qr_codeno = document.querySelector('input[id=edit_employeeidno]').value;
+  108                    // const password = document.querySelector('input[id=password]').value;
+
+  124  
+  125:                   data.append('qr_codeno', qr_codeno);
+  126                    // data.append('password', password);
+
+init\controllers\add_employee.php:
+   5  
+   6: 		$qr_codeno = trim($_POST['qr_codeno']);
+   7  		$password = trim($_POST['password']);
+
+  24  
+  25:         $codeContents = trim($_POST['qr_codeno']); 
+  26:         // QRcode::png($codeContents, $pathDir.''.$qr_codeno.'.png', QR_ECLEVEL_L, 5);
+  27  
+  28  		
+  29: 		$add = $conn->add_employee($qr_codeno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents);
+  30  		if($add == TRUE){
+
+init\controllers\attendance_report.php:
+  17                      <td><?= $row['qr_code']; ?></td>
+  18:                     <td><?= $row['qr_codeno']; ?></td>
+  19                      <td><?= $row['first_name']; ?></td>
+
+init\controllers\edit_employee.php:
+   6  
+   7: 		$qr_codeno = trim($_POST['qr_codeno']);
+   8  		// $password = trim($_POST['password']);
+
+  28  
+  29: 		$edit = $conn->edit_employee($qr_codeno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
+  30  		if($edit == TRUE){
+
+init\controllers\loginemp_process.php:
+  4  		$conn = new class_model();
+  5: 		$qr_codeno = trim($_POST['qr_codeno']);
+  6  		$password = $_POST['password'];
+
+  8  		
+  9: 		$get_eployeeID = $conn->login_employee($qr_codeno, $password);
+  10  		if($get_eployeeID['count'] > 0){
+
+init\model\class_model.php:
+   53  
+   54: 		public function add_employee($qr_codeno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents){
+   55: 	       $stmt = $this->conn->prepare("INSERT INTO `tbl_employee` (`qr_codeno`, `password`, `first_name`, `middle_name`, `last_name`, `bdate`, `complete_address`, `cnumber`,  `gender`, `civilstatus`, `datehire`, `designation`, `department`, `qr_code`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
+   56: 			$stmt->bind_param("ssssssssssssss", $qr_codeno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents);
+   57  			if($stmt->execute()){
+
+   75  
+   76:         public function edit_employee($qr_codeno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id){
+   77  
+   78: 			$sql = "UPDATE `tbl_employee` SET  `qr_codeno` = ?, `first_name` = ?, `middle_name` = ?,  `last_name` = ? ,  `bdate` = ?,  `complete_address` = ?,  `cnumber` = ?,  `gender` = ?,  `civilstatus` = ?,  `datehire` = ?,  `designation` = ?,  `department` = ?, `sick_leave` = ?, `vacation_leave` = ?, `paternal_leave` = ?, `maternal_leave` = ?, `emergency_leave` = ?, `solo_parent_leave` = ? WHERE employee_id = ?";
+   79  			$stmt = $this->conn->prepare($sql);
+   80: 			$stmt->bind_param("isssssssssssiiiiiii", $qr_codeno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
+   81  			if($stmt->execute()){
+
+   89             error_reporting(0);
+   90: 		   $sql="SELECT qr_codeno FROM tbl_employee WHERE employee_id = ?";
+   91  			$stmt2=$this->conn->prepare($sql);
+
+   95  			$row=$result2->fetch_assoc();
+   96: 			$imagepath = $_SERVER['DOCUMENT_ROOT']."DTR_Management_system/qrcode_images/".$row['qr_codeno'].'.png';//delete the image inside a folder path
+   97  			unlink($imagepath);
+
+  234  
+  235: 	    public function login_employee($qr_codeno, $password){
+  236: 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_employee` WHERE `qr_codeno` = ? AND `password` = ?") or die($this->conn->error);
+  237: 			$stmt->bind_param("is", $qr_codeno, $password);
+  238  			if($stmt->execute()){

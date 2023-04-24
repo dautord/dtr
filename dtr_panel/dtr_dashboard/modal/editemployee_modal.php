@@ -13,7 +13,7 @@
         <form method = "POST" autocomplete="off">
               <div class = "form-group">
                   <label>Employee ID No.:</label>
-                  <input type = "text"  id = "edit_employeeidno" alt="employee_idno"  class = "form-control" readonly/>
+                  <input type = "text"  id = "edit_employeeidno" alt="qr_codeno"  class = "form-control" readonly/>
                 </div>
 <!--                   <div class = "form-group">
                   <label>Password:</label>
@@ -133,7 +133,7 @@
               let btn = document.querySelector('#update-employee');
               btn.addEventListener('click', () => {
 
-                  const employee_idno = document.querySelector('input[id=edit_employeeidno]').value;
+                  const qr_codeno = document.querySelector('input[id=edit_employeeidno]').value;
                   // const password = document.querySelector('input[id=password]').value;
                   const first_name = document.querySelector('input[id=edit_firstname]').value;
                   const middle_name = document.querySelector('input[id=edit_middlename]').value;
@@ -157,7 +157,7 @@
 
                   var data = new FormData(this.form);
 
-                  data.append('employee_idno', employee_idno);
+                  data.append('qr_codeno', qr_codeno);
                   // data.append('password', password);
                   data.append('first_name', first_name);
                   data.append('middle_name', middle_name);

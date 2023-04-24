@@ -50,7 +50,7 @@
                   ?>
                 <?php foreach ($emp as $row) { ?>
                   <tr>
-                    <td><center><img src="../../qrcode_images/<?= $row['employee_idno']; ?>.png" width="50px" height="50px"></center></td>
+                    <td><center><img src="../../qrcode_images/<?= $row['qr_codeno']; ?>.png" width="50px" height="50px"></center></td>
                     <td><?= $row['employee_idno']; ?></td>
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
@@ -101,7 +101,7 @@
                       dataType: 'json',
                       success: function(response) {
                       $('#edit_employeeid').val(response.employee_id);
-                      $('#edit_employeeidno').val(response.employee_idno);
+                      $('#edit_employeeidno').val(response.qr_codeno);
                       $('#edit_password').val(response.password);
                       $('#edit_firstname').val(response.first_name);
                       $('#edit_middlename').val(response.middle_name);

@@ -99,7 +99,7 @@ error_reporting(E_ALL);
                     ?>
                     <?php foreach ($dtr as $row) { ?>
                         <tr align="center">
-                            <td><?= htmlentities($row['employee_idno']); ?></td>
+                            <td><?= htmlentities($row['qr_codeno']); ?></td>
                             <td><?= htmlentities($row['employee_qrcode']); ?></td>
                             <td><?= htmlentities($row['time_in']); ?></td>
                             <td><?= htmlentities($row['time_out']); ?></td>

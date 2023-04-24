@@ -46,13 +46,13 @@
                   ?>
                 <?php foreach ($emp as $row) { ?>
                   <tr>
-                    <td><center><a href="../../qrcode_images/<?= $row['employee_idno']; ?>.png" download/> <img src="../../qrcode_images/<?= $row['employee_idno']; ?>.png" width="50px" height="50px"></a></center></td>
-                    <td><?= $row['employee_idno']; ?></td>
+                    <td><center><a href="../../qrcode_images/<?= $row['qr_codeno']; ?>.png" download/> <img src="../../qrcode_images/<?= $row['qr_codeno']; ?>.png" width="50px" height="50px"></a></center></td>
+                    <td><?= $row['qr_codeno']; ?></td>
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['designation']; ?></td>
                     <td><?= $row['department']; ?></td>
-                    <td><?= $row['qr_code']; ?></td>
+                    <td><?= $row['employee_idno']; ?></td>
 
                   </tr>
                <?php }?>
@@ -95,7 +95,7 @@
                       dataType: 'json',
                       success: function(response) {
                       $('#edit_employeeid').val(response.employee_id);
-                      $('#edit_employeeidno').val(response.employee_idno);
+                      $('#edit_employeeidno').val(response.qr_codeno);
                       $('#edit_password').val(response.password);
                       $('#edit_firstname').val(response.first_name);
                       $('#edit_middlename').val(response.middle_name);

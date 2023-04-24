@@ -2960,8 +2960,8 @@ INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`,
 
 CREATE TABLE `tbl_employee` (
   `employee_id` int(11) NOT NULL,
+  `qr_codeno` text NOT NULL,
   `employee_idno` text NOT NULL,
-  `qr_code` text NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `password` text NOT NULL,
@@ -2986,7 +2986,7 @@ CREATE TABLE `tbl_employee` (
 -- Dumping data for table `tbl_employee`
 --
 
-INSERT INTO `tbl_employee` (`employee_id`, `employee_idno`, `qr_code`, `last_name`, `first_name`, `password`, `middle_name`, `bdate`, `complete_address`, `cnumber`, `gender`, `civilstatus`, `datehire`, `designation`, `department`, `sick_leave`, `vacation_leave`, `paternal_leave`, `maternal_leave`, `emergency_leave`, `solo_parent_leave`) VALUES
+INSERT INTO `tbl_employee` (`employee_id`, `qr_codeno`, `employee_idno`, `last_name`, `first_name`, `password`, `middle_name`, `bdate`, `complete_address`, `cnumber`, `gender`, `civilstatus`, `datehire`, `designation`, `department`, `sick_leave`, `vacation_leave`, `paternal_leave`, `maternal_leave`, `emergency_leave`, `solo_parent_leave`) VALUES
 (3, '911', '0911', 'Pertes', 'Evelyn', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 1, 2, 3, 4, 5, 6),
 (4, '910', '0910', 'Mapalad', 'Rose', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),
 (5, '812', '0812', 'Singson', 'Zindy', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 0, 0, 0, 0, 0, 0),

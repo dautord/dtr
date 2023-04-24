@@ -47,7 +47,7 @@ if(isset($_POST['text'])){
 
 
 
-          $sql1 = "SELECT * FROM tbl_employee WHERE qr_code = '$emp'";
+          $sql1 = "SELECT * FROM tbl_employee WHERE employee_idno = '$emp'";
           $query1 = $conn->query($sql1);
           if($query1->num_rows <= 0){
             echo "<div class='alert alert-warning' role='alert' style='font-size:18px'><p><b><i class='fas fa-exclamation-triangle'></i>  Your QR Code does not register</b></p></div>";

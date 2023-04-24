@@ -14,18 +14,18 @@
              $stat2 = 1;
 
 
-            $stmt1 = $conn->prepare("SELECT * FROM tbl_employee WHERE qr_code = ?");
+            $stmt1 = $conn->prepare("SELECT * FROM tbl_employee WHERE employee_idno = ?");
             $stmt1->bind_param("s", $emp);
             $stmt1->execute();
             $result1 = $stmt1->get_result();
 
-            $stmt4 = $conn->prepare("SELECT * FROM tbl_employee WHERE qr_code = ?");
+            $stmt4 = $conn->prepare("SELECT * FROM tbl_employee WHERE employee_idno = ?");
             $stmt4->bind_param("s", $emp);
             $stmt4->execute();
             $result4 = $stmt4->get_result();
 
             // GET NAME
-            // $stmt = $conn->prepare("SELECT employee_idno FROM tbl_employee");
+            // $stmt = $conn->prepare("SELECT qr_codeno FROM tbl_employee");
             // // $stmt->bind_param("ss", $date, $date);
             // $stmt->execute();
             // $result5 = $stmt->get_result();
@@ -35,11 +35,11 @@
             //   {
             //     $fName = $row['first_name'];
             //     $lastName = $row['last_name'];
-            //     $emp_ID = $row['employee_idno'];
+            //     $emp_ID = $row['qr_codeno'];
             //   }
             // }
 
-              //      <?= $row['employee_idno'];
+              //      <?= $row['qr_codeno'];
             //        <?= $row['first_name']; 
                  //   <?= $row['last_name']; 
                 //    <?= $row['time_in']; 
@@ -66,7 +66,7 @@
               {
                 $fName = $row2['first_name'];
                 $lastName = $row2['last_name'];
-                $emp_ID = $row2['employee_idno'];
+                $emp_ID = $row2['qr_codeno'];
               }
 
               $sql = "UPDATE tbl_attendance SET time_out = '$time', status = '1' WHERE employee_qrcode = '$emp' AND logdate = '$date'";
@@ -91,7 +91,7 @@
               {
                 $fName = $row2['first_name'];
                 $lastName = $row2['last_name'];
-                $emp_ID = $row2['employee_idno'];
+                $emp_ID = $row2['qr_codeno'];
               }
 
               $stmt = $conn->prepare("INSERT INTO tbl_attendance(employee_qrcode,time_in,logdate, status) VALUES (?, ?, ?, ?)");

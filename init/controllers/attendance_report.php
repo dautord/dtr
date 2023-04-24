@@ -6,7 +6,7 @@
 		$date1 = date("Y-m-d", strtotime($_POST['date1']));
 		$date2 = date("Y-m-d", strtotime($_POST['date2']));
 
-		$stmt = $conn->prepare("SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code WHERE a.logdate BETWEEN ? AND ? ORDER BY a.attendance_id ASC");
+		$stmt = $conn->prepare("SELECT * FROM tbl_attendance a INNER JOIN tbl_employee b ON a.employee_qrcode = b.employee_idno WHERE a.logdate BETWEEN ? AND ? ORDER BY a.attendance_id ASC");
 		$stmt->bind_param("ss", $date1, $date2);
 	    $stmt->execute();
         $result = $stmt->get_result();
@@ -14,8 +14,8 @@
 			while($row =  $result->fetch_assoc()){
 			?>
 			<tr>
-                    <td><?= $row['qr_code']; ?></td>
                     <td><?= $row['employee_idno']; ?></td>
+                    <td><?= $row['qr_codeno']; ?></td>
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['time_in']; ?></td>

@@ -62,7 +62,7 @@
             <div class="card-body">
                 <form method="post" name="login_sform">
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="employee_idno" alt="employee_idno" type="text" placeholder="Employee ID" autocomplete="off">
+                        <input class="form-control form-control-lg" id="qr_codeno" alt="qr_codeno" type="text" placeholder="Employee ID" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="password" type="password" alt="password" placeholder="Password"  autocomplete="off">
@@ -97,18 +97,18 @@
                 $('form[name="login_sform"]').on('submit', function(e){
                     e.preventDefault();
 
-                    var employee_idno = $(this).find('input[alt="employee_idno"]').val();
+                    var qr_codeno = $(this).find('input[alt="qr_codeno"]').val();
                     var p_password = $(this).find('input[alt="password"]').val();
                    // var s_status = 1;
 
-                    if (employee_idno === '' && p_password ===''){
+                    if (qr_codeno === '' && p_password ===''){
                         $('#alert-msg').html('<div class="alert alert-danger"> Required Employee ID and Password!</div>');
                     }else{
                         $.ajax({
                             type: 'POST',
                             url: '../init/controllers/loginemp_process.php',
                             data: {
-                                employee_idno: employee_idno,
+                                qr_codeno: qr_codeno,
                                 password: p_password
                                // status: s_status
                             },

@@ -5,6 +5,8 @@ EMPLOYEE DASHBOARD
 		- DONE
 
 - schedule call time change to varchar.
+	- DONE, instead of doing that, included call time in work_week since its varchar anyway. 
+	- removed late_time as a table column front-end, but still crucial for checking attendance time
 
 - comment out my information in the meantime
 	- DONE
@@ -17,10 +19,14 @@ ADMIN DASHBOARD
 				- DONE
 
 - rename emp.no column to qr.no. and remove from display
+	- renamed employee_idno to qr_codeno
 - make new column in tbl_employee called emp. no -> varchar, shouldnt change because it is not called.
+	- renamed qr_code to employee_idno since its the same thing. 
+	- DONE
 	
 - include undertime, editable ng admin
 	- include minutes late and minutes undertime
+	- I cannot currently find a solution to fix time format problem for late_time. Will discard changes for adding under_time for now.
 
 - make new leave without pay button, same as leave request but remove leave type 
 	
@@ -136,7 +142,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 27/03/23
 - commented out Manage Schedules from admin panel as it is incomplete for now. 
 - fetchAll_empAttendance() and fetchindividual_empAttendance() used to get attendance data table from database
-	- fetchindividual_empAttendance() has joined qr_code from tbl_employee and tbl_attendance 
+	- fetchindividual_empAttendance() has joined employee_idno from tbl_employee and tbl_attendance 
 	- TODO: need to implement different attendance (work days and work hours) for different departments. 
 
 28/03/23
@@ -244,3 +250,15 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 	- fixed submitLeaveRequest() and adminGetLeaveRequests() to handle the new column num_of_days in tbl_leave_request.
 - now able to calculate employee leave balance on admin approval. 
 - fixed the logic for leave_request.php so that it will prevent the user from sending a leave request with num_of_days > remainingBalance for that type.
+
+24/04/23
+- schedule call time change to varchar in manage_department.php
+	- DONE, instead of doing that, included call time in work_week since its varchar anyway. 
+	- removed late_time as a table column front-end, but still crucial for checking attendance time
+- rename emp.no column to qr.no. and remove from display
+	- renamed employee_idno to qr_codeno
+- make new column in tbl_employee called emp. no -> varchar, shouldnt change because it is not called.
+	- renamed qr_code to employee_idno since its the same thing. 
+	- DONE
+
+- currently encountering formatting problems with late_time because of the addition of under_time, reverting to last commit when I was still able to set late_time properly.

@@ -48,7 +48,6 @@
                   <thead>
                     <tr>
                       <th>Department</th>
-                      <th>Call Time</th>
                       <th>Work Week</th>
                     </tr>
                   </thead>
@@ -61,7 +60,6 @@
                     <?php foreach ($departmentData as $row): ?>
                     <tr>
                       <td><?php echo $row['department_name']; ?></td>
-                      <td><?php echo $row['late_time']; ?></td>
                       <td><?php echo $row['work_week']; ?></td>
                     </tr>
                     <?php endforeach; ?>
@@ -116,20 +114,20 @@
                         $logDate = date_parse($Timein);
                         $logDate = new DateTime(sprintf('%04d-%02d-%02d %02d:%02d:%02d', $logDate['year'], $logDate['month'], $logDate['day'], $logDate['hour'], $logDate['minute'], $logDate['second']), new DateTimeZone('Asia/Manila'));
                         $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
+                        
 
-                                        
                         // Get the late_time for the department
                         foreach ($attempdept as $dept) {
-                          if ($dept['department_name'] === $department) {
-                            $late_time = $dept['late_time'];
-                            break;
-                          }
+                            if ($dept['department_name'] === $department) {
+                                $late_time = $dept['late_time'];
+                                break;
+                            }
                         }
-                                        
+                        
                         // Check if employee is late or invalid 
                           if ($status != 1) {
                             echo "<button  class='btn btn-secondary btn-xs'><i class='fa fa-user-clock'></i> Invalid</button>";
-                          } else {
+                        } else {
                             $logTime = new DateTime($late_time, new DateTimeZone('Asia/Manila'));
                             $logDate = new DateTime($Timein, new DateTimeZone('Asia/Manila'));
                             $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
@@ -138,7 +136,7 @@
                             } else {
                               echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
                             }
-                          }
+                        }
                       ?>
                     </td>
                   </tr>

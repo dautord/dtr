@@ -18,7 +18,7 @@
             
               <div class = "form-group">
                   <label>Employee ID No.:</label>
-                  <input type = "text"  id = "employee_idno" alt="employee_idno" value="<?php echo $newNum; ?>"  class = "form-control" readonly/>
+                  <input type = "text"  id = "qr_codeno" alt="qr_codeno" value="<?php echo $newNum; ?>"  class = "form-control" readonly/>
                 </div>
                   <div class = "form-group">
                   <label>Password:</label>
@@ -109,7 +109,7 @@
               let btn = document.querySelector('#add-employee');
               btn.addEventListener('click', () => {
 
-                  const employee_idno = document.querySelector('input[alt=employee_idno]').value;
+                  const qr_codeno = document.querySelector('input[alt=qr_codeno]').value;
                   const password = document.querySelector('input[alt=password]').value;
                   const first_name = document.querySelector('input[alt=first_name]').value;
                   const middle_name = document.querySelector('input[alt=middle_name]').value;
@@ -126,7 +126,7 @@
 
                   var data = new FormData(this.form);
 
-                  data.append('employee_idno', employee_idno);
+                  data.append('qr_codeno', qr_codeno);
                   data.append('password', password);
                   data.append('first_name', first_name);
                   data.append('middle_name', middle_name);
