@@ -7,9 +7,9 @@
       $confirm = $_POST["confirm"];
 
       if ($confirm == "yes") {
-        $resetBalance = $conn->setDepartmentLeaveBalances();
-
-        if($resetBalance) {
+        $conn->setDepartmentLeaveBalances();
+        
+        if($conn->setDepartmentLeaveBalances()) {
           echo "<script>alert('Employee leave balances have been reset to department limits.')</script>";
           echo "<script>setTimeout(function(){window.location.href='manage_department.php';}, 3000);</script>"; // Wait for 3 seconds before redirecting
           exit();

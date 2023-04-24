@@ -51,7 +51,7 @@
                 <?php foreach ($emp as $row) { ?>
                   <tr>
                     <td><center><img src="../../qrcode_images/<?= $row['employee_idno']; ?>.png" width="50px" height="50px"></center></td>
-                    <td><?= $row['employee_idno']; ?></td>
+                    <td><?= $row['qr_code']; ?></td>
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['designation']; ?></td>

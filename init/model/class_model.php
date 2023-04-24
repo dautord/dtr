@@ -270,8 +270,9 @@
 	
 		public function getLeaveRequests($employee_id) {
 			$query = "SELECT leave_id, datetime_start, datetime_end, leave_type, reason, datetime_requested, status
-								FROM tbl_leave_request JOIN tbl_employee ON tbl_leave_request.employee_id = tbl_employee.employee_id
-								WHERE tbl_employee.employee_id = $employee_id";
+								FROM tbl_leave_request JOIN tbl_employee ON tbl_leave_request.employee_id = tbl_employee.employee_id 
+								WHERE tbl_employee.employee_id = $employee_id ORDER BY tbl_leave_request.datetime_requested DESC";
+						
 			$result = $this->conn->query($query);
 			$rows = array();
 			while ($row = $result->fetch_assoc()) {

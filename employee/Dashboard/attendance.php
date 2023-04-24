@@ -48,7 +48,6 @@
                   <thead>
                     <tr>
                       <th>Department</th>
-                      <th>Call Time</th>
                       <th>Work Week</th>
                     </tr>
                   </thead>
@@ -61,7 +60,6 @@
                     <?php foreach ($departmentData as $row): ?>
                     <tr>
                       <td><?php echo $row['department_name']; ?></td>
-                      <td><?php echo $row['late_time']; ?></td>
                       <td><?php echo $row['work_week']; ?></td>
                     </tr>
                     <?php endforeach; ?>
@@ -77,7 +75,6 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>QR Code</th>
                     <th>EmployeeID No.</th>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -98,7 +95,6 @@
                   <?php foreach ($emp as $row) { ?>
                   <tr>
                     <td><?= $row['qr_code']; ?></td>
-                    <td><?= $row['employee_idno']; ?></td>
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['time_in']; ?></td>

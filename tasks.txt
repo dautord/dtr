@@ -5,7 +5,7 @@ EMPLOYEE DASHBOARD
 		- DONE
 
 - schedule call time change to varchar.
-
+	- DONE, removed call time from attendance.php and added call time to work_week since varchar.
 - comment out my information in the meantime
 	- DONE
 ADMIN DASHBOARD
@@ -18,11 +18,13 @@ ADMIN DASHBOARD
 
 - rename emp.no column to qr.no. and remove from display
 - make new column in tbl_employee called emp. no -> varchar, shouldnt change because it is not called.
-	
-- include undertime, editable ng admin
-	- include minutes late and minutes undertime
+- DONE
 
 - make new leave without pay button, same as leave request but remove leave type 
+	- DONE
+
+- include undertime, editable ng admin
+	- include minutes late and minutes undertime
 	
 PHASE 2 UPDATES:
 
@@ -234,7 +236,7 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 - TODO: front-end, and finish leave calculation
 - TODO: solutions for the Instascan.js video preview not showing
 
-20/4/23 
+20/04/23 
 - meeting with sir holy, updates and changes needed to be met by the time this system is presented to sir enrico.
 - migrate back to win 11 laptop - export sql and git pull
 
@@ -244,3 +246,39 @@ highlighted light yellow if pending, light red if rejected, and light green if a
 	- fixed submitLeaveRequest() and adminGetLeaveRequests() to handle the new column num_of_days in tbl_leave_request.
 - now able to calculate employee leave balance on admin approval. 
 - fixed the logic for leave_request.php so that it will prevent the user from sending a leave request with num_of_days > remainingBalance for that type.
+
+24/04/23
+- schedule call time change to varchar in manage_department.php
+	- DONE, instead of doing that, included call time in work_week since its varchar anyway. 
+	- removed late_time as a table column front-end, but still crucial for checking attendance time
+- rename employee_idno column to qr_codeno and remove from display
+	- renamed employee_idno to qr_codeno
+- make new column in tbl_employee called emp. no -> varchar, shouldnt change because it is not called.
+	- renamed qr_code to employee_idno since its the same thing. -> maybe not? 
+	- DONE
+
+- currently encountering formatting problems with late_time because of the addition of under_time, reverting to last commit when I was still able to set late_time properly.
+	- committed changes to renaming and addition of under_time in sql, but reverted all changes to late_time and under_time involving time formatting. 
+
+- tried copying how i defined late_time for under_time, but it seems to mess up the data submission. after implementing changes for under_time, late_time and under_time both are uneditable.
+	- realized that maybe renaming the columns has an effect on the data submission. hard resetting to 20/04/23. 
+
+AFTER HARD RESET:
+
+- changed back columns in phpmyadmin
+	- employee_idno back to qr_code
+	- qr_codeno back to employee_idno
+- schedule call time change to varchar.
+	- DONE, removed call time from attendance.php and added call time to work_week since varchar.
+- removed employee_idno and used qr_code instead for manage_employee.php and attendance.php
+- button for leave without pay request on employee dashboard.php
+- new page: lwop_request.php
+	- sets leave_type to 'lwop'
+	- in admin approval, if leave_type is 'lwop', skip balance calculation calculateEmpLeaveBalanceOnLeaveApproval().
+	- always able to request for lwop, not binded to admin disabling of leave request button.
+	- lwop works, and leave calculation works on non-lwop leaves.
+- fixed order of employee leave requests by desc order based on datetime_requested in getLeaveRequests().
+
+- TODO: instascan fix and under_time implementation. 
+	- under_time implementation requires fixing late_time implementation, tricky bugs involving parsing, time format.
+

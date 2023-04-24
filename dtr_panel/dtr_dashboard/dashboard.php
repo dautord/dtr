@@ -17,35 +17,40 @@
       $employee_id = $_POST['employee_id'];
       $leave_type = $_POST['leave_type'];
       $new_status = 'Approved';
-  
+    
+      // Calculate leave balance only if leave type is not 'lwop'
+      if ($leave_type !== 'lwop') {
+        $conn->calculateEmpLeaveBalanceOnLeaveApproval($employee_id, $leave_type, $leave_id);
+      }
+    
       // Update the leave status in your database using your adminSetLeaveStatus function
-      $result = $conn->calculateEmpLeaveBalanceOnLeaveApproval($employee_id, $leave_type, $leave_id); $conn->adminSetLeaveStatus($leave_id, $new_status); 
-  
+      $result = $conn->adminSetLeaveStatus($leave_id, $new_status); 
+    
       // Check if the update was successful and redirect accordingly
       if ($result) {
-          header("location: ".$_SERVER['PHP_SELF']);
-          exit;
+        header("location: ".$_SERVER['PHP_SELF']);
+        exit;
       } else {
-          // Handle the error if the update failed
-          echo "Error: Failed to update the leave status.";
+        // Handle the error if the update failed
+        echo "Error: Failed to update the leave status.";
       }
     }
-  
+    
     if (isset($_POST['reject'])) {
       // Get the leave ID and new status from the form data
       $leave_id = $_POST['leave_id'];
       $new_status = 'Rejected';
-  
+    
       // Update the leave status in your database using your adminSetLeaveStatus function
       $result = $conn->adminSetLeaveStatus($leave_id, $new_status);
-  
+    
       // Check if the update was successful and redirect accordingly
       if ($result) {
-          header("location: ".$_SERVER['PHP_SELF']);
-          exit;
+        header("location: ".$_SERVER['PHP_SELF']);
+        exit;
       } else {
-          // Handle the error if the update failed
-          echo "Error: Failed to update the leave status.";
+        // Handle the error if the update failed
+        echo "Error: Failed to update the leave status.";
       }
     }
 

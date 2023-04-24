@@ -173,7 +173,7 @@
     <br>    
     <h3 class="m-0 text-dark">Leave History</h3>
     <br>
-    <a href="leave_request.php" id="leave-button" class="btn btn-md btn-primary text-center" style="height: 40px; display: flex; align-items: center; justify-content: center; max-width: 200px;">Request for Leave</a>
+   
     <br>
   </div>
 
@@ -182,6 +182,12 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
+              <div class="card-header">
+                <div style="display:flex; justify-content:space-between;">
+                  <a href="leave_request.php" id="leave-button" class="btn btn-md btn-primary text-center" style="height: 40px; max-width: 200px;">Request for Leave</a>
+                  <a href="lwop_request.php" id="leave-button" class="btn btn-md btn-primary text-center" style="height: 40px; max-width: 200px;">Request for LWOP</a>
+                </div>
+              </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
