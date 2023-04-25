@@ -17,13 +17,15 @@ error_reporting(E_ALL);
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <script type="text/javascript" src="instascan.min.js"></script>
     <!-- <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> -->
+    <script type="text/javascript" src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
     <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
     <script>
         $(document).ready(function() {
             $('#dataTable_1').DataTable();
@@ -49,31 +51,38 @@ error_reporting(E_ALL);
     </div>
 </nav>
 <br>
+<style>
+
+#test{
+   width:300px;
+   height: 300px;
+   margin:0px auto;
+}
+
+</style>
 
 <body onload="startTime()">
-<br>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
             <img src="logo.png" style="height: 30%;position: fixed;right: 67%;bottom: 63%;">                
                 <!-- <center>
                     <p style="border: 1px solid #001b69;background-color: #001b69;color: #fff"><i class="fas fa-qrcode"></i> TAP HERE</p>
-                </center> -->
-                <br><br><br><br><br><br><br><br><br>
-                <video id="preview"></video>
+                </center> --><br><br><br><br><br><br><br><br><br>
+                <video id="test"></video>
                 <?php include 'config/attendance_process.php';?>
+                
                 <hr></hr>
             </div>
 
             <div class="col-md-8">
-                <center>
-                    <div id="clockdate" style="border: 1px solid #001b69;background-color: #001b69">
-                        <div class="clockdate-wrapper">
-                            <div id="clock" style="font-weight: bold; color: #fff;font-size: 40px"></div>
-                            <div id="date" style="color: #fff"><i class="fas fa-calendar"></i> <?php echo date('l, F j, Y'); ?></div>
-                        </div>
+                <div id="clockdate" style="border: 1px solid #001b69;background-color: #001b69; text-align: center;" >
+                    <div class="clockdate-wrapper">
+                        <div id="clock" style="font-weight: bold; color: #fff;font-size: 40px"></div>
+                        <div id="date" style="color: #fff"><i class="fas fa-calendar"></i> <?php echo date('l, F j, Y'); ?></div>
                     </div>
-                </center>
+                </div>
                 <form action="" method="POST" class="form-harizontal" style="display: none;">
 
                     <label><b>SCAN QR CODE</b></label>
