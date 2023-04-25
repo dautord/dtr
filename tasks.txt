@@ -291,3 +291,5 @@ AFTER HARD RESET:
 	- minutes late and minutes undertime as well
 - still having problems with instascan, it should be working, it's accessing my camera, but no video preview. 
 - 2:02 pm: instascan fixed! solved by putting scanner init in a function and starting using a window event listener
+
+- ready for presentation to Sir Enrico, and to the sisters. Schedule meetings with them. 
