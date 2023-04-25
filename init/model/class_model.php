@@ -133,7 +133,7 @@
 		}
 
 		public function fetchAll_department(){ 
-            $sql = "SELECT * FROM tbl_department ORDER BY department_id DESC";
+        $sql = "SELECT * FROM tbl_department ORDER BY department_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -146,7 +146,7 @@
 		}
 		
 		public function fetchLateTime(){ 
-			$sql = "SELECT c.department_name, c.late_time FROM tbl_attendance a 
+			$sql = "SELECT c.department_name, c.late_time, c.under_time FROM tbl_attendance a 
 					INNER JOIN tbl_employee b ON a.employee_qrcode = b.qr_code 
 					INNER JOIN tbl_department c ON b.department = c.department_name
 					ORDER BY a.attendance_id DESC";
@@ -208,11 +208,11 @@
 			}
 		}
 
-		public function edit_department($department_name, $description, $employee_id, $late_time){
+		public function edit_department($department_name, $description, $employee_id, $late_time, $under_time){
 
-			$sql = "UPDATE `tbl_department` SET  `department_name` = ?, `description` = ?, `late_time` = TIME(?) WHERE department_id = ?";
+			$sql = "UPDATE `tbl_department` SET  `department_name` = ?, `description` = ?, `late_time` = TIME(?), `under_time` = TIME(?) WHERE department_id = ?";
 			$stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("ssss", $department_name, $description, $late_time, $employee_id);
+			$stmt->bind_param("sssss", $department_name, $description, $late_time, $under_time, $employee_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();

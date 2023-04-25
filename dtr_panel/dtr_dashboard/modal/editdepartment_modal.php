@@ -24,6 +24,11 @@
                   <label for="late_time">Late Time:</label>
                   <input type = "time" id="edit_latetime" alt="late_time" value="00:00" class = "form-control" />
                 </div>
+                <div class = "form-group">
+                  <label for="under_time">Under Time:</label>
+                  <input type="time" id="edit_undertime" alt="under_time" class="form-control" value="00:00">
+                </div>
+                 
 
         </div>
       <div class="modal-footer justify-content-between">
@@ -47,6 +52,8 @@
                   const late_time = document.querySelector('input[id=edit_latetime]').value;
                   // const formatted_late_time = late_time + ':00'; // Add seconds to the time value
                   console.log('Late Time: ' + late_time); // Log the late time value
+                  const under_time = document.querySelector('input[id=edit_undertime]').value;
+                  console.log('Under Time: ' + under_time); // Log the under time value
 
                   
 
@@ -57,6 +64,7 @@
                   data.append('description', description);
                   data.append('employee_id', employee_id);
                   data.append('late_time', late_time);
+                  data.append('under_time', under_time);
 
 
 
@@ -69,7 +77,8 @@
                           department_name: department_name,
                           description: description,
                           employee_id: employee_id,
-                          late_time: late_time // Send the late_time value as a separate parameter
+                          late_time: late_time, // Send the late_time value as a separate parameter
+                          under_time: under_time
                       },
                       success: function(response) {
                           $("#emp_edit").html(response);

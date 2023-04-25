@@ -93,6 +93,7 @@
                     <th>Department Name</th>
                     <th>Description</th>
                     <th>Late Time</th>
+                    <th>Under Time</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -107,6 +108,7 @@
                     <td><?= $row['department_name']; ?></td>
                     <td><?= $row['description']; ?></td>
                     <td><?= $row['late_time']; ?></td>
+                    <td><?= $row['under_time']; ?></td>
                     <td class="align-right">
                         <i class="fa fa-edit edit_D" style="color: blue" data-toggle="modal" data-target="#edit-department" data-id="<?= htmlentities($row['department_id']); ?>"></i> | <i class="fa fa-trash-alt delete_D" style="color: red" data-toggle="modal" data-target="#delete-department" data-del="<?= htmlentities($row['department_id']); ?>"></i>
                     </td>
@@ -200,6 +202,7 @@
                       $('#edit_departmentname').val(response.department_name);
                       $('#edit_description').val(response.description);
                       $('#edit_latetime').val(response.late_time);
+                      $('#edit_undertime').val(response.under_time);
                     }
               });
             }

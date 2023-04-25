@@ -106,35 +106,63 @@
                         $Timein = $row['time_in'];
                         $Timein = str_replace(":AM", " AM", $Timein);
                         $Timein = str_replace(":PM", " PM", $Timein);
+                        
+                        $Timeout = $row['time_out'];
+                        $Timeout = str_replace(":AM", " AM", $Timeout);
+                        $Timeout = str_replace(":PM", " PM", $Timeout);
+
                         $department = $row['department'];
                         $late_time = '00:00:00';
+                        $under_time = '00:00:00';
                         $status = $row['status'];
+
+
                         $logDate = date_parse($Timein);
                         $logDate = new DateTime(sprintf('%04d-%02d-%02d %02d:%02d:%02d', $logDate['year'], $logDate['month'], $logDate['day'], $logDate['hour'], $logDate['minute'], $logDate['second']), new DateTimeZone('Asia/Manila'));
                         $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
 
-                                        
+                        $logOute = date_parse($Timeout);
+                        $logOute = new DateTime(sprintf('%04d-%02d-%02d %02d:%02d:%02d', $logOute['year'], $logOute['month'], $logOute['day'], $logOute['hour'], $logOute['minute'], $logOute['second']), new DateTimeZone('Asia/Manila'));
+                        $logOute->setTimezone(new DateTimeZone('Asia/Manila'));
+                        
                         // Get the late_time for the department
                         foreach ($attempdept as $dept) {
+                            if ($dept['department_name'] === $department) {
+                                $late_time = $dept['late_time'];
+                                break;
+                            }
+                        }
+                        foreach ($attempdept as $dept) {
                           if ($dept['department_name'] === $department) {
-                            $late_time = $dept['late_time'];
-                            break;
+                              $under_time = $dept['under_time'];
+                              break;
+                          }
+                      }
+                        // Get the under_time for the department
+                        
+                        // Check if employee is late or invalid 
+                        if ($status != 1) {
+                          echo "<button  class='btn btn-secondary btn-xs'><i class='fa fa-user-clock'></i> Invalid</button>";
+                        } else {
+
+                          $logTime = new DateTime($late_time, new DateTimeZone('Asia/Manila'));
+                          $logDate = new DateTime($Timein, new DateTimeZone('Asia/Manila'));
+                          $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
+
+                          $logUnder = new DateTime($under_time, new DateTimeZone('Asia/Manila'));
+                          $logOute = new DateTime($Timeout, new DateTimeZone('Asia/Manila'));
+                          $logOute->setTimezone(new DateTimeZone('Asia/Manila'));
+
+                          if ($logDate > $logTime && $logOute < $logUnder) {
+                            echo "<button class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late and Undertime</button>";
+                          } elseif ($logDate > $logTime) {
+                              echo "<button class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
+                          } elseif ($logOute < $logUnder) {
+                              echo "<button class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Undertime</button>";
+                          } else {
+                              echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
                           }
                         }
-                                        
-                        // Check if employee is late or invalid 
-                          if ($status != 1) {
-                            echo "<button  class='btn btn-secondary btn-xs'><i class='fa fa-user-clock'></i> Invalid</button>";
-                          } else {
-                            $logTime = new DateTime($late_time, new DateTimeZone('Asia/Manila'));
-                            $logDate = new DateTime($Timein, new DateTimeZone('Asia/Manila'));
-                            $logDate->setTimezone(new DateTimeZone('Asia/Manila'));
-                            if ($logDate <= $logTime) {
-                              echo "<button class='btn btn-success btn-xs'><i class='fa fa-user-clock'></i> On Time</button>";
-                            } else {
-                              echo "<button  class='btn btn-danger btn-xs'><i class='fa fa-user-clock'></i> Late</button>";
-                            }
-                          }
                       ?>
                     </td>
                   </tr>
