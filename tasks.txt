@@ -319,4 +319,7 @@ AFTER HARD RESET:
 	while you simulate being the employee on the slave pc.
 - import most current sql file
 
-now able to access database from server. problem was that user 'admin' had a password of ' ' and not '' which means no password
+- now able to access database from server. problem was that user 'admin' had a password of ' ' and not '' which means no password
+
+- still configuring outside connection to local webpages. normally, you would just type ipv4 address and would work, 
+	but for the master PC, it is discoverable but cannot connect to the webpage. if try to connect to slave's webpages, it works.
