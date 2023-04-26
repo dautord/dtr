@@ -292,4 +292,13 @@ AFTER HARD RESET:
 - still having problems with instascan, it should be working, it's accessing my camera, but no video preview. 
 - 2:02 pm: instascan fixed! solved by putting scanner init in a function and starting using a window event listener
 
-- ready for presentation to Sir Enrico, and to the sisters. Schedule meetings with them. 
+- ready for presentation to Sir Enrico, and to the sisters. Schedule meetings with them thru Sir Holy. 
+
+26/04/23	
+
+- master (this pc): 192.168.128.52
+- slave (win11 laptop): 192.168.20.133
+
+- on presentation, use slave connection to db to show qr scanner, and let them connect to admin side, 
+	while you simulate being the employee on the slave pc.
+- import most current sql file
