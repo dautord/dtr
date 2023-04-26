@@ -297,8 +297,26 @@ AFTER HARD RESET:
 26/04/23	
 
 - master (this pc): 192.168.128.52
-- slave (win11 laptop): 192.168.20.133
+	- connection.php:
+		- <?php
+				define('db_host', 'localhost');
+				define('db_user', 'root');
+				define('db_pass', '');
+				define('db_name', 'dtr_system');
+			?>	
+	- connection2.php:
+		- $conn = new mysqli("localhost", "root", "", "dtr_system");
+- slave (win11 laptop): 
+	- connection.php:
+		- 	define('db_host', 'IPV4 ADDRESS OF MASTER');
+				define('db_user', 'admin');
+				define('db_pass', '');
+				define('db_name', 'dtr_system');
+	- connection2.php:
+		- $conn = new mysqli("IPV4 ADDRESS OF MASTER", "admin", "", "dtr_system");
 
 - on presentation, use slave connection to db to show qr scanner, and let them connect to admin side, 
 	while you simulate being the employee on the slave pc.
 - import most current sql file
+
+now able to access database from server. problem was that user 'admin' had a password of ' ' and not '' which means no password
