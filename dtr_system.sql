@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 02:06 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 26, 2023 at 07:13 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `leave_button_status` (
   `id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `leave_button_status`
@@ -51,7 +51,7 @@ CREATE TABLE `tbl_admin` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `date_created` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_admin`
@@ -74,7 +74,7 @@ CREATE TABLE `tbl_attendance` (
   `time_out` text NOT NULL,
   `logdate` text NOT NULL,
   `status` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_attendance`
@@ -2923,7 +2923,10 @@ INSERT INTO `tbl_attendance` (`attendance_id`, `employee_qrcode`, `time_in`, `ti
 (2902, '0513', '10:36:AM', '10:36:AM', '2023-02-06', '1'),
 (2903, '0513', '08:28:AM', '', '2023-03-04', '0'),
 (2904, '0513', '01:57:PM', '02:44:PM', '2023-04-25', '1'),
-(2905, '0513', '02:42:PM', '02:44:PM', '2023-04-25', '1');
+(2905, '0513', '02:42:PM', '02:44:PM', '2023-04-25', '1'),
+(2906, '0513', '08:33:AM', '10:00:AM', '2023-04-26', '1'),
+(2907, '0513', '08:51:AM', '10:00:AM', '2023-04-26', '1'),
+(2908, '0513', '10:00:AM', '10:00:AM', '2023-04-26', '1');
 
 -- --------------------------------------------------------
 
@@ -2944,7 +2947,7 @@ CREATE TABLE `tbl_department` (
   `late_time` time NOT NULL,
   `under_time` time NOT NULL,
   `work_week` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_department`
@@ -2983,7 +2986,7 @@ CREATE TABLE `tbl_employee` (
   `maternal_leave` decimal(11,1) NOT NULL,
   `emergency_leave` decimal(11,1) NOT NULL,
   `solo_parent_leave` decimal(11,1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_employee`
@@ -3069,7 +3072,7 @@ CREATE TABLE `tbl_leave_request` (
   `reason` varchar(255) NOT NULL,
   `datetime_requested` datetime NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_leave_request`
@@ -3149,7 +3152,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_attendance`
 --
 ALTER TABLE `tbl_attendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2906;
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2909;
 
 --
 -- AUTO_INCREMENT for table `tbl_department`
