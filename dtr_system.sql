@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 08:38 AM
+-- Generation Time: Apr 26, 2023 at 02:06 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -2921,7 +2921,9 @@ INSERT INTO `tbl_attendance` (`attendance_id`, `employee_qrcode`, `time_in`, `ti
 (2900, '1911', '06:11:AM', '04:41:PM', '2022-09-22', '1'),
 (2901, '1816', '06:56:AM', '', '2022-09-22', '0'),
 (2902, '0513', '10:36:AM', '10:36:AM', '2023-02-06', '1'),
-(2903, '0513', '08:28:AM', '', '2023-03-04', '0');
+(2903, '0513', '08:28:AM', '', '2023-03-04', '0'),
+(2904, '0513', '01:57:PM', '02:44:PM', '2023-04-25', '1'),
+(2905, '0513', '02:42:PM', '02:44:PM', '2023-04-25', '1');
 
 -- --------------------------------------------------------
 
@@ -2949,9 +2951,9 @@ CREATE TABLE `tbl_department` (
 --
 
 INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`, `sick_leave_limit`, `vacation_leave_limit`, `paternal_leave_limit`, `maternal_leave_limit`, `emergency_leave_limit`, `solo_parent_leave_limit`, `late_time`, `under_time`, `work_week`) VALUES
-(2, 'Teaching Department', 'Teaching', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0', '08:00:00', '00:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
-(3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', '7.0', '8.0', '9.0', '10.0', '11.0', '12.0', '08:00:00', '00:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
-(4, 'Non-Teaching Department', 'Non-Teaching', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0', '08:00:00', '00:00:03', 'Monday to Friday, 8:00 AM - 4:00 PM, Saturday, 8:00 AM - 12:00 NN');
+(2, 'Teaching Department', 'Teaching', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0', '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
+(3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', '7.0', '8.0', '9.0', '10.0', '11.0', '12.0', '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
+(4, 'Non-Teaching Department', 'Non-Teaching', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0', '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM, Saturday, 8:00 AM - 12:00 NN');
 
 -- --------------------------------------------------------
 
@@ -3147,7 +3149,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_attendance`
 --
 ALTER TABLE `tbl_attendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2904;
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2906;
 
 --
 -- AUTO_INCREMENT for table `tbl_department`
