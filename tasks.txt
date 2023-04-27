@@ -296,7 +296,7 @@ AFTER HARD RESET:
 
 26/04/23	
 
-- master (this pc): 192.168.128.52
+- master (this pc):
 	- connection.php:
 		- <?php
 				define('db_host', 'localhost');
@@ -323,3 +323,15 @@ AFTER HARD RESET:
 
 - still configuring outside connection to local webpages. normally, you would just type ipv4 address and would work, 
 	but for the master PC, it is discoverable but cannot connect to the webpage. if try to connect to slave's webpages, it works.
+
+27/04/23
+
+- ip address of master changes. need to make sure of master's ip address to connect slave to db.
+- still trying to connect to webpages. 
+
+- helped document for tr. jing's summer workshop piano recital.
+- up to date db is in master PC. (win 7 desktop)
+- tested db connection of slave	
+	- QR attendance works fine (time in and out)
+	- TODO: test other slave-master functionalities.
+	- TODO: connect to master webpages.
