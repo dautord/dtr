@@ -296,7 +296,7 @@ AFTER HARD RESET:
 
 26/04/23	
 
-- master (this pc):
+- master (win 7 desktop):
 	- connection.php:
 		- <?php
 				define('db_host', 'localhost');
@@ -306,7 +306,7 @@ AFTER HARD RESET:
 			?>	
 	- connection2.php:
 		- $conn = new mysqli("localhost", "root", "", "dtr_system");
-- slave (win11 laptop): 
+- slave (win 11 laptop): 
 	- connection.php:
 		- 	define('db_host', 'IPV4 ADDRESS OF MASTER');
 				define('db_user', 'admin');
@@ -335,3 +335,8 @@ AFTER HARD RESET:
 	- QR attendance works fine (time in and out)
 	- TODO: test other slave-master functionalities.
 	- TODO: connect to master webpages.
+
+28/04/23
+
+- sr. agatha has jap class 9-12 at the grade 4 zoom
+	- host her and leave the zoom, but keep the pc open just in case of disconnection
