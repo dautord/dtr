@@ -333,10 +333,15 @@ AFTER HARD RESET:
 - up to date db is in master PC. (win 7 desktop)
 - tested db connection of slave	
 	- QR attendance works fine (time in and out)
-	- TODO: test other slave-master functionalities.
-	- TODO: connect to master webpages.
 
 28/04/23
 
 - sr. agatha has jap class 9-12 at the grade 4 zoom
 	- host her and leave the zoom, but keep the pc open just in case of disconnection
+- waiting on sir Enrico for his remarks and approval
+
+29/04/23
+- TODO: test other slave-master functionalities.
+- TODO: connect to master webpages.
+- also, the two PCs used for attendance before is still in the gym stock room.
+	- update windows when retrieved. 
