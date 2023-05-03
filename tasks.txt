@@ -345,3 +345,14 @@ AFTER HARD RESET:
 - TODO: connect to master webpages.
 - also, the two PCs used for attendance before is still in the gym stock room.
 	- update windows when retrieved. 
+
+03/05/23
+- got key to lab from OIC. return to them after work, or return to sir holy if he comes by.
+- oic returned ext. cord today, let sir holy know 
+- instascan bugged again, but fixed.
+	- move init of camera into script.js
+- TODO: change project name to something simple. e.g. dtr_management_system -> CDBS_HRMS
+
+- renamed root folder to CDBS_HRMS. changes made for delete_employee function in class_model.php.
+
+- renamed dtr_panel to hrmsadmin. will check effects of changes made.
