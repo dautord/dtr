@@ -361,5 +361,19 @@ AFTER HARD RESET:
 - start working on phase 2 updates (employee info, excel attendance generation, manage buttons) while waiting for sir enrico. 
 - moved win7 pcs to IT office shelves.
 - uncommented My Information in employee.php 
+- new file that works with manage_report.php and attendance_report.php called attendance_excel_generated.php. 
+	gets the earliest time in and the latest time out of the employee per day in the excel report. 
+
+- done presenting to sir E.
+	- final name: CDBS Timekeeping System
+	change qr scanner to timekeeping qr scanner in index.php
+	assistant admin that can only see dashboard
+	add attendance manually before excel report
+	arrange alphabetical order of report	
+	change file type to xlsx compatibilitiy issue with mac. 
+	show each day in Report. if selected 1-15, show each day. 
+	magna carta for women leave 
+
+	to follow yung assistant admin, my info, manage buttons
 
 
