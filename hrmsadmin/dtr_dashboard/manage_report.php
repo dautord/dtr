@@ -56,8 +56,8 @@
                   ?>
                 <?php foreach ($emp as $row) { ?>
                   <tr>
-                    <!-- <td><?= $row['qr_code']; ?></td> -->
-                    <!-- <td><?= $row['employee_idno']; ?></td> -->
+                    <!-- <td> //$row['qr_code']; </td> -->
+                    <!-- <td> //$row['employee_idno'];</td> -->
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['time_in']; ?></td>

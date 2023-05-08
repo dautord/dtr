@@ -86,8 +86,8 @@
 		}
 
 		public function delete_employee($employee_id){
-           error_reporting(0);
-		   $sql="SELECT employee_idno FROM tbl_employee WHERE employee_id = ?";
+      error_reporting(0);
+		  $sql="SELECT employee_idno FROM tbl_employee WHERE employee_id = ?";
 			$stmt2=$this->conn->prepare($sql);
 			$stmt2->bind_param("i", $employee_id);
 			$stmt2->execute();

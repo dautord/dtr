@@ -32,6 +32,7 @@ PHASE 2 UPDATES:
 
 - Employee Information and updates
 	- Admin can enable/disable editing
+	- Includes cdbs application form?
 - New button for Export to excel - generated (checks earliest time in and latest time out per day)
 - Manage Buttons 
 
@@ -355,3 +356,10 @@ AFTER HARD RESET:
 - renamed root folder to CDBS_HRMS. changes made for delete_employee function in class_model.php.
 - renamed dtr_panel to hrmsadmin. will check effects of changes made.
 - tested slave-master functionalities. all functioning accordingly.
+
+08/05/23
+- start working on phase 2 updates (employee info, excel attendance generation, manage buttons) while waiting for sir enrico. 
+- moved win7 pcs to IT office shelves.
+- uncommented My Information in employee.php 
+
+

@@ -11,14 +11,14 @@
             </p>
           </a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a href="employee.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'employee.php') ? 'active' : ''; ?>">
             <i class="nav-icon fa fa-user"></i>
             <p>
-              Information
+              My Information
             </p>
           </a>
-        </li> -->
+        </li>
         <li class="nav-item">
           <a href="attendance.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'attendance.php') ? 'active' : ''; ?>">
             <i class="nav-icon fa fa-clock"></i>
