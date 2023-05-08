@@ -35,6 +35,13 @@
 			    <button class="btn btn-success pull-right" name="export"><span class="glyphicon glyphicon-print"></span><i class="fa fa-file-excel"></i> Export Excel</button>
 			    </form></td>
 			  </tr>';
+				echo '<td colspan="7">       
+				<form method="POST" action="attendance_excel_generated.php">
+				<input type="hidden" name="date1" value='.$date1.'>
+				<input type="hidden" name="date2" value='.$date2.'>
+				<button class="btn btn-success pull-right" name="export"><span class="glyphicon glyphicon-print"></span><i class="fa fa-file-excel"></i> Generate Excel</button>
+				</form></td>
+			</tr>';
 
 		}else{
 
