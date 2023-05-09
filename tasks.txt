@@ -368,7 +368,7 @@ AFTER HARD RESET:
 	- final name: CDBS Timekeeping System DONE
 	change qr scanner to timekeeping qr scanner in index.php DONE
 	add attendance manually before excel report
-	arrange alphabetical order of report	
+	arrange alphabetical order of report 
 	change file type to xlsx compatibilitiy issue with mac. 
 	show each day in Report. if selected 1-15, show each day. 
 	magna carta for women leave 
@@ -378,5 +378,9 @@ AFTER HARD RESET:
 09/05/23
 
 - give applicant cdbs guest access and let them stay in the windows lab roundtable.
-- change root folder from cdbs_hrms to cts (CDBS Timekeeping System) and hrms_admin to admin
+- change root folder from cdbs_hrms to cts (CDBS Timekeeping System) and hrmsadmin to admin
+	- double check any existing references to cdbs_hrms and hrmsadmin so system runs as smoothly as before.
 - renamed footers, headers, and index.phps "CDBS HR Management System" to "CDBS Timekeeping System".
+- TODO: magna carta for women leave (magna_carta_leave)
+- TODO: report changes:
+	- add attendance manually in manage_attendance.php and manage_report.php
