@@ -402,4 +402,4 @@ AFTER HARD RESET:
 		- (e.g. setting leave limit, approving leave, leave request, leave calculation, showing leave based on condition, etc.)
 - problem occured where current value wasnt showing in edit employee model 
 	- fixed. val.response was not set properly.
-- 
+- changed report format from .xls to .xlsx. .xls is not supported by excel 2016. check if compatible with apple numbers
