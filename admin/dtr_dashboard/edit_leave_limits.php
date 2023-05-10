@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $vacationLimit = '';
   $paternalLimit = '';
   $maternalLimit = '';
+  $magnaCartaLimit = '';
   $emergencyLimit = '';
   $soloParentLimit = '';
 
@@ -33,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if(isset($_POST['maternalLimit'][$deptId])) {
         $maternalLimit = $_POST['maternalLimit'][$deptId];
       }
+      if(isset($_POST['magnaCartaLimit'][$deptId])) {
+        $magnaCartaLimit = $_POST['magnaCartaLimit'][$deptId];
+      }
       if(isset($_POST['emergencyLimit'][$deptId])) {
         $emergencyLimit = $_POST['emergencyLimit'][$deptId];
       }
@@ -40,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $soloParentLimit = $_POST['soloParentLimit'][$deptId];
       }
 
-		$success = $conn->updateDepartmentLeaveLimits($deptId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $emergencyLimit, $soloParentLimit);
+		$success = $conn->updateDepartmentLeaveLimits($deptId, $sickLimit, $vacationLimit, $paternalLimit, $maternalLimit, $magnaCartaLimit, $emergencyLimit, $soloParentLimit);
       
 	  } 
   }
@@ -120,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Vacation Leave Limit</th>
                         <th>Paternal Leave Limit</th>
                         <th>Maternal Leave Limit</th>
+                        <th>Magna Carta For Women Leave Limit</th>
                         <th>Emergency Leave Limit</th>
                         <th>Solo Parent Leave Limit</th>
                       </tr>
@@ -130,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><input type="number" name="vacationLimit[<?php echo $dept['department_id'] ?>]" value="<?php echo $dept['vacation_leave_limit'] ?>"></td>
                         <td><input type="number" name="paternalLimit[<?php echo $dept['department_id'] ?>]" value="<?php echo $dept['paternal_leave_limit'] ?>"></td>
                         <td><input type="number" name="maternalLimit[<?php echo $dept['department_id'] ?>]" value="<?php echo $dept['maternal_leave_limit'] ?>"></td>
+                        <td><input type="number" name="magnaCartaLimit[<?php echo $dept['department_id'] ?>]" value="<?php echo $dept['magna_carta_leave_limit'] ?>"></td>
                         <td><input type="number" name="emergencyLimit[<?php echo $dept['department_id'] ?>]" value="<?php echo $dept['emergency_leave_limit'] ?>"></td>
                         <td><input type="number" name="soloParentLimit[<?php echo $dept['department_id'] ?>]" value="<?php echo $dept['solo_parent_leave_limit'] ?>"></td>
                       </tr>

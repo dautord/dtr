@@ -109,6 +109,11 @@
                 </div>
 
                 <div class = "form-group">
+                  <label>Magna Carta For Women Leave:</label>
+                  <input type = "Number" id="edit_magnacartaleave" alt="magna_carta_leave"  class = "form-control" />
+                </div>
+
+                <div class = "form-group">
                   <label>Emergency Leave:</label>
                   <input type = "Number" id="edit_emergencyleave" alt="emergency_leave"  class = "form-control" />
                 </div>
@@ -151,6 +156,7 @@
                   const vacation_leave = document.querySelector('input[id=edit_vacationleave]').value;
                   const paternal_leave = document.querySelector('input[id=edit_paternalleave]').value;
                   const maternal_leave = document.querySelector('input[id=edit_maternalleave]').value;
+                  const magna_carta_leave = document.querySelector('input[id=edit_magnacartaleave]').value;
                   const emergency_leave = document.querySelector('input[id=edit_emergencyleave]').value;
                   const solo_parent_leave = document.querySelector('input[id=edit_soloparentleave]').value;
 
@@ -175,6 +181,7 @@
                   data.append('vacation_leave', vacation_leave);
                   data.append('paternal_leave', paternal_leave);
                   data.append('maternal_leave', maternal_leave);
+                  data.append('magna_carta_leave', magna_carta_leave);
                   data.append('emergency_leave', emergency_leave);
                   data.append('solo_parent_leave', solo_parent_leave);  
                        $.ajax({

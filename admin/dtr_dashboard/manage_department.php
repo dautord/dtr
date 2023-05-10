@@ -147,6 +147,7 @@
                           <th>Vacation Leave Limit</th>
                           <th>Paternal Leave Limit</th>
                           <th>Maternal Leave Limit</th>
+                          <th>Magna Carta For Women Leave Limit</th>
                           <th>Emergency Leave Limit</th>
                           <th>Solo Parent Leave Limit</th>
                       </tr>
@@ -159,6 +160,7 @@
                         <td><?= $row['vacation_leave_limit'] ?></td>
                         <td><?= $row['paternal_leave_limit'] ?></td>
                         <td><?= $row['maternal_leave_limit'] ?></td>
+                        <td><?= $row['magna_carta_leave_limit'] ?></td>
                         <td><?= $row['emergency_leave_limit'] ?></td>
                         <td><?= $row['solo_parent_leave_limit'] ?></td>
                     </tr>

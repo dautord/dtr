@@ -384,3 +384,22 @@ AFTER HARD RESET:
 - TODO: magna carta for women leave (magna_carta_leave)
 - TODO: report changes:
 	- add attendance manually in manage_attendance.php and manage_report.php
+
+10/05/23
+
+- successfully integrated new leave: magna_carta_leave 
+	- files in need of editing when adding a new type of leave: 
+		- admin\dtr_dashboard\edit_leave_limits.php
+		- admin\dtr_dashboard\manage_department.php
+		- admin\dtr_dashboard\manage_employee.php
+		- admin\dtr_dashboard\modal\editemployee_modal.php
+		- employee\Dashboard\dashboard.php
+		- employee\Dashboard\leave_request.php
+		- init\controllers\edit_employee.php
+		- init\model\class_model.php
+			- make sure when editing to remember to add an element for the bind variable in bind_param.
+	- make sure to test all functionalities. 
+		- (e.g. setting leave limit, approving leave, leave request, leave calculation, showing leave based on condition, etc.)
+- problem occured where current value wasnt showing in edit employee model 
+	- fixed. val.response was not set properly.
+- 

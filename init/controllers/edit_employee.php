@@ -23,14 +23,14 @@
 		$vacation_leave = trim($_POST['vacation_leave']);
 		$paternal_leave = trim($_POST['paternal_leave']);
 		$maternal_leave = trim($_POST['maternal_leave']);
+		$magna_carta_leave = trim($_POST['magna_carta_leave']);
 		$emergency_leave = trim($_POST['emergency_leave']);
 		$solo_parent_leave = trim($_POST['solo_parent_leave']);
 
-		$edit = $conn->edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $emergency_leave, $solo_parent_leave, $employee_id);
+		$edit = $conn->edit_employee($employee_idno,  $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $magna_carta_leave, $emergency_leave, $solo_parent_leave, $employee_id);
 		if($edit == TRUE){
 		      echo '<div class="alert alert-success">Update Employee Successfully!</div><script> setTimeout(function() {  location.replace("manage_employee.php"); }, 1000); </script>';
 		    
-
 		  }else{
 		    echo '<div class="alert alert-danger">Update Employee Failed!</div><script> setTimeout(function() {  location.replace("manage_employee.php"); }, 1000); </script>';
 

@@ -36,6 +36,7 @@ $employee_id = $_SESSION['employee_id'];
  $vacationLeave = $emp['vacation_leave'];
  $paternalLeave = $emp['paternal_leave'];
  $maternalLeave = $emp['maternal_leave'];
+ $magnaCartaLeave = $emp['magna_carta_leave'];
  $emergencyLeave = $emp['emergency_leave'];
  $soloParentLeave = $emp['solo_parent_leave'];
  $remainingBalance = 0;
@@ -64,6 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         break;
     case 'maternal':
         $remainingBalance = $maternalLeave;
+        break;
+    case 'magna carta':
+        $remainingBalance = $magnaCartaLeave;
         break;
     case 'emergency':
         $remainingBalance = $emergencyLeave;
@@ -172,6 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       <?php endif; ?>
                       <?php if ($gender === 'Female'):  ?>
                         <option value="maternal">Maternal Leave</option>
+                        <option value="magna carta">Magna Carta For Women Leave</option>
                       <?php endif; ?>
                       <option value="vacation">Emergency Leave</option>
                       <option value="solo parent">Parental Leave (Solo Parent Act)</option>

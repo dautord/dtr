@@ -132,6 +132,16 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon elevation-1" style="background-color:pink"><i class="fas fa-venus"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Magna Carta For Women Leave</span>
+              <span class="info-box-number"><?= $emp['magna_carta_leave'] ?></span>
+            </div>
+          </div>
+        </div>
       <?php endif; ?>
 
       <!-- Solo Parent Leave Info Box -->
