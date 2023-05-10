@@ -403,3 +403,9 @@ AFTER HARD RESET:
 - problem occured where current value wasnt showing in edit employee model 
 	- fixed. val.response was not set properly.
 - changed report format from .xls to .xlsx. .xls is not supported by excel 2016. check if compatible with apple numbers
+
+- made it .csv format. that way, it avoids compatibility issues.
+	- filename changed, from "attendance_report" to "date1 - date2 Attendance Report"
+	- removed qr code column, grouped and ordered by last name and logdate. 
+	- renamed export excel to Export Raw Excel Attendance and generate excel to Generate Attendance Report
+	- TODO: find a way to indicate saturdays and sundays as such.
