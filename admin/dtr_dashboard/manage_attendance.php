@@ -27,7 +27,7 @@
         <div class="row">
           <div class="col-12">
               <div class="card">
-                <!-- Add Attendance Days Form -->
+                <!-- Set Work Days Form -->
                 <div class="card-header">
                   <h3 class="card-title">Set Work Day/s</h3>
                 </div>
@@ -74,14 +74,12 @@
                 </div>
               </div>
           
-              <!-- End Add Attendance Days Form -->
+              <!-- End Set Work Days Form -->
                           
               <div class="card">
-<!--               <div class="card-header">
-                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
-                 <i class="fa fa-plus"></i> Add Attendance
-                </button>
-              </div> -->
+              <div class="card-header">
+                <a href="add_attendance.php" class="btn btn-primary float-sm-right"><i class="fa fa-plus"></i> Add Attendance</a>
+              </div>
 
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">

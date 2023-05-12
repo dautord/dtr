@@ -367,11 +367,11 @@ AFTER HARD RESET:
 - done presenting to sir E.
 	- final name: CDBS Timekeeping System DONE
 	change qr scanner to timekeeping qr scanner in index.php DONE
-	add attendance manually before excel report
-	arrange alphabetical order of report 
-	change file type to xlsx compatibilitiy issue with mac. 
-	show each day in Report. if selected 1-15, show each day. 
-	magna carta for women leave 
+	add attendance manually before excel report 
+	arrange alphabetical order of report DONE
+	change file type to xlsx compatibilitiy issue with mac. DONE
+	show each day in Report. if selected 1-15, show each day. DONE
+	magna carta for women leave DONE
 
 	to follow yung assistant admin, my info, manage buttons
 
@@ -409,3 +409,13 @@ AFTER HARD RESET:
 	- removed qr code column, grouped and ordered by last name and logdate. 
 	- renamed export excel to Export Raw Excel Attendance and generate excel to Generate Attendance Report
 	- TODO: find a way to indicate saturdays and sundays as such.
+
+12/05/23
+
+- TODO: add attendance manually 
+- TODO: AP approval -> Admin (Principal/HR)
+- successfully added "add attendance" functionality in manage_attendance. 
+	- two new pages: add_attendance.php and handle_attendance_submission.php 
+	- add_attendance.php: contains front end, and handle_attendance_submission contains backend.
+	- upon adding attendance, status = 1.
+	- new public function add_attendance($employee_qrcode, $time_in, $time_out, $logdate, $status)

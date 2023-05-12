@@ -198,7 +198,16 @@
 			$stmt->close();
 			return $data;
 		}
-
+		public function add_attendance($employee_qrcode, $time_in, $time_out, $logdate, $status) {
+			$stmt = $this->conn->prepare("INSERT INTO `tbl_attendance` (`employee_qrcode`, `time_in`, `time_out`, `logdate`, `status`) VALUES (?, ?, ?, ?, ?)") or die($this->conn->error);
+			$stmt->bind_param("ssssi", $employee_qrcode, $time_in, $time_out, $logdate, $status);
+			if ($stmt->execute()) {
+					$stmt->close();
+					$this->conn->close();
+					return true;
+			}
+	}
+	
 		public function add_department($department_name, $description){
 			
 	    	$stmt = $this->conn->prepare("INSERT INTO `tbl_department` (`department_name`, `description`) VALUES(?, ?)") or die($this->conn->error);
