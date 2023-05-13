@@ -419,3 +419,13 @@ AFTER HARD RESET:
 	- add_attendance.php: contains front end, and handle_attendance_submission contains backend.
 	- upon adding attendance, status = 1.
 	- new public function add_attendance($employee_qrcode, $time_in, $time_out, $logdate, $status)
+
+13/5/23
+
+- TODO: try to finish first-second approval by today. finish at home what i can for monday.
+- copy admin folder - rename to approver
+	- copy including login process using tbl_approver.
+- new data table - tbl_approver 
+	- username (varchar 100), password (varchar 100), fullname (varchar 255) with approver_id (int 11, PK).
+- new sidebar - leave_sidebar.php	
+	- only shows dashboard, should not be able to access anything else.

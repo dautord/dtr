@@ -58,7 +58,7 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center">LOGIN HERE</div>
+            <div class="card-header text-center">Admin Login</div>
             <div class="card-body">
                 <form method="post" name="login_sform">
                     <div class="form-group">
