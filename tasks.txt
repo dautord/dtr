@@ -425,6 +425,7 @@ AFTER HARD RESET:
 - TODO: try to finish first-second approval by today. finish at home what i can for monday.
 - copy admin folder - rename to approver
 	- copy including login process using tbl_approver.
+	- make a function called login_approver in class_model.
 - new data table - tbl_approver 
 	- username (varchar 100), password (varchar 100), fullname (varchar 255) with approver_id (int 11, PK).
 - new sidebar - leave_sidebar.php	
