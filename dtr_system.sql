@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 07:13 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: May 13, 2023 at 05:11 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `leave_button_status` (
   `id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `leave_button_status`
@@ -51,7 +51,7 @@ CREATE TABLE `tbl_admin` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `date_created` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_admin`
@@ -60,6 +60,19 @@ CREATE TABLE `tbl_admin` (
 INSERT INTO `tbl_admin` (`admin_id`, `full_name`, `username`, `password`, `date_created`) VALUES
 (1, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2021-12-25'),
 (2, 'CDBS HR', 'HR', '64C62C92AC064500D60A7F3624E35AD7', '2022-06-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_approver`
+--
+
+CREATE TABLE `tbl_approver` (
+  `approver_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `fullname` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -74,7 +87,7 @@ CREATE TABLE `tbl_attendance` (
   `time_out` text NOT NULL,
   `logdate` text NOT NULL,
   `status` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_attendance`
@@ -2926,7 +2939,13 @@ INSERT INTO `tbl_attendance` (`attendance_id`, `employee_qrcode`, `time_in`, `ti
 (2905, '0513', '02:42:PM', '02:44:PM', '2023-04-25', '1'),
 (2906, '0513', '08:33:AM', '10:00:AM', '2023-04-26', '1'),
 (2907, '0513', '08:51:AM', '10:00:AM', '2023-04-26', '1'),
-(2908, '0513', '10:00:AM', '10:00:AM', '2023-04-26', '1');
+(2908, '0513', '10:00:AM', '10:00:AM', '2023-04-26', '1'),
+(2909, '0513', '08:18:AM', '08:18:AM', '2023-04-27', '1'),
+(2910, '0513', '12:30:PM', '12:33:PM', '2023-05-03', '1'),
+(2911, '0513', '12:31:PM', '12:33:PM', '2023-05-03', '1'),
+(2912, '0513', '12:33:PM', '12:33:PM', '2023-05-03', '1'),
+(2913, '0513', '10:31:AM', '10:49:AM', '2023-05-08', '1'),
+(2918, '0513', '02:24:PM', '02:25:PM', '2023-05-12', '1');
 
 -- --------------------------------------------------------
 
@@ -2942,21 +2961,22 @@ CREATE TABLE `tbl_department` (
   `vacation_leave_limit` decimal(11,1) NOT NULL,
   `paternal_leave_limit` decimal(11,1) NOT NULL,
   `maternal_leave_limit` decimal(11,1) NOT NULL,
+  `magna_carta_leave_limit` decimal(11,1) NOT NULL,
   `emergency_leave_limit` decimal(11,1) NOT NULL,
   `solo_parent_leave_limit` decimal(11,1) NOT NULL,
   `late_time` time NOT NULL,
   `under_time` time NOT NULL,
   `work_week` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_department`
 --
 
-INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`, `sick_leave_limit`, `vacation_leave_limit`, `paternal_leave_limit`, `maternal_leave_limit`, `emergency_leave_limit`, `solo_parent_leave_limit`, `late_time`, `under_time`, `work_week`) VALUES
-(2, 'Teaching Department', 'Teaching', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0', '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
-(3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', '7.0', '8.0', '9.0', '10.0', '11.0', '12.0', '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
-(4, 'Non-Teaching Department', 'Non-Teaching', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0', '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM, Saturday, 8:00 AM - 12:00 NN');
+INSERT INTO `tbl_department` (`department_id`, `department_name`, `description`, `sick_leave_limit`, `vacation_leave_limit`, `paternal_leave_limit`, `maternal_leave_limit`, `magna_carta_leave_limit`, `emergency_leave_limit`, `solo_parent_leave_limit`, `late_time`, `under_time`, `work_week`) VALUES
+(2, 'Teaching Department', 'Teaching', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0, '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
+(3, 'Academic Non-Teaching Department', 'Academic Non-Teaching', 7.0, 8.0, 9.0, 10.0, 5.0, 11.0, 12.0, '08:00:00', '16:00:00', 'Monday to Friday, 8:00 AM - 4:00 PM'),
+(4, 'Non-Teaching Department', 'Non-Teaching', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0, '07:00:00', '16:00:00', 'Monday to Friday, 7:00 AM - 4:00 PM, Saturday, 8:00 AM - 12:00 NN');
 
 -- --------------------------------------------------------
 
@@ -2984,77 +3004,78 @@ CREATE TABLE `tbl_employee` (
   `vacation_leave` decimal(11,1) NOT NULL,
   `paternal_leave` decimal(11,1) NOT NULL,
   `maternal_leave` decimal(11,1) NOT NULL,
+  `magna_carta_leave` decimal(11,1) NOT NULL,
   `emergency_leave` decimal(11,1) NOT NULL,
   `solo_parent_leave` decimal(11,1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_employee`
 --
 
-INSERT INTO `tbl_employee` (`employee_id`, `employee_idno`, `qr_code`, `last_name`, `first_name`, `password`, `middle_name`, `bdate`, `complete_address`, `cnumber`, `gender`, `civilstatus`, `datehire`, `designation`, `department`, `sick_leave`, `vacation_leave`, `paternal_leave`, `maternal_leave`, `emergency_leave`, `solo_parent_leave`) VALUES
-(3, '911', '0911', 'Pertes', 'Evelyn', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(4, '910', '0910', 'Mapalad', 'Rose', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(5, '812', '0812', 'Singson', 'Zindy', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(6, '711', '0711', 'Rivera', 'Benaper', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(7, '513', '0513', 'Solmoro', 'Holy Alan', '12345', '', '', '', '', 'Male', '', '', '', 'Non-Teaching Department', '12.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(8, '425', '0425', 'Roa', 'Carol', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(9, '421', '0421', 'Mendoza', 'Maria Cecil', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(10, '416', '0416', 'Galsim', 'Rowena', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(11, '405', '0405', 'Buno', 'Ursula', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(12, '323', '0323', 'Villegas', 'Patrick Joshua', '', '', '', '', '', 'Male', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(13, '317', '0317', 'Ramsey', 'Juanita', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(14, '208', '0208', 'Emboltorio', 'Mary Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(15, '9904', '9904', 'Deveza', 'Josephine', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(16, '9902', '9902', 'Elbo', 'Mary Jay', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(17, '9802', '9802', 'Banagan', 'Cristina', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(18, '9701', '9701', 'Hicban', 'Marivic', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(19, '9601', '9601', 'Cofreros', 'Mary Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(20, '1917', '1917', 'Cartagena', 'Ronalyn', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(21, '1916', '1916', 'Deocariza', 'Vince Angelo', '', '', '', '', '', 'Male', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(22, '1911', '1911', 'Reaso', 'Clarence', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(23, '1908', '1908', 'Jimena', 'Ira', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(24, '1907', '1907', 'Gutierrez', 'Queenie Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(25, '1906', '1906', 'Dondiego', 'Louie Jayar', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(26, '1904', '1904', 'Calabano', 'Karlo', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(27, '1901', '1901', 'Balce', 'Princess Hershey', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(28, '1817', '1817', 'Peña', 'Ivory Rose', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(29, '1816', '1816', 'Quirante', 'Marianne', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(30, '1815', '1815', 'Mojado', 'Camille Jane', '', '', '', '', '', 'Female', '', '', '', 'Academic Non-Teaching Department', '7.0', '8.0', '9.0', '10.0', '11.0', '12.0'),
-(31, '1810', '1810', 'Zamora', 'Charmaigne Elisse', '', '', '', '', '', '', '', '', '', 'Academic Non-Teaching Department', '7.0', '8.0', '9.0', '10.0', '11.0', '12.0'),
-(32, '1809', '1809', 'Romano', 'Jolina', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(33, '1801', '1801', 'Abe', 'Marjorie Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(34, '1711', '1711', 'Lapitan', 'Mark Christian', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(35, '1702', '1702', 'Apostol', 'Antonio', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(36, '1622', '1622', 'Manimtim', 'Carlo', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(37, '1605', '1605', 'De Ocampo', 'Kaybee', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(38, '1513', '1513', 'Perilla', 'Rechelle Ann', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(39, '1511', '1511', 'Broñola', 'John Renz', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(40, '1510', '1510', 'San Pedro', 'Rhowena Roselle', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(41, '1505', '1505', 'Capistrano', 'Mikee', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(42, '1305', '1305', 'Katigbak', 'Enrico', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(43, '1301', '1301', 'Banania', 'Geraldine', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(44, '1217', '1217', 'Parallag', 'Pascual Jr.', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(45, '1208', '1208', 'Lagatuz', 'Jerson', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(46, '1202', '1202', 'Razonable', 'June Alexis', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(47, '1104', '1104', 'Guillermo', 'Grace', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(48, '1015', '1015', 'Besonia', 'Jinky', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(49, '2206', '2206', 'Añonuevo', 'Rosemary Joy', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(50, '2201', '2201', 'Apostol', 'Karla', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(51, '2202', '2202', 'Avila', 'Apple Grace', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(52, '2002', '2002', 'Bicomong', 'Shayne Carla', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(53, '2203', '2203', 'Borja', 'Nomer Jr.', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(54, '2102', '2102', 'Clave', 'Jam Paul', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(55, '2103', '2103', 'Esquejo', 'Jose', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(56, '611', '0611', 'Gruezo', 'Olivia', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(57, '2207', '2207', 'Guloy', 'Gwendolyn', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(58, '2204', '2204', 'Lapiz', 'Adrian Harold', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(59, '2205', '2205', 'Olaez', 'Joyce Carla', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(60, '2105', '2105', 'Ramos', 'Mc Niño', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(61, '2001', '2001', 'Sicat', 'Maureen Dominique', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(62, '2208', '2208', 'Cruz', 'Andre', '', 'B', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0'),
-(63, '2209', '2209', 'Musico', 'Rose Marie', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', '13.0', '14.0', '15.0', '16.0', '17.0', '18.0'),
-(64, '2210', '2210', 'Soriano', 'Shiela Marie', '', '', '', '', '', '', '', '', '', 'Teaching Department', '1.0', '2.0', '3.0', '4.0', '5.0', '6.0');
+INSERT INTO `tbl_employee` (`employee_id`, `employee_idno`, `qr_code`, `last_name`, `first_name`, `password`, `middle_name`, `bdate`, `complete_address`, `cnumber`, `gender`, `civilstatus`, `datehire`, `designation`, `department`, `sick_leave`, `vacation_leave`, `paternal_leave`, `maternal_leave`, `magna_carta_leave`, `emergency_leave`, `solo_parent_leave`) VALUES
+(3, '911', '0911', 'Pertes', 'Evelyn', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(4, '910', '0910', 'Mapalad', 'Rose', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(5, '812', '0812', 'Singson', 'Zindy', '', '', '', '', '', 'Female', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(6, '711', '0711', 'Rivera', 'Benaper', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(7, '513', '0513', 'Solmoro', 'Holy Alan', '12345', '', '', '', '', 'Male', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(8, '425', '0425', 'Roa', 'Carol', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(9, '421', '0421', 'Mendoza', 'Maria Cecil', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(10, '416', '0416', 'Galsim', 'Rowena', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(11, '405', '0405', 'Buno', 'Ursula', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(12, '323', '0323', 'Villegas', 'Patrick Joshua', '', '', '', '', '', 'Male', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(13, '317', '0317', 'Ramsey', 'Juanita', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(14, '208', '0208', 'Emboltorio', 'Mary Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(15, '9904', '9904', 'Deveza', 'Josephine', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(16, '9902', '9902', 'Elbo', 'Mary Jay', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(17, '9802', '9802', 'Banagan', 'Cristina', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(18, '9701', '9701', 'Hicban', 'Marivic', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(19, '9601', '9601', 'Cofreros', 'Mary Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(20, '1917', '1917', 'Cartagena', 'Ronalyn', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(21, '1916', '1916', 'Deocariza', 'Vince Angelo', '', '', '', '', '', 'Male', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(22, '1911', '1911', 'Reaso', 'Clarence', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(23, '1908', '1908', 'Jimena', 'Ira', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(24, '1907', '1907', 'Gutierrez', 'Queenie Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(25, '1906', '1906', 'Dondiego', 'Louie Jayar', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(26, '1904', '1904', 'Calabano', 'Karlo', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(27, '1901', '1901', 'Balce', 'Princess Hershey', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(28, '1817', '1817', 'Peña', 'Ivory Rose', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(29, '1816', '1816', 'Quirante', 'Marianne', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(30, '1815', '1815', 'Mojado', 'Camille Jane', '', '', '', '', '', 'Female', '', '', '', 'Academic Non-Teaching Department', 7.0, 8.0, 9.0, 10.0, 5.0, 11.0, 12.0),
+(31, '1810', '1810', 'Zamora', 'Charmaigne Elisse', '', '', '', '', '', '', '', '', '', 'Academic Non-Teaching Department', 7.0, 8.0, 9.0, 10.0, 5.0, 11.0, 12.0),
+(32, '1809', '1809', 'Romano', 'Jolina', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(33, '1801', '1801', 'Abe', 'Marjorie Ann', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(34, '1711', '1711', 'Lapitan', 'Mark Christian', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(35, '1702', '1702', 'Apostol', 'Antonio', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(36, '1622', '1622', 'Manimtim', 'Carlo', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(37, '1605', '1605', 'De Ocampo', 'Kaybee', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(38, '1513', '1513', 'Perilla', 'Rechelle Ann', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(39, '1511', '1511', 'Broñola', 'John Renz', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(40, '1510', '1510', 'San Pedro', 'Rhowena Roselle', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(41, '1505', '1505', 'Capistrano', 'Mikee', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(42, '1305', '1305', 'Katigbak', 'Enrico', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(43, '1301', '1301', 'Banania', 'Geraldine', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(44, '1217', '1217', 'Parallag', 'Pascual Jr.', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(45, '1208', '1208', 'Lagatuz', 'Jerson', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(46, '1202', '1202', 'Razonable', 'June Alexis', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(47, '1104', '1104', 'Guillermo', 'Grace', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(48, '1015', '1015', 'Besonia', 'Jinky', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(49, '2206', '2206', 'Añonuevo', 'Rosemary Joy', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(50, '2201', '2201', 'Apostol', 'Karla', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(51, '2202', '2202', 'Avila', 'Apple Grace', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(52, '2002', '2002', 'Bicomong', 'Shayne Carla', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(53, '2203', '2203', 'Borja', 'Nomer Jr.', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(54, '2102', '2102', 'Clave', 'Jam Paul', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(55, '2103', '2103', 'Esquejo', 'Jose', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(56, '611', '0611', 'Gruezo', 'Olivia', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(57, '2207', '2207', 'Guloy', 'Gwendolyn', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(58, '2204', '2204', 'Lapiz', 'Adrian Harold', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(59, '2205', '2205', 'Olaez', 'Joyce Carla', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(60, '2105', '2105', 'Ramos', 'Mc Niño', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(61, '2001', '2001', 'Sicat', 'Maureen Dominique', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(62, '2208', '2208', 'Cruz', 'Andre', '', 'B', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0),
+(63, '2209', '2209', 'Musico', 'Rose Marie', '', '', '', '', '', '', '', '', '', 'Non-Teaching Department', 13.0, 14.0, 15.0, 16.0, 5.0, 17.0, 18.0),
+(64, '2210', '2210', 'Soriano', 'Shiela Marie', '', '', '', '', '', '', '', '', '', 'Teaching Department', 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 6.0);
 
 -- --------------------------------------------------------
 
@@ -3072,24 +3093,26 @@ CREATE TABLE `tbl_leave_request` (
   `reason` varchar(255) NOT NULL,
   `datetime_requested` datetime NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_leave_request`
 --
 
 INSERT INTO `tbl_leave_request` (`leave_id`, `employee_id`, `datetime_start`, `datetime_end`, `num_of_days`, `leave_type`, `reason`, `datetime_requested`, `status`) VALUES
-(14, 7, '2023-03-15', '2023-03-16', '0.0', 'vacation', 'because i am non-teaching and teachers dont have vacation leaves', '2023-03-14 08:52:00', 'Approved'),
-(15, 3, '2023-03-15', '2023-03-16', '0.0', 'maternal', 'Only women can maternal leave', '2023-03-14 08:53:45', 'Approved'),
-(16, 7, '2023-03-26', '2023-03-27', '0.0', 'paternal', 'My kid is being born', '2023-03-24 14:25:39', 'Approved'),
-(17, 7, '2023-03-25', '2023-03-25', '0.0', 'sick', 'test', '2023-03-24 14:29:30', 'Rejected'),
-(19, 7, '2023-04-22', '2023-04-22', '0.5', 'vacation', 'test -0.5', '2023-04-20 14:03:03', 'Approved'),
-(20, 7, '2023-04-22', '2023-04-22', '0.5', 'vacation', 'test -0.5 pls work', '2023-04-20 14:11:58', 'Approved'),
-(21, 7, '2023-04-21', '2023-05-09', '14.0', 'vacation', 'test numdays > leave balance', '2023-04-20 14:30:04', 'Approved'),
-(22, 7, '2023-04-21', '2023-04-28', '14.0', 'vacation', 'test numdays > balance', '2023-04-20 14:34:11', 'Approved'),
-(25, 7, '2023-04-29', '2023-04-29', '0.5', 'vacation', 'test -0.5', '2023-04-20 15:04:21', 'Approved'),
-(26, 7, '2023-04-25', '2023-04-25', '1.0', 'lwop', 'lwop test', '2023-04-24 13:25:18', 'Approved'),
-(27, 7, '2023-04-26', '2023-04-26', '1.0', 'sick', 'i am sick, lwop code test', '2023-04-24 13:27:46', 'Approved');
+(14, 7, '2023-03-15', '2023-03-16', 0.0, 'vacation', 'because i am non-teaching and teachers dont have vacation leaves', '2023-03-14 08:52:00', 'Approved'),
+(15, 3, '2023-03-15', '2023-03-16', 0.0, 'maternal', 'Only women can maternal leave', '2023-03-14 08:53:45', 'Approved'),
+(16, 7, '2023-03-26', '2023-03-27', 0.0, 'paternal', 'My kid is being born', '2023-03-24 14:25:39', 'Approved'),
+(17, 7, '2023-03-25', '2023-03-25', 0.0, 'sick', 'test', '2023-03-24 14:29:30', 'Rejected'),
+(19, 7, '2023-04-22', '2023-04-22', 0.5, 'vacation', 'test -0.5', '2023-04-20 14:03:03', 'Approved'),
+(20, 7, '2023-04-22', '2023-04-22', 0.5, 'vacation', 'test -0.5 pls work', '2023-04-20 14:11:58', 'Approved'),
+(21, 7, '2023-04-21', '2023-05-09', 14.0, 'vacation', 'test numdays > leave balance', '2023-04-20 14:30:04', 'Approved'),
+(22, 7, '2023-04-21', '2023-04-28', 14.0, 'vacation', 'test numdays > balance', '2023-04-20 14:34:11', 'Approved'),
+(25, 7, '2023-04-29', '2023-04-29', 0.5, 'vacation', 'test -0.5', '2023-04-20 15:04:21', 'Approved'),
+(26, 7, '2023-04-25', '2023-04-25', 1.0, 'lwop', 'lwop test', '2023-04-24 13:25:18', 'Approved'),
+(27, 7, '2023-04-26', '2023-04-26', 1.0, 'sick', 'i am sick, lwop code test', '2023-04-24 13:27:46', 'Approved'),
+(28, 7, '2023-05-09', '2023-05-09', 1.0, 'vacation', 'i will be on vacation', '2023-05-08 10:58:49', 'Pending'),
+(29, 3, '2023-05-11', '2023-05-11', 1.0, 'magna carta', 'test', '2023-05-10 08:55:43', 'Approved');
 
 --
 -- Indexes for dumped tables
@@ -3106,6 +3129,12 @@ ALTER TABLE `leave_button_status`
 --
 ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `tbl_approver`
+--
+ALTER TABLE `tbl_approver`
+  ADD PRIMARY KEY (`approver_id`);
 
 --
 -- Indexes for table `tbl_attendance`
@@ -3146,19 +3175,25 @@ ALTER TABLE `leave_button_status`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_approver`
+--
+ALTER TABLE `tbl_approver`
+  MODIFY `approver_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_attendance`
 --
 ALTER TABLE `tbl_attendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2909;
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2919;
 
 --
 -- AUTO_INCREMENT for table `tbl_department`
 --
 ALTER TABLE `tbl_department`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_employee`
@@ -3170,7 +3205,7 @@ ALTER TABLE `tbl_employee`
 -- AUTO_INCREMENT for table `tbl_leave_request`
 --
 ALTER TABLE `tbl_leave_request`
-  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
