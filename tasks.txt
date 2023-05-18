@@ -433,4 +433,15 @@ AFTER HARD RESET:
 
 18/5/23
 
+- moving project folder to main server.
+	- project version: 13/05/23 sql 
 - renamed root folder from cts to dtr.
+- tried moving to 192.168.20.5, but mysql version is old.
+- looking for available PCs that can be used as a server.
+- found a possible replacement, but OS drive is not being detected. might be the SATA cable that is the issue.
+	- turned out to be Gym PC. fixed issue by changing sata cable and port.
+- found another possible replacement, but OS drive is not being detected. 
+	- downloaded Rufus (usb to iso) and Ubuntu ver. 23.04
+		- need an 8 gb usb to bootable drive
+			- got sr. rosa's usb. make sure to backup her files before use, and return the files before i return the usb to her.
+			- didnt finish os install of ubuntu, finish tom.
