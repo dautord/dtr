@@ -95,7 +95,7 @@
 			$stmt2->execute();
 			$result2=$stmt2->get_result();
 			$row=$result2->fetch_assoc();
-			$imagepath = $_SERVER['DOCUMENT_ROOT']."cts/qrcode_images/".$row['employee_idno'].'.png';//delete the image inside a folder path
+			$imagepath = $_SERVER['DOCUMENT_ROOT']."dtr/qrcode_images/".$row['employee_idno'].'.png';//delete the image inside a folder path
 			unlink($imagepath);
 
 				$sql = "DELETE FROM tbl_employee WHERE employee_id = ?";

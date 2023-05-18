@@ -430,3 +430,7 @@ AFTER HARD RESET:
 	- username (varchar 100), password (varchar 100), fullname (varchar 255) with approver_id (int 11, PK).
 - new sidebar - leave_sidebar.php	
 	- only shows dashboard, should not be able to access anything else.
+
+18/5/23
+
+- renamed root folder from cts to dtr.
