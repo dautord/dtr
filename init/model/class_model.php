@@ -2,7 +2,7 @@
 <?php
 
 	require 'config/connection.php';
-	require_once '../../log_helper.php';
+	// require_once '../../log_helper.php';
 	class class_model{
 
 		public $host = db_host;
@@ -49,6 +49,34 @@
 				);
 			}	
 		}
+
+		public function login_approver($username, $password){
+			$stmt = $this->conn->prepare("SELECT * FROM `tbl_approver` WHERE `username` = ? AND `password` = ?") or die($this->conn->error);
+			$stmt->bind_param("ss", $username, $password);
+			if ($stmt->execute()) {
+					$result = $stmt->get_result();
+					$valid = $result->num_rows;
+					$fetch = $result->fetch_array();
+					return array(
+							'approver_id' => htmlentities($fetch['approver_id']),
+							'count' => $valid
+					);
+			}
+		}
+		public function approver_account($approver_id){
+			$stmt = $this->conn->prepare("SELECT * FROM `tbl_approver` WHERE `approver_id` = ?") or die($this->conn->error);
+			$stmt->bind_param("i", $approver_id);
+			if($stmt->execute()){
+					$result = $stmt->get_result();
+					$fetch = $result->fetch_array();
+					return array(
+							'fullname'=> $fetch['fullname']
+					);
+			}   
+		}
+	
+
+
 
 
 		public function add_employee($employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents){
