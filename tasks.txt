@@ -468,3 +468,6 @@ AFTER HARD RESET:
 		-> if approver approves, status is changed to "For Next Approval", enabling (not sure, double check) the approve/reject buttons for admin.
 			-> if approver rejects, status is changed to "Rejected".
 		-> data flow diagram in logbook.
+
+- TODO: Enrollment Procedure Video for Tr. Camille
+	- first draft sent.
