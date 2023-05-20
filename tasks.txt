@@ -471,3 +471,18 @@ AFTER HARD RESET:
 
 - TODO: Enrollment Procedure Video for Tr. Camille
 	- first draft sent.
+
+20/05/23
+
+- new folder "Put in Linux Webserver" in desktop of laptop
+	- put in copies of cdbs and _cdbs from data folder of 192.168.20.5, as well sa "LRC" from "Website"
+		- might need ibdata1 file from old Webserver
+	- tried copy pasting raw sql files in /opt/lampp/var/mysql.
+		- php pages are broken. 
+	- tried exporting these dbs after pasting, then importing back in.
+		- same result.
+	- tried exporting from old PHPMyadmin in 192.168.20.5/phpmyadmin
+		- same result.
+
+- edited enrollment procedure video for Tr. Camille and Sr. Rosa
+	- video is complete, ready to submit second draft, but cannot download as .mp4 as some of the pictures are Canva Pro.
