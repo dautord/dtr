@@ -32,10 +32,10 @@ error_reporting(E_ALL);
         });
     </script>
 
-    <title>CDBS Timekeeping System</title>
+    <title>Daily Time Record</title>
 </head>
 <nav class="navbar navbar-expand-lg" style="background-color: #001b69;">
-    <a class="navbar-brand" href="#"><strong style="color: #fff"><i class='fa fa-user-clock'></i> CDBS Timekeeping QR Scanner</strong></a>
+    <a class="navbar-brand" href="#"><strong style="color: #fff"><i class='fa fa-user-clock'></i> DTR QR Scanner</strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
