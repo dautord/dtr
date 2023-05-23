@@ -529,3 +529,25 @@ Sr. Rosa's Mac "suddenly asked for password when it didnt have one before. could
 		- I understand how it would be confusing to non techy people. 
 
 renamed CDBS Timekeeping System to Daily Time Record as per sir Holy's request. headers and footers for admin, approver, and employee. 
+
+23/05/23
+
+- had meeting w/ tr. camille and sr. rosa for clarification of the specifics of the uniform to be included in the video 
+- started upload of "Website" folder from 192.168.20.5 to GDrive
+- autostart XAMPP on Linux Webserver
+	- so that it will restart on power loss by itself. (e.g. power loss at night -> people can't time-in the next day if wala pa si Sir to manually start it.)
+- expressed my intent to quit work to Tr. Olive
+
+TODO: Last day on June 30 letter
+TODO: Documentation + Data Flow diagrams
+TODO: Enrollment Procedure Video updates 
+TODO: DTR System Phase 2 updates
+TODO: On monday, Format win 7 pc at the back as slave. bind address in my.ini for master -> 0.0.0.0 
+
+- downloading "Website" from Linux Webserver
+	- might take a while, start early in the day.
+		- still doesnt fix the problem. the issue is that the code is deprecated for the new xampp version. 
+		- last resort is to just use the old system alongside the new dtr system on the new linux webserver.
+
+- during enrollment, open comp lab, 10 PCs, alternately spaced, for assistance with people who will use the portal in school.
+- done with third draft of enrollment procedure video, sent to Tr. Camille.
