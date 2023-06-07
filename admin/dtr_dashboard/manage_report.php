@@ -21,14 +21,12 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-    
             <div class="card">
-<!--               <div class="card-header">
-                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
-                 <i class="fa fa-plus"></i> Add Attendance
-                </button>
-              </div> --><br>
-              <div class = "form-inline" style="margin-left: 10px">
+              <div class="card-header">
+                 <h5>Note:</h5>
+                 <p>Input a date range to display the generate buttons.</p>
+              </div><br>
+              <div class = "form-inline" style="margin-left: 20px">
                 <label>Date:</label>
                 <input type = "text" class = "form-control" placeholder = "Start"  id = "date1" autocomplete="off" />
                 <label>To</label>
