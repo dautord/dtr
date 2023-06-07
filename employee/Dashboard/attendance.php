@@ -75,13 +75,13 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>EmployeeID No.</th>
+                    <th>Employee No.</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Time In</th>
                     <th>Time Out</th>
                     <th>Log Date</th>        
-                    <th>Status</th>
+                    <!-- <th>Status</th> -->
                   </tr>
                   </thead>
                   <tbody>
@@ -101,7 +101,7 @@
                     <td><?= $row['time_out']; ?></td>
                     <td><?= htmlentities(date("M d, Y",strtotime($row['logdate']))); ?></td>
 
-                    <td>
+                    <!-- <td>
                       <?php
                         $Timein = $row['time_in'];
                         $Timein = str_replace(":AM", " AM", $Timein);
@@ -164,7 +164,7 @@
                           }
                         }
                       ?>
-                    </td>
+                    </td> -->
                   </tr>
                 <?php }?>
                 </table>

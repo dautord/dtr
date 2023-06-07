@@ -28,13 +28,13 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>QR Image</th>
-                    <th>EmployeeID No.</th>
+                    <!-- <th>QR Image</th> -->
+                    <th>Employee No.</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Designation</th>
                     <th>Department</th>
-                    <th>QR Code</th>
+                    <!-- <th>QR Code</th> -->
                     
                   </tr>
                   </thead>
@@ -46,13 +46,13 @@
                   ?>
                 <?php foreach ($emp as $row) { ?>
                   <tr>
-                    <td><center><a href="../../qrcode_images/<?= $row['employee_idno']; ?>.png" download/> <img src="../../qrcode_images/<?= $row['employee_idno']; ?>.png" width="50px" height="50px"></a></center></td>
-                    <td><?= $row['employee_idno']; ?></td>
+                    <!-- <td><center><a href="../../qrcode_images/<?= $row['employee_idno']; ?>.png" download/> <img src="../../qrcode_images/<?= $row['employee_idno']; ?>.png" width="50px" height="50px"></a></center></td> -->
+                    <td><?= $row['qr_code']; ?></td>
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?= $row['designation']; ?></td>
                     <td><?= $row['department']; ?></td>
-                    <td><?= $row['qr_code']; ?></td>
+                    <!-- <td><?= $row['qr_code']; ?></td> -->
 
                   </tr>
                <?php }?>
