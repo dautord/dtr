@@ -486,3 +486,8 @@ AFTER HARD RESET:
 
 - edited enrollment procedure video for Tr. Camille and Sr. Rosa
 	- video is complete, ready to submit second draft, but cannot download as .mp4 as some of the pictures are Canva Pro.
+
+07/06/23
+
+- look for ways on how to make instascan js work on an unsecured connection
+- approver: admin but only shows dashboard with leave approval. 

@@ -61,7 +61,7 @@ error_reporting(E_ALL);
 
 </style>
 
-<body onload="startTime()">
+<body>
     <br>
     <div class="container">
         <div class="row">
@@ -128,6 +128,33 @@ error_reporting(E_ALL);
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script>
+        function startTime() {
+            var today = new Date();
+            var hr = today.getHours();
+            var min = today.getMinutes();
+            var sec = today.getSeconds();
+            ap = (hr < 12) ? "<span>AM</span>" : "<span>PM</span>";
+            hr = (hr == 0) ? 12 : hr;
+            hr = (hr > 12) ? hr - 12 : hr;
+            //Add a zero in front of numbers<10
+            hr = checkTime(hr);
+            min = checkTime(min);
+            sec = checkTime(sec);
+            document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
+            
+            var time = setTimeout(function(){ startTime() }, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+        window.onload = function(){
+            startTime();
+        }
+    </script>
 </body>
 
 </html>
