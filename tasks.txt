@@ -539,7 +539,7 @@ renamed CDBS Timekeeping System to Daily Time Record as per sir Holy's request. 
 	- so that it will restart on power loss by itself. (e.g. power loss at night -> people can't time-in the next day if wala pa si Sir to manually start it.)
 - expressed my intent to quit work to Tr. Olive
 
-TODO: Last day on June 30 letter
+TODO: Last day on June 30 letter 
 TODO: Documentation + Data Flow diagrams
 TODO: Enrollment Procedure Video updates 
 TODO: DTR System Phase 2 updates
@@ -557,3 +557,14 @@ TODO: On monday, Format win 7 pc at the back as slave. bind address in my.ini fo
 
 - look for ways on how to make instascan js work on an unsecured connection
 - approver: admin but only shows dashboard with leave approval. 
+- changed headers from "Daily Time Record" to "DTR System"
+
+TODO: Last day on June 30 - Clearance from Ms. Rechelle
+TODO: Documenation (with dfds)
+TODO: Get the server up (win7 master) -> look for .bat file that generates new SSL to make instascan work on server 
+
+Startup
+- installed apache and mysql as a service in win7 master to make it launch on startup
+	- chrome: continue to specific page/s: localhost/dtr, 
+	- add XAMPP to shell::startup (win7)
+- rename files in win7 master 
