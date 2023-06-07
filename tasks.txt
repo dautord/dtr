@@ -487,6 +487,72 @@ AFTER HARD RESET:
 - edited enrollment procedure video for Tr. Camille and Sr. Rosa
 	- video is complete, ready to submit second draft, but cannot download as .mp4 as some of the pictures are Canva Pro.
 
+
+22/05/23
+- Phase 2 Updates to do:
+	- TODO: leave status to accommodate approver user.
+	- TODO: My Information, editable form for employee and viewable by admin.
+	- TODO: Manage Buttons: all working buttons in the website compiled into one page.
+
+- Phase 2 Updates DONE:
+	- generated report: removed redudant entries
+
+		- arranged report in alphabetical and logdate order.
+		- changed file type to .csv and made adjustments to the code accordingly.
+		- show each day in report. if selected 1-15, show each day.
+			- shows all days including Saturday and Sunday. -> dont know how to handle this
+
+	- add attendance manually.
+	- magna carta for women leave added in the system.
+
+- XAMPP mysql error on Win 11 laptop
+	- TODO: fix to develop on localhost.
+
+- XAMPP on Linux Webserver autostarts on startup. 
+- old LRC system might be deprecated and not compatible with the newest version of XAMPP on the Linux webserver.
+	- changed LRC db connection pages: dbclass_inc2.php -> no effect. 
+		- TODO: try copying the whole Website folder to the Linux PC.
+			- didnt finish, redo the whole thing tomorrow.
+
+- continued making the Enrollment Procedure Video for Tr. Camille
+	- included uniform samples and adjusted the slide timings so that viewers can read the steps at a leisurely pace. (20s on steps.)
+	- separated uniforms so that 1 uniform per slide. also thickened the arrows pointing towards the next step.
+
+Video Remarks:
+	- tr. camille: OK
+	- tr. carol: pending
+	- sr. rosa: 1 step per slide -> bigger and bold front
+		- if its possible to include uniform instructions (e.g. white shoes in classroom, sock length, etc.)
+			- ask tr. camille
+
+Sr. Rosa's Mac "suddenly asked for password when it didnt have one before. couldnt use for 2 days."
+	- press enter. her mac logged out, and you just have to press enter. weird design. it doesnt have a password but it asks for one. 
+		- I understand how it would be confusing to non techy people. 
+
+renamed CDBS Timekeeping System to Daily Time Record as per sir Holy's request. headers and footers for admin, approver, and employee. 
+
+23/05/23
+
+- had meeting w/ tr. camille and sr. rosa for clarification of the specifics of the uniform to be included in the video 
+- started upload of "Website" folder from 192.168.20.5 to GDrive
+- autostart XAMPP on Linux Webserver
+	- so that it will restart on power loss by itself. (e.g. power loss at night -> people can't time-in the next day if wala pa si Sir to manually start it.)
+- expressed my intent to quit work to Tr. Olive
+
+TODO: Last day on June 30 letter
+TODO: Documentation + Data Flow diagrams
+TODO: Enrollment Procedure Video updates 
+TODO: DTR System Phase 2 updates
+TODO: On monday, Format win 7 pc at the back as slave. bind address in my.ini for master -> 0.0.0.0 
+
+- downloading "Website" from Linux Webserver
+	- might take a while, start early in the day.
+		- still doesnt fix the problem. the issue is that the code is deprecated for the new xampp version. 
+		- last resort is to just use the old system alongside the new dtr system on the new linux webserver.
+
+- during enrollment, open comp lab, 10 PCs, alternately spaced, for assistance with people who will use the portal in school.
+- done with third draft of enrollment procedure video, sent to Tr. Camille.
+
 07/06/23
 
 - look for ways on how to make instascan js work on an unsecured connection
