@@ -575,7 +575,9 @@ WIN 7 MASTER IPv4: 192.168.10.108
 	- allowed apache through windows firewall
 
 found out how to bypass secure connection to allow instascan to work on master pc. USE PORT 443 with https and it works.
-
+	- safari and internet explorer incompatible.
+	- compatible on most devices. even works on ipad and android. for some reason my iphone doesnt work. 
+	
 sir holy wants linux webserver to work, try changing file path in code from backslashes to forward slashes. 
 	- nevermind, proceed with win 7. 
 
