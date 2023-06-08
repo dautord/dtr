@@ -45,6 +45,7 @@
                       </div>
                       <div class="modal-body">
                         <!-- Form to upload QR code -->
+                        <p>Note: Make sure to add the employee first before uploading their QR code.</p>
                         <p>Note: Filename of QR Code must be identical to employee number to reflect their respective QR codes in the QR Image column (e.g. 0911.png for employee 0911).</p>
                         <form action="upload_qr_code.php" method="POST" enctype="multipart/form-data">
                           <div class="form-group">
