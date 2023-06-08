@@ -17,9 +17,9 @@
               </div>
             </div>
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">NO</button>
               <input type="hidden" id="delete_employeeid" class="form-control form-control-sm">
-              <button type="button" class="btn btn-primary" id="delete_emp">YES</button>
+              <button type="button" class="btn btn-danger" id="delete_emp">YES</button>
             </div>
             </form>
           </div>

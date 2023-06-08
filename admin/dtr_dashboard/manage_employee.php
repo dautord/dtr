@@ -31,6 +31,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
                   Upload QR Code
                 </button>
+                
 
                 <!-- Modal -->
                 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -44,6 +45,7 @@
                       </div>
                       <div class="modal-body">
                         <!-- Form to upload QR code -->
+                        <p>Note: Filename of QR Code must be identical to employee number to reflect their respective QR codes in the QR Image column (e.g. 0911.png for employee 0911).</p>
                         <form action="upload_qr_code.php" method="POST" enctype="multipart/form-data">
                           <div class="form-group">
                             <label for="employeeId">Employee ID</label>
