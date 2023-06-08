@@ -16,12 +16,7 @@
       $leave_id = $_POST['leave_id'];
       $employee_id = $_POST['employee_id'];
       $leave_type = $_POST['leave_type'];
-      $new_status = 'Approved';
-    
-      // Calculate leave balance only if leave type is not 'lwop'
-      if ($leave_type !== 'lwop') {
-        $conn->calculateEmpLeaveBalanceOnLeaveApproval($employee_id, $leave_type, $leave_id);
-      }
+      $new_status = 'For Next Approval';
     
       // Update the leave status in your database using your adminSetLeaveStatus function
       $result = $conn->adminSetLeaveStatus($leave_id, $new_status); 
@@ -238,6 +233,9 @@
                             break;
                           case "Approved":
                             $statusClass = "status-approved";
+                            break;
+                          case "For Next Approval":
+                            $statusClass = "status-pending";
                             break;
                         }
                       ?>

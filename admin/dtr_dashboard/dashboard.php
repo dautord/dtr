@@ -239,6 +239,9 @@
                           case "Approved":
                             $statusClass = "status-approved";
                             break;
+                          case "For Next Approval":
+                            $statusClass = "status-pending";
+                            break;
                         }
                       ?>
                       <tr class="<?php echo $statusClass; ?>">
@@ -252,7 +255,7 @@
                         <td><?php echo $leaveRequest['datetime_requested']; ?></td>
                         <td><?php echo $leaveRequest['status']; ?></td>
                         <td>
-                        <?php if($leaveRequest["status"] == "Pending") { ?>
+                        <?php if($leaveRequest["status"] == "For Next Approval") { ?>
                           <form method="post" onsubmit="return confirmAction();">
                             <input type="hidden" name="leave_id" value="<?= $leaveRequest['leave_id'] ?>" />
                             <input type="hidden" name="employee_id" value="<?= $leaveRequest['employee_id'] ?>" />
@@ -261,6 +264,16 @@
 
                             <button type="submit" name="approve" class="btn btn-success btn-block my-btn">Approve</button>
                             <button type="submit" name="reject" class="btn btn-danger btn-block my-btn">Reject</button>
+                          </form>
+                        <?php } ?>
+                        <?php if($leaveRequest["status"] == "Pending") { ?>
+                          <form method="post" onsubmit="return confirmAction();">
+                            <input type="hidden" name="leave_id" value="<?= $leaveRequest['leave_id'] ?>" />
+                            <input type="hidden" name="employee_id" value="<?= $leaveRequest['employee_id'] ?>" />
+                            <input type="hidden" name="leave_type" value="<?= $leaveRequest['leave_type'] ?>" />
+                            <input type="hidden" name="confirm" id="confirm" />
+
+                            <button type="submit" name="approve" class="btn btn-success btn-block my-btn">Approve w/o AP Approval</button>
                           </form>
                         <?php } ?>
                         </td>

@@ -141,7 +141,9 @@
                   data.append('department', department);
 
 
-              if (first_name === '' ||  last_name ==='' ||  bdate ==='' ||  complete_address ===''||  cnumber ===''){
+              if (first_name === '' ||  last_name ==='' 
+              // ||  bdate ==='' ||  complete_address ===''||  cnumber ===''
+                 ){
                       $('#emp').html('<div class="alert alert-danger"> Required All Fields!</div>');
                     }else{
                        $.ajax({

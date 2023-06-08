@@ -601,3 +601,7 @@ sir holy wants linux webserver to work, try changing file path in code from back
 - added upload qrcode in manage_employee.php in admin
 
 - changed color of buttons on confirmation of delete employee. red is to confirm delete. 
+
+- add new employees to the system and make their qr codes for ID  
+
+- removed required fields to add new employees

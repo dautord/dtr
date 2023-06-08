@@ -225,6 +225,9 @@
                           case "Approved":
                             $statusClass = "status-approved";
                             break;
+                          case "For Next Approval":
+                            $statusClass = "status-pending";
+                            break;
                         }
                       ?>
                       <tr class="<?php echo $statusClass; ?>">
