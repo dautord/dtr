@@ -27,8 +27,39 @@
                  <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
                  <i class="fa fa-plus"></i> Add Employee
                 </button>
-              </div>
+                <!-- Button to trigger the modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                  Upload QR Code
+                </button>
 
+                <!-- Modal -->
+                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="uploadModalLabel">Upload QR Code</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Form to upload QR code -->
+                        <form action="upload_qr_code.php" method="POST" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <label for="employeeId">Employee ID</label>
+                            <input type="text" class="form-control" id="employeeId" name="employee_id" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="qrCode">QR Code</label>
+                            <input type="file" class="form-control-file" id="qrCode" name="qr_code" required accept=".png, .jpg, .jpeg">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -78,6 +109,42 @@
  <?php include 'modal/addemployee_modal.php';?>
  <?php include 'modal/editemployee_modal.php';?>
  <?php include 'modal/deleteemployee_modal.php';?>
+
+<script>
+  $(document).ready(function() {
+    // Handle the click event for the upload QR code icon
+    $('.upload_QR').click(function() {
+      var employeeId = $(this).data('id');
+      $('#employee-id').val(employeeId);
+    });
+
+    // Handle the form submission for uploading QR code
+    $('#upload-qr-form').submit(function(event) {
+      event.preventDefault();
+
+      var employeeId = $('#employee-id').val();
+      var qrCodeFile = $('#qr-code').prop('files')[0];
+      var formData = new FormData();
+      formData.append('employee_id', employeeId);
+      formData.append('qr_code', qrCodeFile);
+
+      $.ajax({
+        url: 'upload_qr_code.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          // Reload the page after successful upload
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          console.log(error);
+        }
+      });
+    });
+  });
+</script>
  <script>
        $(document).ready(function() {   
            load_data();    
@@ -177,5 +244,6 @@
 
   });
 </script>
+
 </body>
 </html>

@@ -589,7 +589,7 @@ sir holy wants linux webserver to work, try changing file path in code from back
 
 	- add edit password in manage employee in admin DONE
 	
-	- attach qr code to add / edit employee in admin 
+	- attach qr code to add / edit employee in admin DONE
 
 	- add GS, JHS, SHS approver, case. 
 		- also add god mode approve of admin 
@@ -597,4 +597,5 @@ sir holy wants linux webserver to work, try changing file path in code from back
 
 08/06/23
 
-- added edit password in manage employee in admin 
+- added edit password in manage_employee.php in admin 
+- added upload qrcode in manage_employee.php in admin

@@ -114,6 +114,17 @@
 				return true;
 			}
 		}
+			public function update_qr_code($employee_id, $qr_code_path) {
+				$sql = "UPDATE `tbl_employee` SET `qr_code` = ? WHERE `employee_id` = ?";
+				$stmt = $this->conn->prepare($sql);
+				$stmt->bind_param("si", $qr_code_path, $employee_id);
+				if ($stmt->execute()) {
+						$stmt->close();
+						$this->conn->close();
+						return true;
+				}
+		}
+	
 
 		public function delete_employee($employee_id){
       error_reporting(0);
