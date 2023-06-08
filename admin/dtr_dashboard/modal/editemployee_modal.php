@@ -15,10 +15,10 @@
                   <label>Employee ID No.:</label>
                   <input type = "text"  id = "edit_employeeidno" alt="employee_idno"  class = "form-control" readonly/>
                 </div>
-<!--                   <div class = "form-group">
+                <div class = "form-group">
                   <label>Password:</label>
-                  <input type = "password"  id = "password" alt="password"  maxlength="15" minlength="6" class = "form-control" placeholder="atleast 6 digit" />
-                </div> -->
+                  <input type = "text"  id = "edit_password" alt="password"  maxlength="15" minlength="6" class = "form-control" placeholder="Minimum of 6 characters, max of 15" />
+                </div>
                 <div class = "form-group">
                   <label>Firstname:</label>
                   <input type = "text" id="edit_firstname" alt="first_name" class = "form-control" />
@@ -139,7 +139,7 @@
               btn.addEventListener('click', () => {
 
                   const employee_idno = document.querySelector('input[id=edit_employeeidno]').value;
-                  // const password = document.querySelector('input[id=password]').value;
+                  const password = document.querySelector('input[id=edit_password]').value;
                   const first_name = document.querySelector('input[id=edit_firstname]').value;
                   const middle_name = document.querySelector('input[id=edit_middlename]').value;
                   const last_name = document.querySelector('input[id=edit_lastname]').value;
@@ -164,7 +164,7 @@
                   var data = new FormData(this.form);
 
                   data.append('employee_idno', employee_idno);
-                  // data.append('password', password);
+                  data.append('password', password);
                   data.append('first_name', first_name);
                   data.append('middle_name', middle_name);
                   data.append('last_name', last_name);

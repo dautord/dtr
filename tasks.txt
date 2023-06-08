@@ -585,11 +585,16 @@ sir holy wants linux webserver to work, try changing file path in code from back
 
 	- delete status in employee DONE 
 	- delete qr image and qr code column in my info. qr code to employee id DONE
-	- add note: to generate report, add date range
+	- add note: to generate report, add date range DONE
 
-	- add edit password in manage employee in admin 
+	- add edit password in manage employee in admin DONE
 	
-	- attach qr code to add / edit employee in admin
+	- attach qr code to add / edit employee in admin 
+
 	- add GS, JHS, SHS approver, case. 
 		- also add god mode approve of admin 
 			- do you really want to approve w/o 1st approvers approval? 
+
+08/06/23
+
+- added edit password in manage employee in admin 
