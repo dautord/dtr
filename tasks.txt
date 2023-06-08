@@ -605,3 +605,5 @@ sir holy wants linux webserver to work, try changing file path in code from back
 - add new employees to the system and make their qr codes for ID  
 
 - removed required fields to add new employees
+
+- added 1st approver and god mode approve of admin, still need to figure out how to segregate GS, JHS, and SHS teachers to approver. 
