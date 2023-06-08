@@ -611,5 +611,5 @@ sir holy wants linux webserver to work, try changing file path in code from back
 - fixed order by logdate of attendance.
 	- it was sorting alphabetically the names of the months of the year, instead of the actual date. Changed the date format so that it is ordered by date. 
 
-- TODO: put qr upload inside add employee modal form.
-	- pano kung walang QR code yung teacher dati? - bring up to sir holy 
+- TODO: put qr upload inside add employee modal and edit employee modal 
+- TODO: fix logo, then add admin bulletin. 
