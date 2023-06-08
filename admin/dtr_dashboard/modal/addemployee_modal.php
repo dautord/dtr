@@ -141,10 +141,10 @@
                   data.append('department', department);
 
 
-              if (first_name === '' ||  last_name ==='' 
+              if (first_name === '' ||  last_name === '' || employee_idno === '' || department === '' 
               // ||  bdate ==='' ||  complete_address ===''||  cnumber ===''
                  ){
-                      $('#emp').html('<div class="alert alert-danger"> Required All Fields!</div>');
+                      $('#emp').html('<div class="alert alert-danger"> First Name, Last Name, ID and Department Fields are required.</div>');
                     }else{
                        $.ajax({
                         url: '../../init/controllers/add_employee.php',
