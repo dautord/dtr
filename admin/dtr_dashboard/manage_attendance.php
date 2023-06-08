@@ -106,7 +106,7 @@
                                 <td><?= $row['last_name']; ?></td>
                                 <td><?= $row['time_in']; ?></td>
                                 <td><?= $row['time_out']; ?></td>
-                                <td><?= htmlentities(date("M d, Y",strtotime($row['logdate']))); ?></td>
+                                <td><?= htmlentities(date("Y-m-d", strtotime($row['logdate']))); ?></td>
                                 <td>
                                     <?php
                                         $Timein = $row['time_in'];
@@ -209,5 +209,6 @@
   });
 
 </script>
+
 </body>
 </html>
