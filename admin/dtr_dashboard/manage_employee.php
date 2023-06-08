@@ -24,11 +24,11 @@
     
             <div class="card">
               <div class="card-header">
-                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
+                 <button type="button" class="btn btn-primary float-sm-left" data-toggle="modal" data-target="#modal-default">
                  <i class="fa fa-plus"></i> Add Employee
                 </button>
                 <!-- Button to trigger the modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#uploadModal">
                   Upload QR Code
                 </button>
                 
