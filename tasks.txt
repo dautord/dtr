@@ -616,7 +616,7 @@ sir holy wants linux webserver to work, try changing file path in code from back
 
 09/06/23
 
-- TODO: put qr upload inside add and edit employee modal
+- TODO: put qr upload inside add DONE and edit employee modal
 - TODO: figure out GS, JHS, and SHS Teachers to respective approvers.
 - TODO: fix logo, then add admin bulletin
 - TODO: try after all upgrades to system file path redirects in Linux Webserver 
@@ -626,3 +626,8 @@ finished adding qr upload inside add employe modal, merged add_employee and uplo
 	- added 0s in filename, worked.
 - make employeeidno editable in editemployee_modal.php 
 	- removed readonly, but doesnt reflect in the db when form is submitted. 
+
+- removed "upload QR Code" button from manage_employees. instead, included in add employee. 
+
+- tried to code -> locating the default qr code file in the editemployee_modal.php. 
+	- failed, undid everything. try again tom. 
