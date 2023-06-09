@@ -24,17 +24,17 @@
     
             <div class="card">
               <div class="card-header">
-                 <button type="button" class="btn btn-primary float-sm-left" data-toggle="modal" data-target="#modal-default">
+                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
                  <i class="fa fa-plus"></i> Add Employee
                 </button>
-                <!-- Button to trigger the modal -->
+                <!-- Button to trigger the modal
                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#uploadModal">
                   Upload QR Code
-                </button>
+                </button> -->
                 
 
                 <!-- Modal -->
-                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <!-- <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -42,10 +42,10 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                      </div>
-                      <div class="modal-body">
+                      </div> -->
+                      <!-- <div class="modal-body"> -->
                         <!-- Form to upload QR code -->
-                        <p>Note: Make sure to add the employee first before uploading their QR code.</p>
+                        <!-- <p>Note: Make sure to add the employee first before uploading their QR code.</p>
                         <p>Note: Filename of QR Code must be identical to employee number to reflect their respective QR codes in the QR Image column (e.g. 0911.png for employee 0911).</p>
                         <form action="upload_qr_code.php" method="POST" enctype="multipart/form-data">
                           <div class="form-group">
@@ -56,13 +56,13 @@
                             <label for="qrCode">QR Code</label>
                             <input type="file" class="form-control-file" id="qrCode" name="qr_code" required accept=".png, .jpg, .jpeg">
                           </div>
-                          <button type="submit" class="btn btn-primary">Upload</button>
+                          <button type="submit" c4lass="btn btn-primary">Upload</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
