@@ -27,6 +27,7 @@
                  <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#modal-default">
                  <i class="fa fa-plus"></i> Add Employee
                 </button>
+                <br>
                 <!-- Button to trigger the modal
                 <button type="button" class="btn btn-primary float-sm-right" data-toggle="modal" data-target="#uploadModal">
                   Upload QR Code
