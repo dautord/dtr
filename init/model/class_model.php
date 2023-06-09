@@ -91,7 +91,7 @@
 	
 
 	    public function fetchAll_employees(){ 
-            $sql = "SELECT * FROM  tbl_employee";
+            $sql = "SELECT * FROM  tbl_employee ORDER BY employee_id DESC";
 				$stmt = $this->conn->prepare($sql);
 				$stmt->execute();
 				$result = $stmt->get_result();
