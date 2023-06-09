@@ -4,7 +4,7 @@
 	if(ISSET($_POST)){
 		$conn = new class_model();
 
-		$employee_idno = trim($_POST['employee_idno']);
+		$employee_idno = trim($_POST['employee_idno'], " \t\n\r\0\x0B");
 		$password = trim($_POST['password']);
 	    $first_name = trim(ucfirst($_POST['first_name']));
 		$middle_name = trim(ucfirst($_POST['middle_name']));

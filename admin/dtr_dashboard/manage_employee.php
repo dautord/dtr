@@ -78,24 +78,30 @@
                   </tr>
                   </thead>
                   <tbody>
-                 <?php 
-                      $conn = new class_model();
-                      $emp = $conn->fetchAll_employees();
+                  <?php 
+                    $conn = new class_model();
+                    $emp = $conn->fetchAll_employees();
+
+                    foreach ($emp as $row) {
+                      // Extract the filename without the extension
+                      $qrcodePath = $row['qr_code']; // Assuming this is the variable holding the QR code filepath
+                      $qrcodeFilename = pathinfo($qrcodePath, PATHINFO_FILENAME);
                   ?>
-                <?php foreach ($emp as $row) { ?>
-                  <tr>
-                    <td><center><img src="../../qrcode_images/<?= $row['employee_idno']; ?>.png" width="50px" height="50px"></center></td>
-                    <td><?= $row['qr_code']; ?></td>
-                    <td><?= $row['first_name']; ?></td>
-                    <td><?= $row['last_name']; ?></td>
-                    <td><?= $row['designation']; ?></td>
-                    <td><?= $row['department']; ?></td>
-                    <td><?= $row['password']; ?></td>
-                    <td class="align-right">
-                        <i class="fa fa-edit edit_E" style="color: blue" data-toggle="modal" data-target="#edit-employee" data-id="<?= htmlentities($row['employee_id']); ?>"></i> | <i class="fa fa-trash-alt delete_E" style="color: red" data-toggle="modal" data-target="#delete-employee" data-del="<?= htmlentities($row['employee_id']); ?>"></i>
-                    </td>
-                  </tr>
-               <?php }?>
+                    <tr>
+                      <td><center><img src="../../qrcode_images/<?= $qrcodeFilename; ?>.png" width="50px" height="50px"></center></td>
+                      <td><?= $qrcodeFilename; ?></td>
+                      <td><?= $row['first_name']; ?></td>
+                      <td><?= $row['last_name']; ?></td>
+                      <td><?= $row['designation']; ?></td>
+                      <td><?= $row['department']; ?></td>
+                      <td><?= $row['password']; ?></td>
+                      <td class="align-right">
+                        <i class="fa fa-edit edit_E" style="color: blue" data-toggle="modal" data-target="#edit-employee" data-id="<?= htmlentities($row['employee_id']); ?>"></i> | 
+                        <i class="fa fa-trash-alt delete_E" style="color: red" data-toggle="modal" data-target="#delete-employee" data-del="<?= htmlentities($row['employee_id']); ?>"></i>
+                      </td>
+                    </tr>
+                  <?php } ?>
+
                 </table>
               </div>
             </div>

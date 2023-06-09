@@ -3,7 +3,7 @@ require_once "../../init/model/class_model.php";
 if (isset($_POST)) {
     $conn = new class_model();
 
-    $employee_id = trim($_POST['employee_id']);
+    $employee_idno = trim($_POST['employee_idno']);
     $qr_code = $_FILES['qr_code'];
 
     // Specify the directory where the QR code images will be stored
@@ -20,7 +20,7 @@ if (isset($_POST)) {
         // Move the uploaded file to the designated directory
         if (move_uploaded_file($qr_code['tmp_name'], $directory . $filename)) {
             // Update the employee's QR code path in the database
-            $update = $conn->update_qr_code($employee_id, $directory . $filename);
+            $update = $conn->update_qr_code($employee_idno, $directory . $filename);
 
             if ($update) {
                 echo '<div class="alert alert-success">QR Code uploaded successfully!</div>';

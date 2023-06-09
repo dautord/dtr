@@ -79,15 +79,16 @@
 
 
 
-		public function add_employee($employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents){
-	       $stmt = $this->conn->prepare("INSERT INTO `tbl_employee` (`employee_idno`, `password`, `first_name`, `middle_name`, `last_name`, `bdate`, `complete_address`, `cnumber`,  `gender`, `civilstatus`, `datehire`, `designation`, `department`, `qr_code`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
-			$stmt->bind_param("ssssssssssssss", $employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $codeContents);
-			if($stmt->execute()){
-				$stmt->close();
-				$this->conn->close();
-				return true;
+		public function add_employee($employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $qr_code, $codeContents) {
+			$stmt = $this->conn->prepare("INSERT INTO `tbl_employee` (`employee_idno`, `password`, `first_name`, `middle_name`, `last_name`, `bdate`, `complete_address`, `cnumber`,  `gender`, `civilstatus`, `datehire`, `designation`, `department`, `qr_code`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
+			$stmt->bind_param("ssssssssssssss", $employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $qr_code);
+			if ($stmt->execute()) {
+					$stmt->close();
+					$this->conn->close();
+					return true;
 			}
-		}
+	}
+	
 
 	    public function fetchAll_employees(){ 
             $sql = "SELECT * FROM  tbl_employee";
@@ -107,17 +108,17 @@
 
 			$sql = "UPDATE `tbl_employee` SET  `employee_idno` = ?, `password` = ?, `first_name` = ?, `middle_name` = ?,  `last_name` = ? ,  `bdate` = ?,  `complete_address` = ?,  `cnumber` = ?,  `gender` = ?,  `civilstatus` = ?,  `datehire` = ?,  `designation` = ?,  `department` = ?, `sick_leave` = ?, `vacation_leave` = ?, `paternal_leave` = ?, `maternal_leave` = ?, `magna_carta_leave` = ?, `emergency_leave` = ?, `solo_parent_leave` = ? WHERE employee_id = ?";
 			$stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("issssssssssssiiiiiiii", $employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $magna_carta_leave, $emergency_leave, $solo_parent_leave, $employee_id);
+			$stmt->bind_param("sssssssssssssiiiiiiii", $employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber,  $gender, $civilstatus, $datehire, $designation, $department, $sick_leave, $vacation_leave, $paternal_leave, $maternal_leave, $magna_carta_leave, $emergency_leave, $solo_parent_leave, $employee_id);
 			if($stmt->execute()){
 				$stmt->close();
 				$this->conn->close();
 				return true;
 			}
 		}
-			public function update_qr_code($employee_id, $qr_code_path) {
-				$sql = "UPDATE `tbl_employee` SET `qr_code` = ? WHERE `employee_id` = ?";
+			public function update_qr_code($employee_idno, $qr_code_path) {
+				$sql = "UPDATE `tbl_employee` SET `qr_code` = ? WHERE `employee_idno` = ?";
 				$stmt = $this->conn->prepare($sql);
-				$stmt->bind_param("si", $qr_code_path, $employee_id);
+				$stmt->bind_param("si", $qr_code_path, $employee_idno);
 				if ($stmt->execute()) {
 						$stmt->close();
 						$this->conn->close();

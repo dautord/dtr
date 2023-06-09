@@ -13,7 +13,7 @@
         <form method = "POST" autocomplete="off">
               <div class = "form-group">
                   <label>Employee ID No.:</label>
-                  <input type = "text"  id = "edit_employeeidno" alt="employee_idno"  class = "form-control" readonly/>
+                  <input type = "text"  id = "edit_employeeidno" alt="employee_idno"  class = "form-control"/>
                 </div>
                 <div class = "form-group">
                   <label>Password:</label>
