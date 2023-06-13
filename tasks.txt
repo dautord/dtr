@@ -631,3 +631,20 @@ finished adding qr upload inside add employe modal, merged add_employee and uplo
 
 - tried to code -> locating the default qr code file in the editemployee_modal.php. 
 	- failed, undid everything. try again tom. 
+
+13/06/23
+
+- TODO: put qr upload DONE
+- TODO: figure out GS, JHS, and SHS departments and leave approvers.
+- TODO: fix logo, then add admin bulletin 
+- TODO: try after all upgrades to system file path redirects in Linux Webserver
+- TODO: Documentation
+- TODO: clearance
+
+- updated vscode and extensions to the latest version.
+
+- front-end of employee, approver, and admin better 
+	- goal: make it adaptive depending on the device 
+- leave status to accommodate approver user.
+	- TODO: which leave request shows up based on employee dept.
+	
