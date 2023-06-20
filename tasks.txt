@@ -657,4 +657,5 @@ finished adding qr upload inside add employe modal, merged add_employee and uplo
 	- webcam is plug and play with linux.
 		- TODO: reformat linux pc. 
 - removed disable leave request form button for approver. only admin should be able to do this. 
+- TODO: clearance from ms. rechelle next week
 
