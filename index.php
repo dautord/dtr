@@ -32,6 +32,27 @@ error_reporting(E_ALL);
         });
     </script>
 
+    <style>
+        .logo-img {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        #test {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .bulletin-board {
+            font-family: inherit; /* Use the same font as the page */
+            border: 1px solid #001b69; /* Add borders */
+            width: 300px; /* Set the width to match the clock */
+            margin-top: 20px; /* Add margin between the clock and the board */
+            margin-bottom: 20px; /* Add margin at the bottom */
+            padding: 10px; /* Add padding for spacing inside the board */
+        }
+    </style>
+
     <title>Daily Time Record</title>
 </head>
 <nav class="navbar navbar-expand-lg" style="background-color: #001b69;">
@@ -50,7 +71,7 @@ error_reporting(E_ALL);
 
     </div>
 </nav>
-<br>
+
 <style>
 
 #test{
@@ -66,10 +87,11 @@ error_reporting(E_ALL);
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-            <img src="logo.png" style="height: 30%;position: fixed;right: 67%;bottom: 63%;">                
+            <!-- <img src="logo.png" style="height: 30%;position: fixed;right: 67%;bottom: 63%;">    -->
+            <img src="logo.png" class="logo-img">
                 <!-- <center>
                     <p style="border: 1px solid #001b69;background-color: #001b69;color: #fff"><i class="fas fa-qrcode"></i> TAP HERE</p>
-                </center> --><br><br><br><br><br><br><br><br><br>
+                </center> -->
                 <video id="test"></video>
                 <?php include 'config/attendance_process.php';?>
                 
@@ -83,6 +105,25 @@ error_reporting(E_ALL);
                         <div id="date" style="color: #fff"><i class="fas fa-calendar"></i> <?php echo date('l, F j, Y'); ?></div>
                     </div>
                 </div>
+
+            <!-- Bulletin board content -->
+                <!-- <div class="col-md-4">
+               
+                <div class="bulletin-board" style="text-align: center;">
+                    <h3>Bulletin Board</h3>
+                    <div id="slideshow">
+                        <img src="announcement_image1.jpg" alt="Announcement Image 1">
+                        <img src="announcement_image2.jpg" alt="Announcement Image 2">
+                        <img src="announcement_image3.jpg" alt="Announcement Image 3">
+                    </div>
+                    <p id="announcement"></p>
+                </div>
+                </div> -->
+
+
+
+
+            
                 <form action="" method="POST" class="form-harizontal" style="display: none;">
 
                     <label><b>SCAN QR CODE</b></label>
@@ -155,6 +196,30 @@ error_reporting(E_ALL);
             startTime();
         }
     </script>
+    <script>
+$(document).ready(function() {
+    var images = $("#slideshow img");
+    var announcement = $("#announcement");
+    var currentIndex = 0;
+    
+    // Function to display the current image and update the announcement text
+    function showImage(index) {
+        images.hide();
+        images.eq(index).fadeIn();
+        announcement.text("Announcement " + (index + 1));
+    }
+    
+    // Start the slideshow
+    function startSlideshow() {
+        showImage(currentIndex);
+        currentIndex = (currentIndex + 1) % images.length;
+        setTimeout(startSlideshow, 3000); // Change image every 3 seconds
+    }
+    
+    startSlideshow(); // Start the initial slideshow
+});
+</script>
+
 </body>
 
 </html>

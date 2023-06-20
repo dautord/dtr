@@ -52,6 +52,14 @@
               </p>
             </a>
           </li>
+          <!-- <li class="nav-item">
+            <a href="bulletin_board.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'bulletin_board.php') ? 'active' : ''; ?>">
+              <i class="nav-icon fa fa-megaphone"></i>
+              <p>
+                Bulletin Board
+              </p>
+            </a>
+          </li> -->
         </ul>
       </nav>
     </div>

@@ -633,6 +633,26 @@
 		        }
 		        return $data;
 		}
+		public function addBulletin($title, $content) {
+			$sql = "INSERT INTO tbl_bulletin_board (title, content, created_at) VALUES (?, ?, NOW())";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bind_param("ss", $title, $content);
+			$result = $stmt->execute();
+			$stmt->close();
+			return $result;
+	}
+
+	public function getAllBulletins() {
+			$sql = "SELECT * FROM tbl_bulletin_board ORDER BY created_at DESC";
+			$result = $this->conn->query($sql);
+			$bulletins = array();
+			if ($result && $result->num_rows > 0) {
+					while ($row = $result->fetch_assoc()) {
+							$bulletins[] = $row;
+					}
+			}
+			return $bulletins;
+	}
 	
 	}	
 ?>

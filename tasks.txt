@@ -648,3 +648,13 @@ finished adding qr upload inside add employe modal, merged add_employee and uplo
 - leave status to accommodate approver user.
 	- TODO: which leave request shows up based on employee dept.
 	
+20/06/23
+
+- cleaned up the root index.php. 
+	- added a slideshow called bulletin board -> future functionality that admin can upload an image and a caption and it will appear.
+- TODO: continue doing Documentation
+- setup the PC in the lobby. 
+	- webcam is plug and play with linux.
+		- TODO: reformat linux pc. 
+- removed disable leave request form button for approver. only admin should be able to do this. 
+
