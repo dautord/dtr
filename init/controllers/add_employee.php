@@ -27,13 +27,13 @@ if (isset($_POST)) {
         // Retrieve the original filename of the uploaded QR code
         $original_filename = $_FILES['qrCode']['name'];
 
-        // Generate a unique filename for the uploaded QR code
-        $filename = basename($_FILES['qrCode']['name']);
+        // Extract the employee ID from the original filename
+        $filename = pathinfo($original_filename, PATHINFO_FILENAME);
 
-        // Move the uploaded file to the designated directory
-        if (move_uploaded_file($_FILES['qrCode']['tmp_name'], $directory . $filename)) {
-            // Update the employee's QR code path in the database
-            $update = $conn->add_employee($employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber, $gender, $civilstatus, $datehire, $designation, $department, $directory . $filename, $codeContents);
+        // Move the uploaded file to the designated directory with the modified filename
+        if (move_uploaded_file($_FILES['qrCode']['tmp_name'], $directory . $original_filename)) {
+            // Update the employee's QR code path in the database with the modified filename
+            $update = $conn->add_employee($employee_idno, $password, $first_name, $middle_name, $last_name, $bdate, $caddress, $cnumber, $gender, $civilstatus, $datehire, $designation, $department, $filename, $codeContents);
 
             if ($update) {
                 echo '<div class="alert alert-success">Add Employee Successfully!</div><script> setTimeout(function() {  location.replace("manage_employee.php"); }, 1000); </script>';

@@ -14,13 +14,16 @@ if (isset($_POST)) {
         // Retrieve the original filename of the uploaded QR code
         $original_filename = $qr_code['name'];
 
-        // Generate a unique filename for the uploaded QR code
-        $filename = $original_filename;
+        // Extract the file type extension
+        $extension = pathinfo($original_filename, PATHINFO_EXTENSION);
 
-        // Move the uploaded file to the designated directory
+        // Generate a unique filename for the uploaded QR code
+        $filename = $employee_idno . '.' . $extension;
+
+        // Move the uploaded file to the designated directory with the modified filename
         if (move_uploaded_file($qr_code['tmp_name'], $directory . $filename)) {
-            // Update the employee's QR code path in the database
-            $update = $conn->update_qr_code($employee_idno, $directory . $filename);
+            // Update the employee's QR code path in the database with the modified filename
+            $update = $conn->update_qr_code($employee_idno, $filename);
 
             if ($update) {
                 echo '<div class="alert alert-success">QR Code uploaded successfully!</div>';
